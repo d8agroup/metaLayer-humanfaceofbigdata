@@ -13,7 +13,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/matt/code/metaLayer/humanfaceofbigdata/hfobd.db',                      # Or path to database file if using sqlite3.
+        'NAME': 'hfobd.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -69,6 +69,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/home/matt/code/metaLayer/humanfaceofbigdata/hfobd/static',
+    '/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/hfobd/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -108,7 +109,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/matt/code/metaLayer/humanfaceofbigdata/hfobd/static/html'
+    '/home/matt/code/metaLayer/humanfaceofbigdata/hfobd/static/html',
+    '/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/hfobd/static/html',
 )
 
 INSTALLED_APPS = (

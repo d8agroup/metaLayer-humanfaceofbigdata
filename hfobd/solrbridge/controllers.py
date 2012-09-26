@@ -17,11 +17,10 @@ class SolrController(object):
             for x in range(len(row)):
                 solr_object[headers[x]] = row[x].encode('ascii', 'ignore')
             try:
-                settings.SOLR.add(solr_object)
+                settings.SOLR.add(solr_object, commit=True)
             except Exception as e:
                 logger.error('Error posting content to solr')
                 logger.debug('Error posting content to solr - exception: %s  content:%s' % (e, solr_object))
-        settings.SOLR.commit()
 
 
 
