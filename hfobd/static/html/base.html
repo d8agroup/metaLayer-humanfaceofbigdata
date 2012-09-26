@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/reset.css" />
+    <link rel="stylesheet" href="/static/css/hacks.css" />
+    <link rel="stylesheet" href="/static/css/Aristo.css" />
+    <link rel="stylesheet" href="/static/css/site.css" />
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.livequery.js"></script>
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function(){
+            $('.section_header').livequery(function(){
+                $(this).addClass('ui-state-default');
+            });
+            $('.errors').livequery(function(){
+                $(this).addClass('ui-widget');
+            });
+            $('.errors_inner').livequery(function(){
+                $(this).addClass('ui-state-error ui-corner-all');
+            });
+            $('.button').livequery(function(){
+                $(this).button();
+            });
+            $('form').livequery(function(){
+                $(this).addClass('ui-form');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <div id="page">
+        {% block page %}{% endblock %}
+    </div>
+    <footer>
+
+    </footer>
+</body>
+</html>
