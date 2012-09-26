@@ -5,10 +5,18 @@
     <link rel="stylesheet" href="/static/css/reset.css" />
     <link rel="stylesheet" href="/static/css/hacks.css" />
     <link rel="stylesheet" href="/static/css/Aristo.css" />
+    <link rel="stylesheet" href="/static/css/nv.d3.css" />
     <link rel="stylesheet" href="/static/css/site.css" />
     <script type="text/javascript" language="javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.livequery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.carousel.min.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/lib/d3.v2.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/nv.d3.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/legend.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/pie.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/pieChart.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/utils.js"></script>
     <script type="text/javascript" language="javascript">
         $(document).ready(function(){
             $('.section_header').livequery(function(){
@@ -26,7 +34,48 @@
             $('form').livequery(function(){
                 $(this).addClass('ui-form');
             });
+
+            $('.question').livequery(function(){
+                $(this).click(function(){
+                    $('.question').removeClass('selected');
+                    $(this).addClass('selected');
+                    $.get('/get_graph_data?facet_name=' + $(this).data('facet_name'), function(data){
+                        DrawPieChart('#chart_area_one', data.graph_data);
+                    })
+                });
+            });
+
         });
+
+        function DrawPieChart(target, data){
+            nv.addGraph(function() {
+                var width = 500,
+                        height = 500;
+
+                var chart = nv.models.pieChart()
+                        .x(function(d) { return d.key })
+                    //.y(function(d) { return d.value })
+                        .values(function(d) { return d })
+                    //.labelThreshold(.08)
+                    //.showLabels(false)
+                        .color(d3.scale.category10().range())
+                        .width(width)
+                        .height(height)
+                        .donut(true);
+
+                d3.select(target)
+                    //.datum(historicalBarChart)
+                        .datum([data])
+                        .transition().duration(1200)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .call(chart);
+
+                return chart;
+            });
+
+        }
+
     </script>
 </head>
 <body>
@@ -34,10 +83,57 @@
 
     </header>
     <div id="page">
-        {% block page %}{% endblock %}
+        <div id="section_one">
+            <div id="questions_block" class="ui-corner-all">
+                <div class="clearfix fill_width">
+                    <div class="instructions">
+                        <div class="clearfix fill_width">
+                            <div class="number_container">
+                                <span class="ui-corner-all number">1</span>
+                            </div>
+                            <div class="instruction_message">
+                                <p>Select a question for the list here!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="questions_list_container">
+                        <ul>
+                            {% for question in questions %}
+                                <li class="question" data-facet_name='{{ question.facet_name }}'>
+                                    <p class="title">{{ question.display_name }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section_two">
+            <div class="clearfix fill_width">
+                <div id="filters">
+                    <div class="instructions">
+                        <div class="clearfix fill_width">
+                            <div class="number_container">
+                                <span class="ui-corner-all number">2</span>
+                            </div>
+                            <div class="instruction_message">
+                                <p>Filter the results...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="chart_areas">
+                    <svg id="chart_area_one"></svg>
+                </div>
+            </div>
+        </div>
     </div>
     <footer>
 
     </footer>
 </body>
 </html>
+
+
+

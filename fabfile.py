@@ -3,7 +3,7 @@ from fabric.api import *
 
 packages = {
     'apt-get':[],
-    'pip':[ 'django==1.4.1', 'South', 'solrpy', 'pytz', 'raven' ] }
+    'pip':[ 'django==1.4.1', 'South', 'solrpy', 'pytz', 'raven==1.4.6' ] }
 
 def prod():
     env.hosts = ['root@hfobd.web.01']

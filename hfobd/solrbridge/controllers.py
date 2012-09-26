@@ -15,7 +15,11 @@ class SolrController(object):
         for row in rows:
             solr_object = { 'id':id(row), 'timestamp_dt':datetime.datetime.now().replace(tzinfo=pytz.UTC) }
             for x in range(len(row)):
-                solr_object[headers[x]] = row[x].encode('ascii', 'ignore')
+                try:
+                    solr_object[headers[x]] = row[x].encode('ascii', 'ignore')
+                except Exception as e:
+                    logger.error('Error encoding content')
+                    logger.debug('Error encoding content - exception: %s  content:%s' % (e, solr_object))
             try:
                 settings.SOLR.add(solr_object, commit=True)
             except Exception as e:

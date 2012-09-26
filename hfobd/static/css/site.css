@@ -69,10 +69,24 @@ ul.menu li { display: inline-block; }
 /**********************************************************************************************************************/
 /* PAGE STYLING                                                                                                       */
 /**********************************************************************************************************************/
-#header_inner { width:1024px; margin:0 auto; }
-#header_menu { float:right; }
-#header_menu .menu a { display:inline-block; padding:10px; }
-#header_menu .menu a:hover { text-decoration:underline; }
-#header_menu .menu a.active { text-decoration:underline; }
 
-body.login #login_container { width:320px; margin:50px auto; }
+
+.instructions .number_container { float:left; width:48%; }
+.instructions .number_container .number { background-color:#DDD; font-size:400%; display:inline-block; padding:20px; }
+.instructions .instruction_message { float:right; width:48%; }
+
+#section_one {width:1000px; margin:10px auto; }
+#section_one #questions_block {  background-color:#EEE; padding:10px;}
+#section_one #questions_block .instructions { float:left; width:180px; }
+#section_one #questions_block #questions_list_container { float:right; width:800px;}
+#section_one #questions_block #questions_list_container ul {  margin: 0 auto; padding: 0; white-space: nowrap; width: 790px; overflow-x: auto; background-color: #FFF; }
+#section_one #questions_block .question {  display:inline-block; width: 150px; height: 50px; margin:5px; padding:5px; border:1px solid; white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; }
+#section_one #questions_block .question.selected {  border-color: red; background-color:#DDD;}
+
+#section_two { width:1000px; margin:0 auto; }
+
+#section_two #filters { background-color:#EEE; height:500px; width:390px; float:left;}
+
+#section_two #chart_areas { width:600px; float:right; background-color:#EEE; }
+#section_two #chart_areas svg { width:500px; height:500px; margin:0 auto;}
+

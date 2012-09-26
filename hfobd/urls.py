@@ -4,7 +4,7 @@ from hfobd.solrbridge.views import push_data_one
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
-from hfobd.views import home
+from hfobd import views
 
 urlpatterns = patterns('',
     # Examples:
@@ -17,6 +17,8 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
-    url('^push/data$', push_data_one),
-    url('', home),
+    url(r'^push/data$', push_data_one),
+    url(r'^get_graph_data$', views.get_graph_data),
+    url(r'', views.home),
+
 )

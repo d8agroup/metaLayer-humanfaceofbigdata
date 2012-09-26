@@ -3,6 +3,7 @@ from django.db import models
 class FacetMapping(models.Model):
     display_name = models.CharField(max_length=2048)
     facet_name = models.CharField(max_length=2048)
+    display_as_question = models.BooleanField(default=True)
 
     @classmethod
     def CreateFromDisplayName(cls, display_name):
