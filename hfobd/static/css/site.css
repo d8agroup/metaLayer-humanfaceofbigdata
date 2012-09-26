@@ -1,3 +1,38 @@
+/**********************************************************************************************************************/
+/* PAGE STYLING                                                                                                       */
+/**********************************************************************************************************************/
+body { background-color:#585858}
+
+#header { background:url('/static/images/backgrond_noise.png') repeat; -moz-box-shadow: 0 10px 5px #000; -webkit-box-shadow: 0 10px 5px #000; box-shadow: 0 10px 5px #000;}
+#header #header_inner { height:50px; width:1100px; margin:0 auto; }
+#header #header_inner #branding { float:right; }
+#header #header_inner #branding #metalayer_branding { color:#FFF; }
+#header #header_inner #branding #metalayer_branding img { width:30px; position:relative; top:10px; left:10px; }
+
+.instructions .number_container { float:left; width:48%; }
+.instructions .number_container .number { background-color:#DDD; font-size:400%; display:inline-block; padding:20px; }
+.instructions .instruction_message { float:right; width:48%; font-size:130%; font-style:italic; }
+
+.section {  -moz-box-shadow: 10px 10px 5px #555; -webkit-box-shadow: 5px 5px 5px #111; box-shadow: 5px 5px 5px #111; }
+
+#section_one {width:1000px; margin:30px auto; }
+#section_one #questions_block {  background-color:#EEE; padding:10px; }
+#section_one #questions_block .instructions { float:left; width:180px; }
+#section_one #questions_block #questions_list_container { float:right; width:800px;}
+#section_one #questions_block #questions_list_container ul {  margin: 0 auto; padding: 0; white-space: nowrap; width: 790px; overflow-x: auto; overflow-y:hidden; }
+#section_one #questions_block .question { display:inline-block; width: 150px; height: 50px; margin:5px; padding:15px;  white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; background-color:#ddd; }
+#section_one #questions_block .question.selected {  background-color:#FFF;}
+#section_one #questions_block .question.hover {  background-color:#FFF;}
+
+#section_two { width:1000px; margin:0 auto; }
+
+#section_two #filters { background-color:#EEE; height:500px; width:390px; float:left;}
+
+#section_two #chart_areas { width:600px; float:right; background-color:#EEE; }
+#section_two #chart_areas svg { width:500px; height:500px; margin:0 auto;}
+
+
+
 /* 
 MetaLayer.com Styles - Base.css
 Author: Jon Gosier (jongosier.com)
@@ -8,8 +43,8 @@ URL: http://metalayer.com
 /**********************************************************************************************************************/
 /* BASIC ELEMENT STYLING                                                                                              */
 /**********************************************************************************************************************/
-body {  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; background-color:#FFF;  width:100%; }
-html { font-size: 80%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; width:100%;}
+body {  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+html { font-size: 80%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
 a { cursor:pointer; text-decoration:none; color:inherit; }
 a:hover { text-decoration:none; }
 
@@ -65,28 +100,4 @@ form .form_row .help { font-size:80%; font-style: italic;}
 /* GENERIC UL HORIZONTAL MENU STYLING */
 ul.menu li { display: inline-block; }
 
-
-/**********************************************************************************************************************/
-/* PAGE STYLING                                                                                                       */
-/**********************************************************************************************************************/
-
-
-.instructions .number_container { float:left; width:48%; }
-.instructions .number_container .number { background-color:#DDD; font-size:400%; display:inline-block; padding:20px; }
-.instructions .instruction_message { float:right; width:48%; }
-
-#section_one {width:1000px; margin:10px auto; }
-#section_one #questions_block {  background-color:#EEE; padding:10px;}
-#section_one #questions_block .instructions { float:left; width:180px; }
-#section_one #questions_block #questions_list_container { float:right; width:800px;}
-#section_one #questions_block #questions_list_container ul {  margin: 0 auto; padding: 0; white-space: nowrap; width: 790px; overflow-x: auto; background-color: #FFF; }
-#section_one #questions_block .question {  display:inline-block; width: 150px; height: 50px; margin:5px; padding:5px; border:1px solid; white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; }
-#section_one #questions_block .question.selected {  border-color: red; background-color:#DDD;}
-
-#section_two { width:1000px; margin:0 auto; }
-
-#section_two #filters { background-color:#EEE; height:500px; width:390px; float:left;}
-
-#section_two #chart_areas { width:600px; float:right; background-color:#EEE; }
-#section_two #chart_areas svg { width:500px; height:500px; margin:0 auto;}
 

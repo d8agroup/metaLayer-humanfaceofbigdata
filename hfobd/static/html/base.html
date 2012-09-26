@@ -11,6 +11,7 @@
     <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.livequery.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.carousel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.corner.js"></script>
     <script type="text/javascript" language="javascript"  src="/static/js/nvd3/lib/d3.v2.js"></script>
     <script type="text/javascript" language="javascript"  src="/static/js/nvd3/nv.d3.js"></script>
     <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/legend.js"></script>
@@ -34,8 +35,20 @@
             $('form').livequery(function(){
                 $(this).addClass('ui-form');
             });
+            $('.corner_small').livequery(function(){
+                $(this).corner('5px');
+            });
+            $('.corner_large').livequery(function(){
+                $(this).corner('15px');
+            });
 
             $('.question').livequery(function(){
+                $(this).mouseenter(function(){
+                    $(this).addClass('hover');
+                });
+                $(this).mouseleave(function(){
+                    $(this).removeClass('hover');
+                });
                 $(this).click(function(){
                     $('.question').removeClass('selected');
                     $(this).addClass('selected');
@@ -79,17 +92,23 @@
     </script>
 </head>
 <body>
-    <header>
-
-    </header>
+    <div id="header">
+        <div id="header_inner">
+            <div class="clearfix fill_width">
+                <div id="branding">
+                    <p id="metalayer_branding">Big Data Solutions From metaLayer<img src="/static/images/logo_metalayer_square.jpg" class="corner_small"/> </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="page">
         <div id="section_one">
-            <div id="questions_block" class="ui-corner-all">
+            <div id="questions_block" class="corner_small section">
                 <div class="clearfix fill_width">
                     <div class="instructions">
                         <div class="clearfix fill_width">
                             <div class="number_container">
-                                <span class="ui-corner-all number">1</span>
+                                <span class="corner_small number">1</span>
                             </div>
                             <div class="instruction_message">
                                 <p>Select a question for the list here!</p>
@@ -99,7 +118,7 @@
                     <div id="questions_list_container">
                         <ul>
                             {% for question in questions %}
-                                <li class="question" data-facet_name='{{ question.facet_name }}'>
+                                <li class="question corner_large" data-facet_name='{{ question.facet_name }}'>
                                     <p class="title">{{ question.display_name }}</p>
                                 </li>
                             {% endfor %}
@@ -111,7 +130,7 @@
 
         <div id="section_two">
             <div class="clearfix fill_width">
-                <div id="filters">
+                <div id="filters" class="corner_small section">
                     <div class="instructions">
                         <div class="clearfix fill_width">
                             <div class="number_container">
@@ -123,7 +142,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="chart_areas">
+                <div id="chart_areas" class="corner_small section">
                     <svg id="chart_area_one"></svg>
                 </div>
             </div>
