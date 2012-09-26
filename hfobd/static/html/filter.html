@@ -1,0 +1,22 @@
+<div class="filter corner_large hidden">
+    <a class="button remove_filter_button">remove</a>
+    <p class="title">Filter</p>
+    <p class="prompt">Choose a question to filter on...</p>
+    <select class="filter_question">
+        <option value="null">Please select a question</option>
+        {% for filter in filters %}
+            <option value="{{ filter.facet_name }}">{{ filter.display_name }}</option>
+        {% endfor %}
+    </select>
+    {% for filter in filters %}
+        <div class="filter_values {{ filter.facet_name }} hidden">
+            <p class="equals_message">has a value of...</p>
+            <select class="filter_value {{ filter.facet_name }}">
+                <option value="null">Please select a filter</option>
+                {% for filter_value in filter.facet_values %}
+                    <option value="{{ filter_value }}">{{ filter_value }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    {% endfor %}
+</div>

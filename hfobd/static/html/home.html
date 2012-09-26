@@ -3,27 +3,5 @@
 {% block page_title %}Home{% endblock %}
 
 {% block page %}
-    <div id="questions_block" class="ui-corner-all">
-        <div class="clearfix fill_width">
-            <div class="instructions">
-                <div class="clearfix fill_width">
-                    <div class="number_container">
-                        <span class="ui-corner-all number">1</span>
-                    </div>
-                    <div class="instruction_message">
-                        <p>Select a question for the list here!</p>
-                    </div>
-                </div>
-            </div>
-            <div id="questions_list_container">
-                <ul>
-                    {% for question in questions %}
-                        <li class="question" data-facet_name='{{ question.facet_name }}'>
-                            <p class="title">{{ question.display_name }}</p>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-    </div>
+
 {% endblock %}
