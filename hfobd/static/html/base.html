@@ -54,9 +54,10 @@
             $('.filter_question').livequery(function(){
                 $(this).change(function(){
                     var select = $(this);
-                    select.parents('.filter').find('.filter_values').slideUp();
+                    select.parents('.filter').find('.filter_values').slideUp(function(){
+                        RunGraph();
+                    });
                     select.parents('.filter').find('.filter_values.'+select.val()).slideDown();
-                    RunGraph();
                 })
             });
             $('.filter_value').livequery(function(){
