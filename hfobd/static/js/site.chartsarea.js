@@ -26,7 +26,7 @@
                         var chart = nv.models.pieChart()
                             .x(function(d) { return d.label })
                             .y(function(d) { return d.value })
-                            .showLabels(true)
+                            .showLabels(false)
                             .width(width)
                             .height(height)
                             .donut(true);
