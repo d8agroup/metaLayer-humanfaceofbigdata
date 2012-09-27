@@ -18,6 +18,7 @@
     <script type="text/javascript" language="javascript" src="/static/js/site.question.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.questionlist.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.thequery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.chartsarea.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/lib/d3.v2.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/nv.d3.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/legend.js"></script>
@@ -29,6 +30,7 @@
         $(document).ready(function(){
             $('#questions_list_container').questionlist();
             $('#the_query').thequery();
+            $('#charts_area').chartsarea();
 
 
             $('.section_header').livequery(function(){
@@ -218,6 +220,12 @@
             return newObj;
         }
 
+        function guid(){
+            return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace( /[xy]/g, function(c) {
+                var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);
+            });
+        }
+
 
     </script>
 </head>
@@ -250,33 +258,22 @@
         </div>
 
         <div id="section_two">
-            <div id="the_query" class="corner_small">
-                <p class="title">Questions:</p>
-                <ul id="query_questions_list">
-                    <li class="query_question_drop_container corner_large"></li>
-                    <li class="query_question_drop_container corner_large"></li>
-                    <li class="query_question_drop_container corner_large"></li>
-                </ul>
-                <div id="query_question_trash"><span class="ui-icon ui-icon-trash"></span></div>
+            <div class="clearfix fill_width">
+                <div id="the_query" class="corner_large">
+                    <p class="title">Questions:</p>
+                    <ul id="query_questions_list">
+                        <li class="query_question_drop_container corner_large"></li>
+                        <li class="query_question_drop_container corner_large"></li>
+                        <li class="query_question_drop_container corner_large"></li>
+                    </ul>
+                </div>
+                <div id="charts_area">
+
+                </div>
             </div>
         </div>
 
         <div id="section_three">
-            <ul>
-                <li>
-                    <a href="#tab1">tab1</a>
-                </li>
-            </ul>
-
-            <div id="tab1">
-                tab one
-            </div>
-        </div>
-
-        <div id="chart_areas" class="corner_small section">
-            <div id="chart_area_one">
-                <svg></svg>
-            </div>
         </div>
     </div>
     <footer>

@@ -23,22 +23,19 @@ body { background-color:#585858}
 #section_one #questions_block .ui-widget-content { background:none; border:none; }
 
 #section_two { width:1000px; margin:0 auto; }
-#section_two #the_query { width:820px; margin:0 auto; height:85px; background: rgb(54, 25, 25); background: rgba(25, 25, 25, .3); padding:10px; }
-#section_two #the_query .title { font-size:400%; color:#555; line-height:80px; display:inline-block; vertical-align:top; }
-#section_two #the_query #query_questions_list { height:88px; width:530px; display:inline-block; margin-left:10px;}
-#section_two #the_query #query_questions_list .query_question_drop_container { border:2px dashed #555; width:162px; height:74px; margin:5px; float:left;  }
+#section_two #the_query { width:195px; background: rgb(54, 25, 25); background: rgba(25, 25, 25, .3); padding:10px; float:left; }
+#section_two #the_query .title { font-size:280%; color:#555; display:inline-block; padding:15px; }
+#section_two #the_query #query_questions_list { }
+#section_two #the_query #query_questions_list .query_question_drop_container { border:2px dashed #555; width:162px; height:74px; margin:5px; margin:15px; }
 #section_two #the_query #query_questions_list .query_question_drop_container.hover { border-color:#FFF; }
 #section_two #the_query #query_questions_list .query_question_drop_container.active { border-color:#AAA; }
 #section_two #the_query #query_questions_list .query_question_drop_container .query_question { display:inline-block; width: 130px; height: 40px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; font-size:80%;}
-#section_two #the_query #query_question_trash { float:right; position:relative; top:4px; height:80px; width:30px; }
-#section_two #the_query #query_question_trash span { position:relative; top:30px; left:10px;}
 
 
-#section_two #chart_areas { width:600px; float:right; background-color:#EEE; }
-#section_two #chart_areas svg { width:500px; height:500px; margin:0 auto;}
+#section_two #charts_area { float:right; width:750px;}
+#section_two #charts_area .chart { margin:0 auto; float:left; }
+#section_two #charts_area .chart .title { color:#DDD; font-size:200%}
 
-
-#section_three { width:1000px; margin:10px auto 2px; }
 
 
 /* 

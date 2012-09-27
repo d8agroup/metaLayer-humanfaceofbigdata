@@ -3,7 +3,6 @@
         init:function(){
             var the_query = this;
             the_query.thequery('apply_question_droppable');
-            the_query.thequery('apply_query_question_trash_droppable');
             return the_query;
         },
         apply_question_droppable:function(){
@@ -20,20 +19,31 @@
                     html.data('facet_name', facet_name);
                     html.data('display_name', display_name);
                     $(this).html(html);
-                    html.draggable({ revert:true });
+                    html.mouseenter(function(){
+                        $(this).addClass('ui-state-active');
+                    });
+                    html.mouseleave(function(){
+                        $(this).removeClass('ui-state-active');
+                    });
+                    html.click(function(){
+                        $(this).remove();
+                        $('#charts_area').chartsarea('repaint');
+                    });
+                    $('#charts_area').chartsarea('repaint');
                 }
             });
             return the_query
         },
-        apply_query_question_trash_droppable:function(){
+        return_questions:function(){
             var the_query = this;
-            the_query.find('#query_question_trash').droppable({
-                accept:'.query_question',
-                drop:function(event, ui){
-                    ui.draggable.remove();
+            var query_questions = the_query.find('.query_question');
+            var questions = [];
+            for (var x=0; x<query_questions.length; x++)
+                questions[questions.length] = {
+                    facet_name:$(query_questions[x]).data('facet_name'),
+                    display_name:$(query_questions[x]).data('display_name')
                 }
-            });
-            return the_query;
+            return questions;
         }
     };
 

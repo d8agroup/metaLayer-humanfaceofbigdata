@@ -22,8 +22,9 @@ def design1(request):
 @csrf_exempt
 def get_graph_data(request):
     facet_name = request.POST.get('facet_name')
-    filters = simplejson.loads(request.POST.get('filters'))
+    filters = request.POST.get('filters')
     if filters:
+        filters = simplejson.loads(filters)
         query = ' AND '.join('%s:%s' % (f['facet_name'], f['facet_value']) for f in filters)
     else:
         query = "*:*"
