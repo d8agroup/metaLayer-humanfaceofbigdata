@@ -11,6 +11,7 @@
             var questions = $('#the_query').thequery('return_questions');
             var width = (questions.length == 1) ? 500 : 350;
             var height = (questions.length == 1) ? 500 : 350;
+            var chart_class = (questions.length == 1) ? 'one_up' : 'two_up';
             for (var x=0; x<questions.length; x++) {
                 var post_data = {
                     csrfmiddlewaretoken:$.cookie('csrftoken'),
@@ -19,7 +20,7 @@
                 $.post('/get_graph_data', post_data, function(data){
                     var graph_data = data.graph_data;
                     var graph_id = guid();
-                    var graph_html = $('<div class="chart" style="width:'+width+'px;height:'+height+'px;"><p class="title">' + graph_data[0].key + '</p><svg id="vis_' + graph_id + '"></svg></div>');
+                    var graph_html = $('<div class="chart one '+chart_class+'" style="width:'+width+'px;height:'+height+'px;"><p class="title">' + graph_data[0].key + '</p><svg id="vis_' + graph_id + '"></svg></div>');
                     charts_area.append(graph_html);
                     nv.addGraph(function() {
                         var chart = nv.models.pieChart()

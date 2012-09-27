@@ -1,3 +1,7 @@
+.nv-legend { fill:#FFF;}
+.slice { stroke:#585858; stroke-width:3; }
+
+
 /**********************************************************************************************************************/
 /* PAGE STYLING                                                                                                       */
 /**********************************************************************************************************************/
@@ -33,8 +37,9 @@ body { background-color:#585858}
 
 
 #section_two #charts_area { float:right; width:750px;}
-#section_two #charts_area .chart { margin:0 auto; float:left; }
-#section_two #charts_area .chart .title { color:#DDD; font-size:200%}
+#section_two #charts_area .chart.one_up { margin:0 auto; }
+#section_two #charts_area .chart.two_up { display:inline-block; margin-left:20px;}
+#section_two #charts_area .chart .title { color:#DDD; font-size:120%; border-bottom:1px solid; padding-bottom:5px;}
 
 
 
