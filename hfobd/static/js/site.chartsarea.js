@@ -6,12 +6,23 @@
             return charts_area;
         },
         repaint:function(){
+            var colors = ['#12D0FF', '#11C6F3', '#10BCE8', '#0FB3DC']
             var charts_area = this;
-            charts_area.html('');
+            charts_area.find('#charts').html('');
             var questions = $('#the_query').thequery('return_questions');
-            var width = (questions.length == 1) ? 500 : 350;
-            var height = (questions.length == 1) ? 500 : 350;
-            var chart_class = (questions.length == 1) ? 'one_up' : 'two_up';
+            var width, height, chart_class;
+            if (questions.length < 2) {
+                width = 500;
+                height = 500;
+                chart_class = "one_up";
+                charts_area.find('#filters_container').hide();
+            }
+            else {
+                width = 350;
+                height = 350;
+                chart_class = "two_up";
+                charts_area.find('#filters_container').show();
+            }
             for (var x=0; x<questions.length; x++) {
                 var post_data = {
                     csrfmiddlewaretoken:$.cookie('csrftoken'),
@@ -21,7 +32,7 @@
                     var graph_data = data.graph_data;
                     var graph_id = guid();
                     var graph_html = $('<div class="chart one '+chart_class+'" style="width:'+width+'px;height:'+height+'px;"><p class="title">' + graph_data[0].key + '</p><svg id="vis_' + graph_id + '"></svg></div>');
-                    charts_area.append(graph_html);
+                    charts_area.find('#charts').append(graph_html);
                     nv.addGraph(function() {
                         var chart = nv.models.pieChart()
                             .x(function(d) { return d.label })
