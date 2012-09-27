@@ -13,6 +13,12 @@ def home(request):
     }
     return render_to_response('home.html', template_data, context_instance=RequestContext(request))
 
+def design1(request):
+    template_data = {
+        'questions':FacetMapping.objects.filter(display_as_question=True),
+    }
+    return render_to_response('design1.html', template_data, context_instance=RequestContext(request))
+
 @csrf_exempt
 def get_graph_data(request):
     facet_name = request.POST.get('facet_name')
@@ -25,10 +31,11 @@ def get_graph_data(request):
     graph_dict = results.facet_counts['facet_fields'][facet_name]
     graph_data = []
     for key in graph_dict.keys():
-        graph_data.append({'key':key, 'y':graph_dict[key]})
-    graph_data = sorted(graph_data, key=lambda x: x['y'])
+        graph_data.append({'label':key, 'value':graph_dict[key]})
+    graph_data = sorted(graph_data, key=lambda x: x['value'])
     graph_data = graph_data[:10]
-    return JSONResponse({ 'graph_data':graph_data})
+    question_display_name = FacetMapping.objects.get(facet_name=facet_name).display_name
+    return JSONResponse({ 'graph_data':[{'key':question_display_name, 'values':graph_data}]})
 
 @csrf_exempt
 def add_a_filter(request):

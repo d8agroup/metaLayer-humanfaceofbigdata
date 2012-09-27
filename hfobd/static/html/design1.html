@@ -6,22 +6,31 @@
     <link rel="stylesheet" href="/static/css/hacks.css" />
     <link rel="stylesheet" href="/static/css/Aristo.css" />
     <link rel="stylesheet" href="/static/css/nv.d3.css" />
-    <link rel="stylesheet" href="/static/css/site.css" />
+    <link rel="stylesheet" href="/static/css/jquery.hoverscroll.css" />
+    <link rel="stylesheet" href="/static/css/design1.css" />
     <script type="text/javascript" language="javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.livequery.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.carousel.min.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.corner.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.cookie.js"></script>
-    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/lib/d3.v2.js"></script>
-    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/nv.d3.js"></script>
-    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/legend.js"></script>
-    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/pie.js"></script>
-    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/pieChart.js"></script>
-    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/utils.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.hoverscroll.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.question.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.questionlist.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.thequery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/lib/d3.v2.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/nv.d3.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/legend.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/pie.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/pieChart.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/utils.js"></script>
     <script type="text/javascript" language="javascript">
         var chart = null;
         $(document).ready(function(){
+            $('#questions_list_container').questionlist();
+            $('#the_query').thequery();
+
+
             $('.section_header').livequery(function(){
                 $(this).addClass('ui-state-default');
             });
@@ -43,6 +52,9 @@
             $('.corner_large').livequery(function(){
                 $(this).corner('15px');
             });
+//            $('#questions_list_container ul').livequery(function(){
+//                $(this).hoverscroll({ width:1000, height:70, arrows:false});
+//            });
             $('.remove_filter_button').livequery(function(){
                 $(this).click(function(){
                     $(this).parents('.filter').slideUp(function(){
@@ -66,12 +78,6 @@
             })
 
             $('.question').livequery(function(){
-                $(this).mouseenter(function(){
-                    $(this).addClass('hover');
-                });
-                $(this).mouseleave(function(){
-                    $(this).removeClass('hover');
-                });
                 $(this).click(function(){
                     $('.question').removeClass('selected');
                     $(this).addClass('selected');
@@ -84,7 +90,7 @@
         function RunGraph(){
 
             $.post('/get_graph_data',BuildPostData(), function(data){
-                DrawPieChart('#chart_area_one svg', data.graph_data);
+                DrawBarChart('#chart_area_one svg', data.graph_data);
             });
         }
 
@@ -197,6 +203,22 @@
             })
         }
 
+        function clone(object)
+        {
+            var newObj = (object instanceof Array) ? [] : {};
+            for (i in object)
+            {
+                if (i == 'clone')
+                    continue;
+                if (object[i] && typeof object[i] == "object")
+                    newObj[i] = clone(object[i]);
+                else
+                    newObj[i] = object[i];
+            }
+            return newObj;
+        }
+
+
     </script>
 </head>
 <body>
@@ -214,58 +236,46 @@
     </div>
     <div id="page">
         <div id="section_one">
-            <div id="questions_block" class="corner_small section">
-                <div class="clearfix fill_width">
-                    <div class="instructions">
-                        <div class="clearfix fill_width">
-                            <div class="number_container">
-                                <span class="corner_small number">1</span>
-                            </div>
-                            <div class="instruction_message">
-                                <p>Select a question for the list here!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="questions_list_container">
-                        <ul>
-                            {% for question in questions %}
-                                <li class="question corner_large" data-facet_name='{{ question.facet_name }}'>
-                                    <p class="title">{{ question.display_name }}</p>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+            <div id="questions_block">
+                <div id="questions_list_container">
+                    <ul>
+                        {% for question in questions %}
+                            <li class="question corner_large" data-facet_name='{{ question.facet_name }}' data-display_name='{{ question.display_name }}'>
+                                <p class="title">{{ question.display_name }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div id="section_two">
-            <div class="clearfix fill_width">
+            <div id="the_query" class="corner_small">
+                <p class="title">Questions:</p>
+                <ul id="query_questions_list">
+                    <li class="query_question_drop_container corner_large"></li>
+                    <li class="query_question_drop_container corner_large"></li>
+                    <li class="query_question_drop_container corner_large"></li>
+                </ul>
+                <div id="query_question_trash"><span class="ui-icon ui-icon-trash"></span></div>
+            </div>
+        </div>
 
-                <div id="filters" class="corner_small section">
-                    <a class="button" id="add_filter_button" href="JavaScript:ShowAddFilter()">Add a filter!</a>
-                    <div class="instructions">
-                        <div class="clearfix fill_width">
-                            <div class="number_container">
-                                <span class="ui-corner-all number">2</span>
-                            </div>
-                            <div class="instruction_message">
-                                <p>Want more from the data?</p>
-                                <p>Why not filter!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="filter_list">
+        <div id="section_three">
+            <ul>
+                <li>
+                    <a href="#tab1">tab1</a>
+                </li>
+            </ul>
 
-                    </div>
-                </div>
+            <div id="tab1">
+                tab one
+            </div>
+        </div>
 
-                <div id="chart_areas" class="corner_small section">
-                    <div id="chart_area_one">
-                        <svg></svg>
-                    </div>
-                </div>
-
+        <div id="chart_areas" class="corner_small section">
+            <div id="chart_area_one">
+                <svg></svg>
             </div>
         </div>
     </div>
