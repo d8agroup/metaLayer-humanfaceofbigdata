@@ -19,6 +19,12 @@ def design1(request):
     }
     return render_to_response('design1.html', template_data, context_instance=RequestContext(request))
 
+def design2(request):
+    template_data = {
+        'questions':FacetMapping.objects.filter(display_as_question=True),
+    }
+    return render_to_response('design2.html', template_data, context_instance=RequestContext(request))
+
 @csrf_exempt
 def get_graph_data(request):
     facet_name = request.POST.get('facet_name')

@@ -1,0 +1,105 @@
+.nv-legend { fill:#FFF;}
+
+
+/**********************************************************************************************************************/
+/* PAGE STYLING                                                                                                       */
+/**********************************************************************************************************************/
+body { background:url('/static/images/background_page.png') top center repeat-y  #21262C;}
+
+#header { background-color:#1d2228; height:99px; }
+#header #header_right { float:right; height:99px; background:url('/static/images/header_right.png') right; width:552px; }
+#header #header_left { float:left; height:99px; background:url('/static/images/header_left.png'); width:520px; }
+#header #header_center { height:99px; background:url('/static/images/header_center.png'); width:189px; margin:0 auto;}
+
+#section_one {width:90%; margin:0 auto;}
+#section_one #questions_block .question { display:inline-block; width: 130px; height: 40px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; font-size:80%; }
+#section_one #questions_block .ui-widget-content { background:none; border:none; }
+
+#section_two { width:1000px; margin:0 auto; }
+#section_two #the_query { width:195px; background: rgb(54, 25, 25); background: rgba(25, 25, 25, .3); padding:10px; float:left; }
+#section_two #the_query .title { font-size:280%; color:#555; display:inline-block; padding:15px; }
+#section_two #the_query #query_questions_list { }
+#section_two #the_query #query_questions_list .query_question_drop_container { border:2px dashed #555; width:162px; height:74px; margin:5px; margin:15px; }
+#section_two #the_query #query_questions_list .query_question_drop_container.hover { border-color:#FFF; }
+#section_two #the_query #query_questions_list .query_question_drop_container.active { border-color:#AAA; }
+#section_two #the_query #query_questions_list .query_question_drop_container .query_question { display:inline-block; width: 130px; height: 40px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; font-size:80%;}
+
+
+#section_two #charts_area { float:right; width:750px;}
+#section_two #charts_area #filters { background: rgb(54, 25, 25); background: rgba(25, 25, 25, .3); padding:10px; margin-bottom:20px;}
+#section_two #charts_area #filters .title { font-size:280%; color:#555; display:inline-block; padding:15px;  }
+#section_two #charts_area .chart.one_up { margin:0 auto; }
+#section_two #charts_area .chart.two_up { display:inline-block; margin-left:20px;}
+#section_two #charts_area .chart .title { color:#DDD; font-size:120%; border-bottom:1px solid; padding-bottom:5px;}
+
+
+
+/* 
+MetaLayer.com Styles - Base.css
+Author: Jon Gosier (jongosier.com)
+Copyright: MetaLayer Inc.
+URL: http://metalayer.com
+*/
+
+/**********************************************************************************************************************/
+/* BASIC ELEMENT STYLING                                                                                              */
+/**********************************************************************************************************************/
+body {  font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+html { font-size: 80%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+a { cursor:pointer; text-decoration:none; color:inherit; }
+a:hover { text-decoration:none; }
+
+
+/**********************************************************************************************************************/
+/* SITE WIDE UTILITY CLASSES                                                                                          */
+/**********************************************************************************************************************/
+.left { float:left; }
+.right { float:right; }
+.center.one_third { padding-left:33%;}
+.one_half { width:49%; }
+.one_third { width:33%; }
+.two_thirds { width:66%; }
+.fill_width { width:100%; }
+
+
+/* GENERIC ERROR STYLING */
+.errors { margin:10px 0; font-size: 100%; }
+.errors .errors_inner { padding: 10px; }
+
+
+
+/* GENERIC SECTION STYLING */
+.section {  }
+.section .section_header { padding:10px; }
+.section .section_header .section_actions { float:right; }
+.section .section_body { padding:10px; border:1px solid #AAA; border-top: none; }
+.section .section_body .loading { text-align: center; }
+.section .section_info { font-style: italic; }
+
+
+
+/* GENERIC DIALOG STYLING */
+.dialog { display:none; }
+.dialog .loading { text-align: center; margin-top: 10%; }
+
+
+
+/* GENERIC IMAGE BUTTON STYLING */
+.image_button_small { display:inline-block; }
+.image_button_small span { width:18px; height:18px;  }
+
+
+/* GENERIC FORM STYLING */
+form .form_row { margin:10px 0; }
+form .form_row label { display:inline-block; width: 47%;}
+form .form_row input { display:inline-block; width: 47%; padding:5px 2px !important;}
+form .form_row .button { display:inline-block; width: 46%;}
+form .form_row textarea { width:98%; height:70px;}
+form .form_row .help { font-size:80%; font-style: italic;}
+
+
+/* GENERIC UL HORIZONTAL MENU STYLING */
+ul.menu li { display: inline-block; }
+
+
+

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/reset.css" />
+    <link rel="stylesheet" href="/static/css/hacks.css" />
+    <link rel="stylesheet" href="/static/css/Aristo.css" />
+    <link rel="stylesheet" href="/static/css/nv.d3.css" />
+    <link rel="stylesheet" href="/static/css/jquery.hoverscroll.css" />
+    <link rel="stylesheet" href="/static/css/design2.css" />
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.livequery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.carousel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.corner.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.hoverscroll.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.question.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.questionlist.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.thequery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.chartsarea.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/lib/d3.v2.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/nv.d3.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/legend.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/pie.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/pieChart.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/nvd3/utils.js"></script>
+    <script type="text/javascript" language="javascript">
+        var chart = null;
+        $(document).ready(function(){
+            $('#questions_list_container').questionlist();
+            $('#the_query').thequery();
+            $('#charts_area').chartsarea();
+            $('.section_header').livequery(function(){
+                $(this).addClass('ui-state-default');
+            });
+            $('.errors').livequery(function(){
+                $(this).addClass('ui-widget');
+            });
+            $('.errors_inner').livequery(function(){
+                $(this).addClass('ui-state-error ui-corner-all');
+            });
+            $('.button').livequery(function(){
+                $(this).button();
+            });
+            $('form').livequery(function(){
+                $(this).addClass('ui-form');
+            });
+            $('.corner_small').livequery(function(){
+                $(this).corner('5px');
+            });
+            $('.corner_large').livequery(function(){
+                $(this).corner('15px');
+            });
+        });
+
+        function clone(object)
+        {
+            var newObj = (object instanceof Array) ? [] : {};
+            for (i in object)
+            {
+                if (i == 'clone')
+                    continue;
+                if (object[i] && typeof object[i] == "object")
+                    newObj[i] = clone(object[i]);
+                else
+                    newObj[i] = object[i];
+            }
+            return newObj;
+        }
+
+        function guid(){
+            return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace( /[xy]/g, function(c) {
+                var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);
+            });
+        }
+
+
+    </script>
+</head>
+<body>
+    <div id="header">
+        <div id="header_inner">
+            <div class="clearfix fill_width">
+                <div id="header_right">
+
+                </div>
+                <div id="header_left">
+
+                </div>
+                <div id="header_center">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page">
+        <div id="section_one">
+            <div id="questions_block">
+                <div id="questions_list_container">
+                    <ul>
+                        {% for question in questions %}
+                            <li class="question corner_large" data-facet_name='{{ question.facet_name }}' data-display_name='{{ question.display_name }}'>
+                                <p class="title">{{ question.display_name }}</p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="section_two">
+            <div class="clearfix fill_width">
+                <div id="the_query" class="corner_large">
+                    <p class="title">Questions:</p>
+                    <ul id="query_questions_list">
+                        <li class="query_question_drop_container corner_large"></li>
+                        <li class="query_question_drop_container corner_large"></li>
+                        <li class="query_question_drop_container corner_large"></li>
+                    </ul>
+                </div>
+                <div id="charts_area">
+                    <div id="filters_container" class="hidden">
+                        <div id="filters" class="corner_large">
+                            <div class="clearfix fill_width">
+                                <p class="title">Filter?</p>
+                                <div id="filter_options">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="charts">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+</body>
+</html>
+
+
+

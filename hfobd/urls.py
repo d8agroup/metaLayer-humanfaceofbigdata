@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^get_graph_data$', views.get_graph_data),
     url(r'^add_a_filter$', views.add_a_filter),
     url(r'design1', views.design1),
+    url(r'design2', views.design2),
     url(r'', views.home),
 
 )
