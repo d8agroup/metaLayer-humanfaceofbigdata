@@ -29,7 +29,7 @@ def design2(request):
 def get_graph_data(request):
     facet_name = request.POST.get('facet_name')
     filters = request.POST.get('filters')
-    if filters:
+    if filters and filters != '[]':
         filters = simplejson.loads(filters)
         query = ' AND '.join('%s:%s' % (f['facet_name'], f['facet_value']) for f in filters)
     else:
