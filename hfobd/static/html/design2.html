@@ -17,8 +17,7 @@
     <script type="text/javascript" language="javascript" src="/static/js/jquery.hoverscroll.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.question.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.questionlist.js"></script>
-    <script type="text/javascript" language="javascript" src="/static/js/site.thequery.js"></script>
-    <script type="text/javascript" language="javascript" src="/static/js/site.chartsarea.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.chartarea.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/lib/d3.v2.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/nv.d3.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/legend.js"></script>
@@ -29,8 +28,9 @@
         var chart = null;
         $(document).ready(function(){
             $('#questions_list_container').questionlist();
-            $('#the_query').thequery();
-            $('#charts_area').chartsarea();
+            $('.chart_area_container').each(function() { $(this).chartarea(); } );
+
+
             $('.section_header').livequery(function(){
                 $(this).addClass('ui-state-default');
             });
@@ -82,15 +82,9 @@
     <div id="header">
         <div id="header_inner">
             <div class="clearfix fill_width">
-                <div id="header_right">
-
-                </div>
-                <div id="header_left">
-
-                </div>
-                <div id="header_center">
-
-                </div>
+                <div id="header_right"></div>
+                <div id="header_left"></div>
+                <div id="header_center"></div>
             </div>
         </div>
     </div>
@@ -100,7 +94,7 @@
                 <div id="questions_list_container">
                     <ul>
                         {% for question in questions %}
-                            <li class="question corner_large" data-facet_name='{{ question.facet_name }}' data-display_name='{{ question.display_name }}'>
+                            <li class="question" data-facet_name='{{ question.facet_name }}' data-display_name='{{ question.display_name }}'>
                                 <p class="title">{{ question.display_name }}</p>
                             </li>
                         {% endfor %}
@@ -110,28 +104,50 @@
         </div>
 
         <div id="section_two">
-            <div class="clearfix fill_width">
-                <div id="the_query" class="corner_large">
-                    <p class="title">Questions:</p>
-                    <ul id="query_questions_list">
-                        <li class="query_question_drop_container corner_large"></li>
-                        <li class="query_question_drop_container corner_large"></li>
-                        <li class="query_question_drop_container corner_large"></li>
-                    </ul>
-                </div>
-                <div id="charts_area">
-                    <div id="filters_container" class="hidden">
-                        <div id="filters" class="corner_large">
-                            <div class="clearfix fill_width">
-                                <p class="title">Filter?</p>
-                                <div id="filter_options">
-
-                                </div>
+            <div id="charts_area">
+                <div id="chart_area_one" class="chart_area_container">
+                    <div class="questions_and_chart">
+                        <div class="clearfix fill_width">
+                            <div class="questions">
+                                <ul class="questions_list">
+                                    <li>
+                                        <div class="question_container"></div>
+                                    </li>
+                                    <li>
+                                        <div class="question_container"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="chart">
+                                <svg></svg>
                             </div>
                         </div>
                     </div>
-                    <div id="charts">
-
+                    <div class="filters">
+                        <p class="message">Drag filters here!</p>
+                    </div>
+                </div>
+                <div id="chart_area_two" class="chart_area_container">
+                    <div class="questions_and_chart">
+                        <div class="clearfix fill_width">
+                            <div class="questions">
+                                <ul class="questions_list">
+                                    <li>
+                                        <div class="question_container"></div>
+                                    </li>
+                                    <li>
+                                        <div class="question_container"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="chart">
+                                <svg></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters">
+                        <p class="message">Drag filters here!</p>
+                        <ul class="filters_list"></ul>
                     </div>
                 </div>
             </div>

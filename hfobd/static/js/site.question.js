@@ -1,12 +1,11 @@
 (function($){
     $.fn.question = function(){
         var question = this;
-        question.addClass('ui-state-default');
         question.mouseenter(function(){
-            $(this).addClass('ui-state-active');
+            $(this).addClass('hover');
         });
         question.mouseleave(function(){
-            $(this).removeClass('ui-state-active');
+            $(this).removeClass('hover');
         });
         question.draggable({revert:true, helper:"clone"});
         return question;

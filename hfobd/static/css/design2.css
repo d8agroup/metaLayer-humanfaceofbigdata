@@ -1,5 +1,6 @@
 .nv-legend { fill:#FFF;}
-
+.nv-y.nv-axis text { display:none; }
+text { fill:#FFF !important;}
 
 /**********************************************************************************************************************/
 /* PAGE STYLING                                                                                                       */
@@ -11,28 +12,22 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 #header #header_left { float:left; height:99px; background:url('/static/images/header_left.png'); width:520px; }
 #header #header_center { height:99px; background:url('/static/images/header_center.png'); width:189px; margin:0 auto;}
 
-#section_one {width:90%; margin:0 auto;}
-#section_one #questions_block .question { display:inline-block; width: 130px; height: 40px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; font-size:80%; }
-#section_one #questions_block .ui-widget-content { background:none; border:none; }
+#section_one {}
+#questions_block .question { display:inline-block; width: 140px; height: 47px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; cursor: pointer; background-image:url('/static/images/callout_dark.png'); background-size:100%; color:#BBB; }
+#questions_block .question .title { text-align:center; font-size:90%; font-weight:bold; }
+#questions_block .question.hover { background-image:url('/static/images/callout_dark_selected.png'); color:#FFF;}
+#questions_block .ui-widget-content { background:none; border:none; }
 
-#section_two { width:1000px; margin:0 auto; }
-#section_two #the_query { width:195px; background: rgb(54, 25, 25); background: rgba(25, 25, 25, .3); padding:10px; float:left; }
-#section_two #the_query .title { font-size:280%; color:#555; display:inline-block; padding:15px; }
-#section_two #the_query #query_questions_list { }
-#section_two #the_query #query_questions_list .query_question_drop_container { border:2px dashed #555; width:162px; height:74px; margin:5px; margin:15px; }
-#section_two #the_query #query_questions_list .query_question_drop_container.hover { border-color:#FFF; }
-#section_two #the_query #query_questions_list .query_question_drop_container.active { border-color:#AAA; }
-#section_two #the_query #query_questions_list .query_question_drop_container .query_question { display:inline-block; width: 130px; height: 40px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; text-align:center; cursor: pointer; font-size:80%;}
-
-
-#section_two #charts_area { float:right; width:750px;}
-#section_two #charts_area #filters { background: rgb(54, 25, 25); background: rgba(25, 25, 25, .3); padding:10px; margin-bottom:20px;}
-#section_two #charts_area #filters .title { font-size:280%; color:#555; display:inline-block; padding:15px;  }
-#section_two #charts_area .chart.one_up { margin:0 auto; }
-#section_two #charts_area .chart.two_up { display:inline-block; margin-left:20px;}
-#section_two #charts_area .chart .title { color:#DDD; font-size:120%; border-bottom:1px solid; padding-bottom:5px;}
-
-
+#section_two { width:1100px; margin:20px auto; }
+#chart_area_one { float:left;}
+#chart_area_two { float:right;}
+.chart_area_container { background-color:#1d2228; border:1px solid #555; width:540px; }
+.chart_area_container .questions { width:180px; height:355px; float:left; }
+.chart_area_container .questions .questions_list { margin-top:70px;}
+.chart_area_container .questions .question_container { display:inline-block; width: 140px; height: 47px; margin:20px 10px; padding:10px;  white-space: normal;  vertical-align: top; cursor: pointer; background-image:url('/static/images/callout_dark_selected.png'); background-size:100%; color:#BBB; }
+.chart_area_container .questions .question_container .title { font-size:90%; font-weight:bold; text-align:center; color:#FFF; }
+.chart_area_container .chart { width:355px; height:355px; float:right; text-align:center;}
+.chart_area_container .filters { height:100px; }
 
 /* 
 MetaLayer.com Styles - Base.css
