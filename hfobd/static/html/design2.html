@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/Aristo.css" />
     <link rel="stylesheet" href="/static/css/nv.d3.css" />
     <link rel="stylesheet" href="/static/css/jquery.hoverscroll.css" />
+    <link rel="stylesheet" href="/static/css/jquery.jqplot.css" />
     <link rel="stylesheet" href="/static/css/design2.css" />
     <script type="text/javascript" language="javascript" src="/static/js/jquery.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
@@ -15,9 +16,13 @@
     <script type="text/javascript" language="javascript" src="/static/js/jquery.corner.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.cookie.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.hoverscroll.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jqplot/jquery.jqplot.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jqplot/jqplot.donutRenderer.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jqplot/jqplot.highlighter.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.question.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.questionlist.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.chartarea.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.filters.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/lib/d3.v2.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/nv.d3.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/legend.js"></script>
@@ -25,7 +30,13 @@
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/pieChart.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/utils.js"></script>
     <script type="text/javascript" language="javascript">
-        var chart = null;
+        var charts = {
+            chart_area_one:[],
+            chart_area_two:[]
+        };
+        jQuery.jqplot.config.enablePlugins = true;
+
+
         $(document).ready(function(){
             $('#questions_list_container').questionlist();
             $('.chart_area_container').each(function() { $(this).chartarea(); } );
@@ -52,6 +63,8 @@
             $('.corner_large').livequery(function(){
                 $(this).corner('15px');
             });
+
+
         });
 
         function clone(object)
@@ -106,13 +119,11 @@
         <div id="section_two">
             <div id="charts_area">
                 <div id="chart_area_one" class="chart_area_container">
+                    <div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div>
                     <div class="questions_and_chart">
                         <div class="clearfix fill_width">
                             <div class="questions">
                                 <ul class="questions_list">
-                                    <li>
-                                        <div class="question_container"></div>
-                                    </li>
                                     <li>
                                         <div class="question_container"></div>
                                     </li>
@@ -124,17 +135,19 @@
                         </div>
                     </div>
                     <div class="filters">
-                        <p class="message">Drag filters here!</p>
+                        <ul class="filters_list">
+                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
+                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
+                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
+                        </ul>
                     </div>
                 </div>
                 <div id="chart_area_two" class="chart_area_container">
+                    <div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div>
                     <div class="questions_and_chart">
                         <div class="clearfix fill_width">
                             <div class="questions">
                                 <ul class="questions_list">
-                                    <li>
-                                        <div class="question_container"></div>
-                                    </li>
                                     <li>
                                         <div class="question_container"></div>
                                     </li>
@@ -146,8 +159,11 @@
                         </div>
                     </div>
                     <div class="filters">
-                        <p class="message">Drag filters here!</p>
-                        <ul class="filters_list"></ul>
+                        <ul class="filters_list">
+                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
+                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
+                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
+                        </ul>
                     </div>
                 </div>
             </div>

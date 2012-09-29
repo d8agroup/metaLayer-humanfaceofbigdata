@@ -1,7 +1,8 @@
 .nv-legend { fill:#FFF;}
 .nv-y.nv-axis text { display:none; }
 text { fill:#FFF !important;}
-
+.jqplot-data-label { color:#FFF; text-shadow: 2px 2px 2px #000;}
+.jqplot-highlighter-tooltip { color:#FFF; background:#1d2228; font-size:120%;  border:none;}
 /**********************************************************************************************************************/
 /* PAGE STYLING                                                                                                       */
 /**********************************************************************************************************************/
@@ -22,12 +23,23 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 #chart_area_one { float:left;}
 #chart_area_two { float:right;}
 .chart_area_container { background-color:#1d2228; border:1px solid #555; width:540px; }
+.chart_area_container .close_button_container { height:22px; }
+.chart_area_container .close_button { float:right; position:relative; top:-12px; left:12px; width:22px; z-index:3000; display:none; cursor:pointer; }
+.chart_area_container.has_data .close_button { display:block; }
+
 .chart_area_container .questions { width:180px; height:355px; float:left; }
-.chart_area_container .questions .questions_list { margin-top:70px;}
+.chart_area_container .questions .questions_list { margin-top:120px;}
 .chart_area_container .questions .question_container { display:inline-block; width: 140px; height: 47px; margin:20px 10px; padding:10px;  white-space: normal;  vertical-align: top; cursor: pointer; background-image:url('/static/images/callout_dark_selected.png'); background-size:100%; color:#BBB; }
 .chart_area_container .questions .question_container .title { font-size:90%; font-weight:bold; text-align:center; color:#FFF; }
-.chart_area_container .chart { width:355px; height:355px; float:right; text-align:center;}
-.chart_area_container .filters { height:100px; }
+.chart_area_container .chart { width:355px; height:355px; float:right; text-align:center; background:url('/static/images/blanko_large.png') center center no-repeat; }
+.chart_area_container .filters { height:175px; }
+.filters .filters_list .filter_container { height:170px; width:150px; margin:0 10px 0 13px; display:inline-block; vertical-align: top; background:url('/static/images/blanko_small.png') center center no-repeat; background-size:85px; }
+.filters .filters_list .filter_container .title { font-size:70%; color:#FFF; border-bottom:1px solid; height:20px; overflow:hidden; text-align:center; font-weight:bold; display:none;}
+.filters .filters_list .filter_container.in_use { border:none;}
+.filters .filters_list .filter_container.in_use .title { display:block; }
+.filters .filters_list .filter_container .chart_container { height:150px; width:150px; }
+.filters .filters_list .filter_container .close_button_container { height:22px; }
+.filters .filters_list .filter_container .close_button { float:right; position:relative; top:-145px; left:-0px; width:22px; z-index:3000; display:none; cursor:pointer; }
 
 /* 
 MetaLayer.com Styles - Base.css
