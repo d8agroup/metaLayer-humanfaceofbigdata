@@ -141,6 +141,7 @@
             var chart_area = this;
             chart_area.find('.questions_list').html('<li><div class="question_container"></div></li>');
             chart_area.find('.chart').html('');
+            chart_area.find('.chart_container').html('');
             chart_area.chartarea('apply_question_droppable');
             chart_area.chartarea('repaint');
             return chart_area;
