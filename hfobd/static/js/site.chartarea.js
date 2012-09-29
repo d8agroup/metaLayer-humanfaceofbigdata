@@ -121,10 +121,10 @@
         },
         apply_question_droppable:function(){
             var chart_area = this;
-            chart_area.find('.question_container').droppable({
+            chart_area.find('.questions_and_chart').droppable({
                 accept:'.question',
                 drop:function(event, ui){
-                    var droppable = $(this);
+                    var droppable = $(this).find('.question_container');
                     var draggable = ui.draggable;
                     var facet_name = draggable.data('facet_name');
                     var display_name = draggable.data('display_name');
