@@ -26,5 +26,3 @@ class SolrController(object):
                 logger.error('Error posting content to solr')
                 logger.debug('Error posting content to solr - exception: %s  content:%s' % (e, solr_object))
 
-
-

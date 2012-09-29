@@ -105,7 +105,7 @@ def get_graph_data3(request):
     filters = search_data['filters']
     return_data = { 'chart_area_id':chart_area_id, 'graph_data':{}, 'filters':{} }
     if len([f for f in filters if 'facet_value' in f and f['facet_value']]):
-        query = ' AND '.join('%s:%s' % (f['facet_name'], f['facet_value']) for f in filters if 'facet_value' in f and f['facet_value'])
+        query = ' AND '.join('%s:"%s"' % (f['facet_name'], f['facet_value']) for f in filters if 'facet_value' in f and f['facet_value'])
     else:
         query = "*:*"
     if len(questions) == 1:
