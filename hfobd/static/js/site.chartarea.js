@@ -18,7 +18,7 @@
                     '<div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>'+
                     '<div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>'+
                     '<div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>'
-            );
+                );
                 chart_area.find('.filters').filters();
             }
             else {
@@ -141,6 +141,7 @@
             var chart_area = this;
             chart_area.find('.questions_list').html('<li><div class="question_container"></div></li>');
             chart_area.find('.chart').html('');
+            chart_area.chartarea('apply_question_droppable');
             chart_area.chartarea('repaint');
             return chart_area;
         }
