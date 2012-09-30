@@ -3,6 +3,7 @@
 text { fill:#FFF !important;}
 .jqplot-data-label { color:#FFF; text-shadow: 2px 2px 2px #000;}
 .jqplot-highlighter-tooltip { color:#FFF; background:#1d2228; font-size:120%;  border:none;}
+
 /**********************************************************************************************************************/
 /* PAGE STYLING                                                                                                       */
 /**********************************************************************************************************************/
@@ -19,7 +20,12 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 #questions_block .question.hover { background-image:url('/static/images/callout_dark_selected.png'); color:#FFF;}
 #questions_block .ui-widget-content { background:none; border:none; }
 
-#section_two { width:1100px; margin:20px auto; }
+#section_two { width:1160px; margin:20px auto; }
+
+#copy_container { float:left; margin:220px 0 0; width:20px; position:relative; left:24px;}
+#copy_container img { cursor: pointer;}
+#copy_container #copy_left_button { padding-top:10px;}
+
 #chart_area_one { float:left;}
 #chart_area_two { float:right;}
 .chart_area_container { background-color:#1d2228; border:1px solid #555; width:540px; }
@@ -40,6 +46,31 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 .filters .filters_list .filter_container .chart_container { height:150px; width:150px; }
 .filters .filters_list .filter_container .close_button_container { height:22px; }
 .filters .filters_list .filter_container .close_button { float:right; position:relative; top:-145px; left:-0px; width:22px; z-index:3000; display:none; cursor:pointer; }
+
+#post_production { position:fixed; bottom:0px; color:#DDD; width:100%; z-index:100000; }
+#post_production.active { bottom:0;}
+#post_production_tab { background-color:#1d2228; padding:20px; position:relative; left:20px; bottom:-1px; border:1px solid #555; border-bottom:none; width:100px; text-align:center; font-weight:bold;
+    cursor: pointer;}
+#post_production_content { width:100%; margin:0 auto; background-color:#1d2228; height:200px; border:1px solid #555; display:none;}
+#post_production_content h3 { color:#555; font-size:400%; padding:10px;}
+#post_production_content form { width:1000px; margin:0 auto;}
+#post_production_content form label { font-weight:bold; color:#AAA; font-size:150%; }
+#post_production_content form .left { width:600px; }
+#post_production_content form .left .form_row label { width:100px; }
+#post_production_content form .left .form_row input { width:450px; }
+#post_production_content form .right { width:390px; padding-top:10px;}
+#post_production_content form .right table { width:100%;}
+#post_production_content form .right table td { width:25%; }
+#post_production_content form .right td p { display:inline; font-size:120%; position:relative; top:-2px; }
+#post_production_content form .right .button { float:right; width:300px; position:relative; top:35px; right:20px;}
+
+
+/*
+#post_production_content form .right .radio_list { display:inline-block; }
+#post_production_content form .right .radio_button { display:inline-block; width:100px; border:1px solid;}
+#post_production_content form .right .radio_button p { display:inline;}
+*/
+
 
 /* 
 MetaLayer.com Styles - Base.css

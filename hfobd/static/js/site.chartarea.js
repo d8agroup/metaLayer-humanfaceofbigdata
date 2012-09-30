@@ -4,7 +4,6 @@
             var chart_area = this;
             chart_area.find('.filters').filters();
             chart_area.chartarea('apply_question_droppable');
-            chart_area.chartarea('repaint');
             chart_area.find('.close_button').click(function(){
                 $(this).parents('.chart_area_container').chartarea('clear');
             });
@@ -137,13 +136,50 @@
             });
             return chart_area;
         },
-        clear:function(){
+        clear:function(callback){
             var chart_area = this;
-            chart_area.find('.questions_list').html('<li><div class="question_container"></div></li>');
-            chart_area.find('.chart').html('');
-            chart_area.find('.chart_container').html('');
-            chart_area.chartarea('apply_question_droppable');
-            chart_area.chartarea('repaint');
+            chart_area.removeClass('has_data');
+            chart_area.load('/chart_area', function(){
+                chart_area.chartarea();
+                if (callback != null)
+                    callback();
+            });
+            return chart_area;
+        },
+        return_data:function(){
+            var chart_area = this;
+            var main_question = {
+                facet_name:chart_area.find('.question_container').data('facet_name'),
+                display_name:chart_area.find('.question_container').data('display_name')
+            };
+            var filters = [];
+            var filter_containers = chart_area.find('.filter_container');
+            for (var x=0; x<filter_containers.length; x++){
+                var filter_container = $(filter_containers[x]);
+                if (!filter_container.is('.in_use'))
+                    continue;
+                filters[filters.length] = {
+                    facet_name:filter_container.data('facet_name'),
+                    display_name:filter_container.data('display_name'),
+                    facet_value:filter_container.data('facet_value')
+                }
+            }
+            return { main_question:main_question, filters:filters };
+        },
+        build_from_data:function(data){
+            var chart_area = this;
+            chart_area.chartarea('clear', function(){
+                chart_area.find('.question_container').data('facet_name', data.main_question.facet_name);
+                chart_area.find('.question_container').data('display_name', data.main_question.display_name);
+                chart_area.find('.question_container').html("<p class='title'>"+data.main_question.display_name+"</p>");
+                var filter_containers = chart_area.find('.filter_container');
+                for (var x=0; x<data.filters.length; x++){
+                    $(filter_containers[x]).data('facet_name', data.filters[x].facet_name);
+                    $(filter_containers[x]).data('facet_value', data.filters[x].facet_value);
+                    $(filter_containers[x]).data('display_name', data.filters[x].display_name);
+                }
+                chart_area.chartarea('repaint');
+            });
             return chart_area;
         }
     };

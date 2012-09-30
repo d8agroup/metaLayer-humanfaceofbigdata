@@ -22,8 +22,9 @@ urlpatterns = patterns('',
     url(r'^get_graph_data2$', views.get_graph_data2),
     url(r'^get_graph_data3$', views.get_graph_data3),
     url(r'^add_a_filter$', views.add_a_filter),
+    url(r'^chart_area$', views.chart_area),
 #    url(r'design1', views.design1),
+    url(r'^save_and_share$', views.save_and_share),
     url(r'old', views.home),
     url(r'', views.design2),
-
 )

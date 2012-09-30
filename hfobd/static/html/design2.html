@@ -16,13 +16,17 @@
     <script type="text/javascript" language="javascript" src="/static/js/jquery.corner.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.cookie.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jquery.hoverscroll.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.popupWindow.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jqplot/jquery.jqplot.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jqplot/jqplot.donutRenderer.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/jqplot/jqplot.highlighter.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.jqplot.toimage.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.question.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.questionlist.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.chartarea.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/site.filters.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.postproduction.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/site.copybuttons.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/lib/d3.v2.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/nv.d3.js"></script>
     <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/legend.js"></script>
@@ -40,7 +44,8 @@
         $(document).ready(function(){
             $('#questions_list_container').questionlist();
             $('.chart_area_container').each(function() { $(this).chartarea(); } );
-
+            $('#post_production').postproduction();
+            $('#copy_container').copybuttons();
 
             $('.section_header').livequery(function(){
                 $(this).addClass('ui-state-default');
@@ -88,7 +93,6 @@
             });
         }
 
-
     </script>
 </head>
 <body>
@@ -119,58 +123,62 @@
         <div id="section_two">
             <div id="charts_area">
                 <div id="chart_area_one" class="chart_area_container">
-                    <div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div>
-                    <div class="questions_and_chart">
-                        <div class="clearfix fill_width">
-                            <div class="questions">
-                                <ul class="questions_list">
-                                    <li>
-                                        <div class="question_container"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="chart">
-                                <svg></svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filters">
-                        <ul class="filters_list">
-                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
-                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
-                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
-                        </ul>
-                    </div>
+                    {% include 'chart_area.html' %}
+                </div>
+                <div id="copy_container">
+                    <img src="/static/images/button_right.png" id="copy_right_button" />
+                    <img src="/static/images/button_left.png" id="copy_left_button" />
                 </div>
                 <div id="chart_area_two" class="chart_area_container">
-                    <div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div>
-                    <div class="questions_and_chart">
-                        <div class="clearfix fill_width">
-                            <div class="questions">
-                                <ul class="questions_list">
-                                    <li>
-                                        <div class="question_container"></div>
-                                    </li>
-                                </ul>
+                    {% include 'chart_area.html' %}
+                </div>
+            </div>
+        </div>
+        <div id="post_production">
+            <div id="post_production_tab">Save & Share &#x25B2;</div>
+            <div id="post_production_content">
+                <h3>Save & Share</h3>
+                <form class="ui-form">
+                    {% csrf_token %}
+                    <div class="clearfix fill_width">
+                        <div class="left">
+                            <div class="form_row">
+                                <label>Title:</label>
+                                <input type="text" name="title" />
                             </div>
-                            <div class="chart">
-                                <svg></svg>
+                            <div class="form_row">
+                                <label>Author:</label>
+                                <input type="text" name="author" />
                             </div>
                         </div>
+                        <div class="right">
+{#                            <table>#}
+{#                                <tr>#}
+{#                                    <td>#}
+{#                                        <label>Include:</label>#}
+{#                                    </td>#}
+{#                                    <td>#}
+{#                                        <input type="radio" name="include" value="both" checked="CHECKED"/>#}
+{#                                        <p>Both</p>#}
+{#                                    </td>#}
+{#                                    <td>#}
+{#                                        <input type="radio" name="include" value="left" />#}
+{#                                        <p>Left</p>#}
+{#                                    </td>#}
+{#                                    <td>#}
+{#                                        <input type="radio" name="include" value="right" />#}
+{#                                        <p>Right</p>#}
+{#                                    </td>#}
+{#                                </tr>#}
+{#                            </table>#}
+                            <a class="button" id="save_and_share_button">Save & Share</a>
+                        </div>
                     </div>
-                    <div class="filters">
-                        <ul class="filters_list">
-                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
-                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
-                            <div class="filter_container"><p class="title"></p><div class="chart_container"></div><div class="close_button_container"><img src="/static/images/button_close.png" class="close_button"/></div></div>
-                        </ul>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
     <footer>
-
     </footer>
 </body>
 </html>

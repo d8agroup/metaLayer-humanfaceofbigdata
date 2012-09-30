@@ -1,12 +1,16 @@
+import StringIO
 from random import randint
 from urllib import quote
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
+import time
 from hfobd.solrbridge.models import FacetMapping
 from hfobd.utils import JSONResponse
 from django.conf import settings
+from hashlib import md5
 
 def home(request):
     template_data = {
@@ -180,6 +184,163 @@ def add_a_filter(request):
         'filters':filters
     }
     return render_to_response('filter.html', template_data)
+
+def chart_area(request):
+    return render_to_response('chart_area.html')
+
+def save_and_share(request):
+    def write_image(image_data, file_name):
+        import re
+        imgstr = re.search(r'base64,(.*)', image_data).group(1)
+        output = open(settings.MEDIA_ROOT + file_name, 'wb')
+        output.write(imgstr.decode('base64'))
+        output.close()
+
+
+    data = request.POST['data']
+    data = simplejson.loads(data)
+
+    final_image_config = {'title':request.POST.get('title'), 'author':request.POST.get('author'), 'left':{}, 'right':{} }
+
+    guid = md5('%i %i' % (time.time(), randint(1, 10000))).hexdigest()
+    for side in ['left', 'right']:
+        if data[side]:
+            final_image_config[side] = { 'main_question':data[side]['main_question'], 'filters':[] }
+            main_image_id = '%s_main_chart.png' % guid
+            final_image_config[side]['main_chart'] = main_image_id
+            write_image(data[side]['main_chart'], main_image_id)
+            for x in range(len(data[side]['filters'])):
+                filter_image_id = '%s_filter_image_%i.png' % (guid, x+1)
+                final_image_config[side]['filters'].append({
+                    'facet_name':data[side]['filters'][x]['facet_name'],
+                    'facet_value':data[side]['filters'][x]['facet_value'] if 'facet_value' in data[side]['filters'][x] else None,
+                    'display_name':data[side]['filters'][x]['display_name'],
+                    'chart':filter_image_id
+                })
+                write_image(data[side]['filters'][x]['chart'], filter_image_id)
+
+    import cairo
+    width = 1024
+    height = 800
+    surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 1024, 756)
+    context = cairo.Context(surface)
+    context.set_source_rgb(0.20, 0.22, 0.24)
+    context.rectangle(0, 0, width, height)
+    context.fill()
+    context.set_source_rgb(0.22, 0.26, 0.31)
+    context.rectangle(0,0, width, 100)
+    context.fill()
+    image_surface = cairo.ImageSurface.create_from_png(settings.MEDIA_ROOT + '../images/header_left.png')
+    context.set_source_surface(image_surface)
+    context.paint()
+    image_surface = cairo.ImageSurface.create_from_png(settings.MEDIA_ROOT + '../images/header_right.png')
+    context.set_source_surface(image_surface, 471, 0)
+    context.paint()
+    image_surface = cairo.ImageSurface.create_from_png(settings.MEDIA_ROOT + '../images/header_center.png')
+    context.set_source_surface(image_surface, 417, 0)
+    context.paint()
+
+    #Title
+    text = final_image_config['title']
+    context.set_source_rgb(1.0, 1.0, 1.0)
+    context.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+    context.set_font_size(20)
+    x, y, w, h = context.text_extents(text)[:4]
+    context.move_to((width / 2) - (w / 2) - x, 135)
+    context.show_text(text)
+
+    #Author
+    text = final_image_config['author']
+    context.set_source_rgb(1.0, 1.0, 1.0)
+    context.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+    context.set_font_size(12)
+    x, y, w, h = context.text_extents(text)[:4]
+    context.move_to((width / 2) - (w / 2) - x, 165)
+    context.show_text(text)
+
+    for side in [('left', 0), ('right', 512)]:
+
+        context.set_source_rgb(0.85,0.85,0.85)
+        context.rectangle(6 + side[1], 180, 502, 565)
+        context.fill()
+        context.set_source_rgb(0.11, 0.13, 0.16)
+        context.rectangle(7 + side[1], 181, 500, 563)
+        context.fill()
+        image_surface = cairo.ImageSurface.create_from_png(settings.MEDIA_ROOT + '../images/callout_dark_selected_small.png')
+        context.set_source_surface(image_surface, 17 + side[1], 335)
+        context.paint()
+    
+        #question
+        if 'main_question' in final_image_config[side[0]]:
+            context.set_font_size(10)
+            context.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+            context.set_source_rgb(1.0, 1.0, 1.0)
+            text = final_image_config[side[0]]['main_question']
+            text_pieces = text.split(' ')
+            words_used = 0
+            row = 0
+            while words_used < len(text_pieces):
+                w = a = 0
+                while w < 120 and a <len(text_pieces):
+                    t = ' '.join(text_pieces[words_used:words_used+a])
+                    x, w, w, h = context.text_extents(t)[:4]
+                    a+=1
+
+                context.move_to(30 + side[1], 350 + (row * 14))
+                context.show_text(' '.join(text_pieces[words_used:words_used+a]))
+                words_used += a
+                row += 1
+
+        if 'main_chart' in final_image_config[side[0]]:
+            image_surface = cairo.ImageSurface.create_from_png(settings.MEDIA_ROOT + final_image_config[side[0]]['main_chart'])
+            context.set_source_surface(image_surface, 152 + side[1], 181)
+            context.paint()
+
+        #Author
+        text = 'Filters'
+        context.set_source_rgb(0.18, 0.19, 0.25)
+        context.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+        context.set_font_size(25)
+        context.move_to(30 + side[1], 530)
+        context.show_text(text)
+
+        if 'filters' in final_image_config[side[0]]:
+            for b in range(len(final_image_config[side[0]]['filters'])):
+                context.set_font_size(10)
+                context.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
+                context.set_source_rgb(1.0, 1.0, 1.0)
+                text = final_image_config[side[0]]['filters'][b]['display_name']
+                text_pieces = text.split(' ')
+                words_used = 0
+                row = 0
+                while words_used <= len(text_pieces):
+                    w = a = 0
+                    while w < 120 and a <len(text_pieces):
+                        t = ' '.join(text_pieces[words_used:words_used + a])
+                        x, w, w, h = context.text_extents(t)[:4]
+                        a += 1
+
+                    left = 7 + 17 + (b*150) + 20 + side[1]
+                    context.move_to(left, 550 + (row * 14))
+                    context.show_text(' '.join(text_pieces[words_used:words_used + a-1]))
+                    words_used += a-1
+                    row += 1
+
+
+                image_surface = cairo.ImageSurface.create_from_png(settings.MEDIA_ROOT + final_image_config[side[0]]['filters'][b]['chart'])
+                left = 7 + 17 + (b*150) + side[1]
+                context.set_source_surface(image_surface, left, 590)
+                context.paint()
+    
+
+    string_io = StringIO.StringIO()
+    surface.write_to_png(string_io)
+    string_io.seek(0)
+    output = open(settings.MEDIA_ROOT + '%s.png' % guid, 'wb')
+    output.write(string_io.read())
+    output.close()
+    return HttpResponse(guid)
+
 
 def generate_color_pallet(number_needed, color='green'):
     if color == 'orange':
