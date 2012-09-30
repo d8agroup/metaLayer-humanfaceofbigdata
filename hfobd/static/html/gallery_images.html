@@ -1,0 +1,9 @@
+<ul>
+    {% for gallery_image in gallery_images %}
+        <li class="gallery_image" data-image_id='{{ gallery_image.image_id }}'>
+            <img src="/static/media/{{ gallery_image.image_id }}_small.png" />
+            <p class="title">{{ gallery_image.title }}</p>
+            <p class="author">{{ gallery_image.author }}</p>
+        </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/reset.css" />
+    <link rel="stylesheet" href="/static/css/hacks.css" />
+    <link rel="stylesheet" href="/static/css/Aristo.css" />
+    <link rel="stylesheet" href="/static/css/nv.d3.css" />
+    <link rel="stylesheet" href="/static/css/site.css" />
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.livequery.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.carousel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.corner.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/lib/d3.v2.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/nv.d3.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/legend.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/pie.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/models/pieChart.js"></script>
+    <script type="text/javascript" language="javascript"  src="/static/js/nvd3/utils.js"></script>
+    <script type="text/javascript" language="javascript">
+        var chart = null;
+        $(document).ready(function(){
+            $('.section_header').livequery(function(){
+                $(this).addClass('ui-state-default');
+            });
+            $('.errors').livequery(function(){
+                $(this).addClass('ui-widget');
+            });
+            $('.errors_inner').livequery(function(){
+                $(this).addClass('ui-state-error ui-corner-all');
+            });
+            $('.button').livequery(function(){
+                $(this).button();
+            });
+            $('form').livequery(function(){
+                $(this).addClass('ui-form');
+            });
+            $('.corner_small').livequery(function(){
+                $(this).corner('5px');
+            });
+            $('.corner_large').livequery(function(){
+                $(this).corner('15px');
+            });
+            $('.remove_filter_button').livequery(function(){
+                $(this).click(function(){
+                    $(this).parents('.filter').slideUp(function(){
+                        $(this).remove();
+                        RunGraph();
+                    });
+                })
+            });
+            $('.filter_question').livequery(function(){
+                $(this).change(function(){
+                    var select = $(this);
+                    select.parents('.filter').find('.filter_values').hide();
+                    select.parents('.filter').find('.filter_values.'+select.val()).slideDown();
+                    RunGraph();
+                })
+            });
+            $('.filter_value').livequery(function(){
+                $(this).change(function(){
+                    RunGraph();
+                })
+            })
+
+            $('.question').livequery(function(){
+                $(this).mouseenter(function(){
+                    $(this).addClass('hover');
+                });
+                $(this).mouseleave(function(){
+                    $(this).removeClass('hover');
+                });
+                $(this).click(function(){
+                    $('.question').removeClass('selected');
+                    $(this).addClass('selected');
+                    RunGraph();
+                });
+            });
+
+        });
+
+        function RunGraph(){
+
+            $.post('/get_graph_data',BuildPostData(), function(data){
+                DrawPieChart('#chart_area_one svg', data.graph_data);
+            });
+        }
+
+        function BuildPostData() {
+            var facet_name = $('.question.selected').data('facet_name');
+            var post_data = {
+                csrfmiddlewaretoken:$.cookie('csrftoken'),
+                facet_name:facet_name
+            };
+            var filters = [];
+            var filter_containers = $('.filter');
+            for (var x=0; x<filter_containers.length; x++) {
+                var filter_container = $(filter_containers[x]);
+                var filter_question = filter_container.find('.filter_question').val();
+                var filter_value = filter_container.find('.filter_value:visible').val();
+                if (filter_question != null && filter_question != 'null' && filter_value != null && filter_value != 'null')
+                    filters.push({ facet_name:filter_question, facet_value:filter_value });
+            }
+            post_data['filters'] = JSON.stringify(filters);
+            return post_data;
+        }
+
+        function DrawPieChart(target, data){
+            var width = 500, height = 500;
+            if (chart == null) {
+                nv.addGraph(function() {
+                    chart = nv.models.pieChart()
+                        .x(function(d) { return d.label })
+                        .y(function(d) { return d.value })
+                        .showLabels(true)
+                        .width(width)
+                        .height(height)
+                        .donut(true);
+
+                    d3.select(target)
+                        .datum(data)
+                        .transition().duration(1200)
+                        .call(chart);
+
+                    return chart;
+                });
+            }
+            else {
+                d3.select(target)
+                    .datum(data)
+                    .transition().duration(1200)
+                    .call(chart);
+            }
+//
+//                nv.addGraph(function() {
+//                    chart = nv.models.pieChart()
+//                            .x(function(d) { return d.key })
+//
+//                        //.y(function(d) { return d.value })
+//                            .values(function(d) { return d })
+//                        //.labelThreshold(.08)
+//                        //.showLabels(false)
+//                            .color(d3.scale.category10().range())
+//                            .width(width)
+//                            .height(height)
+//                            .donut(true);
+//                    d3.select(target)
+//                        //.datum(historicalBarChart)
+//                            .datum([data])
+//                            .transition().duration(1200)
+//                            .attr('width', width)
+//                            .attr('height', height)
+//                            .call(chart);
+//
+//                });
+//            }
+//            else {
+//                d3.select(target)
+//                    //.datum(historicalBarChart)
+//                        .datum([data])
+//                        .transition().duration(1200)
+//                        .attr('width', width)
+//                        .attr('height', height)
+//                        .call(chart);
+//            }
+        }
+
+        function DrawBarChart(target, data){
+            nv.addGraph(function() {
+                chart = nv.models.multiBarHorizontalChart()
+                    .x(function(d) { return d.label })
+                    .y(function(d) { return d.value })
+                    .showValues(true)
+                    .showControls(true);
+
+                chart.yAxis
+                    .tickFormat(d3.format(',.2f'));
+
+                d3.select(target)
+                    .datum(data)
+                    .transition().duration(500)
+                    .call(chart);
+
+                nv.utils.windowResize(chart.update);
+
+                return chart;
+            });
+
+        }
+
+        function ShowAddFilter() {
+            $.post('/add_a_filter', BuildPostData(), function(template){
+                $('#filter_list').prepend(template);
+                $('.filter').slideDown();
+            })
+        }
+
+    </script>
+</head>
+<body>
+    <div id="header">
+        <div id="header_inner">
+            <div class="clearfix fill_width">
+                <div id="logo">
+                    <p>THE HUMAN FACE OF <span>BIG DATA</span></p>
+                </div>
+                <div id="branding">
+                    <p id="metalayer_branding">Big Data Solutions From metaLayer<img src="/static/images/logo_metalayer_square.jpg" class="corner_small"/> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="page">
+        <div id="section_one">
+            <div id="questions_block" class="corner_small section">
+                <div class="clearfix fill_width">
+                    <div class="instructions">
+                        <div class="clearfix fill_width">
+                            <div class="number_container">
+                                <span class="corner_small number">1</span>
+                            </div>
+                            <div class="instruction_message">
+                                <p>Select a question for the list here!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="questions_list_container">
+                        <ul>
+                            {% for question in questions %}
+                                <li class="question corner_large" data-facet_name='{{ question.facet_name }}'>
+                                    <p class="title">{{ question.display_name }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="section_two">
+            <div class="clearfix fill_width">
+
+                <div id="filters" class="corner_small section">
+                    <a class="button" id="add_filter_button" href="JavaScript:ShowAddFilter()">Add a filter!</a>
+                    <div class="instructions">
+                        <div class="clearfix fill_width">
+                            <div class="number_container">
+                                <span class="ui-corner-all number">2</span>
+                            </div>
+                            <div class="instruction_message">
+                                <p>Want more from the data?</p>
+                                <p>Why not filter!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="filter_list">
+
+                    </div>
+                </div>
+
+                <div id="chart_areas" class="corner_small section">
+                    <div id="chart_area_one">
+                        <svg></svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+</body>
+</html>
+
+
+

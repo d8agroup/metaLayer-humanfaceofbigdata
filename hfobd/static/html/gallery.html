@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block javascript %}
+    <script type="text/javascript" language="javascript">
+        var page_image_id = '{{ image_id }}';
+        $(document).ready(function(){
+            var data = { focus_id:'{{ image_id }}' };
+            $('#gallery_container').gallery(data);
+        });
+    $('.gallery_image').livequery(function(){
+        $(this).click(function(){
+            var image_id = $(this).data('image_id');
+            $('#gallery_container').gallery('set_focus', image_id);
+        });
+    });
+    </script>
+{% endblock %}
+
+{% block page %}
+    <div id="gallery_container">
+        <div class="fill_width clearfix">
+            <div id="focus" class="small">
+                <div id="focus_image_container">
+                    <img src="" id="focus_image" class="hidden" />
+                    <img src="/static/images/loading_1d2228.gif" id="focus_image_loading" />
+                </div>
+                <div id="focus_actions">
+                    <div class="clearfix fill_width">
+                        <div id="focus_actions_save_or_delete">
+                            <a class="button" id="focus_save">Save</a>
+                            <a class="button" id="focus_delete">Delete</a>
+                            <a class="button" id="focus_close">Close</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="gallery" class="large">
+                <div class="clearfix fill_width">
+                    {% include 'gallery_images.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

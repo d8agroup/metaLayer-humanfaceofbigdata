@@ -1,6 +1,7 @@
 (function($){
     $.fn.postproduction = function(){
         var post_production = this;
+        var image_id = guid();
         post_production.find('#post_production_tab').click(function(){
             var tab = $(this);
             var content = tab.parents('#post_production').find('#post_production_content');
@@ -15,7 +16,7 @@
         });
         post_production.find('#save_and_share_button').click(function(){
             var button = $(this);
-            var data = { left:{}, right:{} };
+            var data = { left:{}, right:{}, guid:image_id };
 
             //left images
             var left_chart = $('#chart_area_one .chart');
@@ -60,11 +61,11 @@
             var post_data = button.parents('form').serializeArray();
             post_data[post_data.length] = {name:'data', value:JSON.stringify(data) };
 
-            $.post('/save_and_share', post_data, function(guid){
-                window.open("http://"+window.location.hostname+'/static/media/'+guid+'.png');
-                $('#post_production form input[type=text]').val('');
-                $('#post_production_tab').click();
-            });
+            $.post('/save_and_share', post_data);
+            if (window.location.port !=  "80")
+                window.location = "http://"+window.location.hostname+':'+window.location.port+'/gallery/'+image_id
+            else
+                window.location = "http://"+window.location.hostname+'/gallery/'+image_id
         });
         return post_production;
     }

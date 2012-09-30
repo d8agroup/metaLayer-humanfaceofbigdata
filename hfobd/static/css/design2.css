@@ -1,3 +1,21 @@
+#gallery_container { width:1024px; margin:20px auto; }
+#gallery_container #gallery { overflow:auto; margin-top:20px;}
+#gallery_container #gallery.small { height:198px; }
+#gallery_container #gallery.large { height:500px;}
+#gallery_container #gallery li { padding:5px; float:left; color:#DDD; text-align:center; height:180px; overflow:hidden; cursor:pointer; }
+#gallery_container #gallery li .title { height:15px; overflow:hidden; font-weight:bold; }
+#gallery_container #gallery li .author { height:15px; overflow:hidden; }
+
+#gallery_container #focus { background-color:#1d2228; padding:10px 0; width:800px; margin:10px auto 0; }
+#gallery_container #focus.small { display:none;}
+#gallery_container #focus #focus_image_container { width:614px; height:453px; text-align: center; margin:0 auto;     }
+#gallery_container #focus #focus_image_loading { position:relative; top:206px; }
+#gallery_container #focus #focus_image { width:614px; height:453px; border:2px solid #DDD;}
+#gallery_container #focus #focus_actions { width:700px; margin:20px auto 10px;}
+#gallery_container #focus #focus_actions #focus_actions_save_or_delete { float:right;}
+
+
+
 .nv-legend { fill:#FFF;}
 .nv-y.nv-axis text { display:none; }
 text { fill:#FFF !important;}
@@ -10,6 +28,11 @@ text { fill:#FFF !important;}
 body { background:url('/static/images/background_page.png') top center repeat-y  #21262C;}
 
 #header { background-color:#1d2228; height:99px; }
+#navigation { position:relative; top:77px; left:30px; }
+#navigation li { display:inline-block;  width:80px; text-align:center;}
+#navigation li.first { border-right:2px solid #AAA;}
+#navigation li a { color:#AAA; font-weight:bold; font-size:140%;}
+#navigation li a:hover { color:#FFF;}
 #header #header_right { float:right; height:99px; background:url('/static/images/header_right.png') right; width:552px; }
 #header #header_left { float:left; height:99px; background:url('/static/images/header_left.png'); width:520px; }
 #header #header_center { height:99px; background:url('/static/images/header_center.png'); width:189px; margin:0 auto;}
@@ -142,6 +165,7 @@ form .form_row .help { font-size:80%; font-style: italic;}
 
 /* GENERIC UL HORIZONTAL MENU STYLING */
 ul.menu li { display: inline-block; }
+
 
 
 

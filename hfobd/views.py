@@ -7,10 +7,12 @@ from django.template.context import RequestContext
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
 import time
+from hfobd.savedinsights.models import SavedInsight
 from hfobd.solrbridge.models import FacetMapping
 from hfobd.utils import JSONResponse
 from django.conf import settings
 from hashlib import md5
+from PIL import Image
 
 def home(request):
     template_data = {
@@ -28,7 +30,7 @@ def design2(request):
     template_data = {
         'questions':FacetMapping.objects.filter(display_as_question=True),
     }
-    return render_to_response('design2.html', template_data, context_instance=RequestContext(request))
+    return render_to_response('create.html', template_data, context_instance=RequestContext(request))
 
 @csrf_exempt
 def get_graph_data(request):
@@ -188,6 +190,20 @@ def add_a_filter(request):
 def chart_area(request):
     return render_to_response('chart_area.html')
 
+def gallery(request, image_id=None):
+    template_data = {
+        'gallery_images':SavedInsight.Gallery()
+    }
+    if image_id:
+        template_data['image_id'] = image_id
+        if request.GET.get('action') == 'save':
+            SavedInsight.SetAsVisible(image_id)
+            return render_to_response('gallery_images.html', {'gallery_images':SavedInsight.Gallery()})
+        if request.GET.get('action') == 'delete':
+            SavedInsight.SetAsInvisible(image_id)
+            return render_to_response('gallery_images.html', {'gallery_images':SavedInsight.Gallery()})
+    return render_to_response('gallery.html', template_data, context_instance=RequestContext(request))
+
 def save_and_share(request):
     def write_image(image_data, file_name):
         import re
@@ -202,7 +218,7 @@ def save_and_share(request):
 
     final_image_config = {'title':request.POST.get('title'), 'author':request.POST.get('author'), 'left':{}, 'right':{} }
 
-    guid = md5('%i %i' % (time.time(), randint(1, 10000))).hexdigest()
+    guid = data['guid']
     for side in ['left', 'right']:
         if data[side]:
             final_image_config[side] = { 'main_question':data[side]['main_question'], 'filters':[] }
@@ -221,7 +237,7 @@ def save_and_share(request):
 
     import cairo
     width = 1024
-    height = 800
+    height = 756
     surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 1024, 756)
     context = cairo.Context(surface)
     context.set_source_rgb(0.20, 0.22, 0.24)
@@ -336,9 +352,16 @@ def save_and_share(request):
     string_io = StringIO.StringIO()
     surface.write_to_png(string_io)
     string_io.seek(0)
-    output = open(settings.MEDIA_ROOT + '%s.png' % guid, 'wb')
+    image_path = settings.MEDIA_ROOT + '%s.png' % guid
+    output = open(image_path, 'wb')
     output.write(string_io.read())
     output.close()
+    image = Image.open(image_path)
+    image.thumbnail((614, 453), Image.ANTIALIAS)
+    image.save(image_path.replace('.png', '_medium.png'))
+    image.thumbnail((200, 148), Image.ANTIALIAS)
+    image.save(image_path.replace('.png', '_small.png'))
+    SavedInsight.Create(guid, final_image_config['title'], final_image_config['author'])
     return HttpResponse(guid)
 
 

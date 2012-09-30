@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block javascript %}
+    <script type="text/javascript" language="javascript">
+        var charts = {
+            chart_area_one:[],
+            chart_area_two:[]
+        };
+        jQuery.jqplot.config.enablePlugins = true;
+
+
+        $(document).ready(function(){
+            $('#questions_list_container').questionlist();
+            $('.chart_area_container').each(function() { $(this).chartarea(); } );
+            $('#post_production').postproduction();
+            $('#copy_container').copybuttons();
+        });
+    </script>
+{% endblock %}
+
+{% block page %}
+    <div id="section_one">
+        <div id="questions_block">
+            <div id="questions_list_container">
+                <ul>
+                    {% for question in questions %}
+                        <li class="question" data-facet_name='{{ question.facet_name }}' data-display_name='{{ question.display_name }}'>
+                            <p class="title">{{ question.display_name }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="section_two">
+        <div id="charts_area">
+            <div id="chart_area_one" class="chart_area_container">
+                {% include 'chart_area.html' %}
+            </div>
+            <div id="copy_container">
+                <img src="/static/images/button_right.png" id="copy_right_button" />
+                <img src="/static/images/button_left.png" id="copy_left_button" />
+            </div>
+            <div id="chart_area_two" class="chart_area_container">
+                {% include 'chart_area.html' %}
+            </div>
+        </div>
+    </div>
+    <div id="post_production">
+        <div id="post_production_tab">Save & Share &#x25B2;</div>
+        <div id="post_production_content">
+            <h3>Save & Share</h3>
+            <form class="ui-form">
+                {% csrf_token %}
+                <div class="clearfix fill_width">
+                    <div class="left">
+                        <div class="form_row">
+                            <label>Title:</label>
+                            <input type="text" name="title" />
+                        </div>
+                        <div class="form_row">
+                            <label>Author:</label>
+                            <input type="text" name="author" />
+                        </div>
+                    </div>
+                    <div class="right">
+                        <a class="button" id="save_and_share_button">Save & Share</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="hidden">
+        <img src="/static/images/blanko_large_hover.png" width="1px" />
+        <img src="/static/images/blanko_small_hover.png" width="1px" />
+        <img src="/static/images/callout_dark_selected_hover.png" width="1px" />
+    </div>
+{% endblock %}

@@ -2,8 +2,8 @@ from __future__ import with_statement
 from fabric.api import *
 
 packages = {
-    'apt-get':[],
-    'pip':[ 'django==1.4.1', 'South', 'solrpy', 'pytz', 'raven==1.4.6' ] }
+    'apt-get':[ 'python-dev' ],
+    'pip':[ 'django==1.4.1', 'South', 'solrpy', 'pytz', 'raven==1.4.6', 'PIL' ] }
 
 def prod():
     env.hosts = ['root@hfobd.web.01']

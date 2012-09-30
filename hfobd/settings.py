@@ -4,6 +4,12 @@ from solr.core import Solr
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'no-reply@metalayer.com'
+EMAIL_HOST_PASSWORD = '##M3taM3ta'
+EMAIL_PORT = 587
+
 ADMINS = (
     ('Matt', 'mg@metalayer.com'),
 )
@@ -122,6 +128,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'south',
     'hfobd.solrbridge',
+    'hfobd.savedinsights',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
