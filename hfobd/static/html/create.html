@@ -50,8 +50,9 @@
         <div id="post_production_tab">Save & Share &#x25B2;</div>
         <div id="post_production_content">
             <h3>Save & Share</h3>
-            <form class="ui-form">
+            <form class="ui-form" method="POST" action="/save_and_share">
                 {% csrf_token %}
+                <input type="hidden" name="data" id="data_input" />
                 <div class="clearfix fill_width">
                     <div class="left">
                         <div class="form_row">
@@ -64,7 +65,7 @@
                         </div>
                     </div>
                     <div class="right">
-                        <a class="button" id="save_and_share_button">Save & Share</a>
+                        <input type="submit" class="button" id="save_and_share_button" value="Save & Share"/>
                     </div>
                 </div>
             </form>

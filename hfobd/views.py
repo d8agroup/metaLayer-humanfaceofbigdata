@@ -2,7 +2,7 @@ import StringIO
 from random import randint
 from urllib import quote
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template.context import RequestContext
 from django.utils import simplejson
 from django.views.decorators.csrf import csrf_exempt
@@ -362,7 +362,7 @@ def save_and_share(request):
     image.thumbnail((200, 148), Image.ANTIALIAS)
     image.save(image_path.replace('.png', '_small.png'))
     SavedInsight.Create(guid, final_image_config['title'], final_image_config['author'])
-    return HttpResponse(guid)
+    return redirect('/gallery/'+ guid)
 
 
 def generate_color_pallet(number_needed, color='green'):

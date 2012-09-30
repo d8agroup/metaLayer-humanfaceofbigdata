@@ -58,14 +58,18 @@
                 }
             }
 
-            var post_data = button.parents('form').serializeArray();
-            post_data[post_data.length] = {name:'data', value:JSON.stringify(data) };
+            button.parents('form').find('#data_input').val(JSON.stringify(data));
 
-            $.post('/save_and_share', post_data);
-            if (window.location.port !=  "80")
-                window.location = "http://"+window.location.hostname+':'+window.location.port+'/gallery/'+image_id
-            else
-                window.location = "http://"+window.location.hostname+'/gallery/'+image_id
+
+
+//            var post_data = button.parents('form').serializeArray();
+//            post_data[post_data.length] = {name:'data', value:JSON.stringify(data) };
+//
+//            $.post('/save_and_share', post_data);
+//            if (window.location.port !=  "80")
+//                window.location = "http://"+window.location.hostname+':'+window.location.port+'/gallery/'+image_id
+//            else
+//                window.location = "http://"+window.location.hostname+'/gallery/'+image_id
         });
         return post_production;
     }
