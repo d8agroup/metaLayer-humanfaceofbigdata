@@ -16,7 +16,7 @@
             var filters = this;
             filters.find('.filter_container').droppable({
                 accept:'.question',
-                activeClass:'active',
+                activeClass:'drop_active',
                 drop:function(event, ui){
                     var droppable = $(this);
                     var draggable = ui.draggable;

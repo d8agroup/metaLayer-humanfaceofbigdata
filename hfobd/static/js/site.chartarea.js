@@ -122,6 +122,7 @@
             var chart_area = this;
             chart_area.find('.questions_and_chart').droppable({
                 accept:'.question',
+                activeClass:'drop_active',
                 drop:function(event, ui){
                     var droppable = $(this).find('.question_container');
                     var draggable = ui.draggable;
