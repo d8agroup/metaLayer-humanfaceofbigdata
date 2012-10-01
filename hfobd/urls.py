@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^download/(\w+)$', views.download),
     url(r'^send/email/(\w+)/(.+)$', views.email),
     url(r'old', views.home),
+    url(r'data_push', views.data_push),
     url(r'', views.design2),
 )
 

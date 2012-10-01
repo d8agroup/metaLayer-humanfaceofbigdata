@@ -154,7 +154,7 @@ LOGGING = {
         },
     'handlers': {
         'sentry': {
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'class': 'raven.contrib.django.handlers.SentryHandler',
             },
         'console': {
@@ -185,6 +185,7 @@ LOGGING = {
 SENTRY_DSN = 'http://6cd19fe54e974d8c812768607612c1a0:6e6569fb84f94b41ab37e1a18e56c600@108.166.111.61:9000/4'
 
 SOLR = Solr('http://hfobd.metalayer.com:8983/solr/core1')
+#SOLR = Solr('http://hfobd.metalayer.com:8983/solr/core0')
 
 
 import socket

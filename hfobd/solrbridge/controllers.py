@@ -1,6 +1,6 @@
 import datetime
 import pytz
-from hfobd.solrbridge.models import FacetMapping
+from hfobd.solrbridge.models import FacetMapping, LocationMapping
 from django.conf import settings
 from hashlib import md5
 import logging
@@ -20,6 +20,18 @@ class SolrController(object):
                 except Exception as e:
                     logger.error('Error encoding content')
                     logger.debug('Error encoding content - exception: %s  content:%s' % (e, solr_object))
+            try:
+                index = headers.index('wheredoyoulivecityandstatecountry_s')
+                if index > -1:
+                    raw_location = row[index]
+                    if raw_location:
+                        location_mapping = LocationMapping.GetForRawLocation(raw_location)
+                        if location_mapping:
+                            solr_object['country_s'] = location_mapping.country
+                            solr_object['raw_coordinates_s'] = location_mapping.raw_coordinates
+            except Exception as e:
+                logger.error('Error location sniffing')
+                logger.debug('Error location sniffing - exception: %s  content:%s' % (e, solr_object))
             try:
                 settings.SOLR.add(solr_object, commit=True)
             except Exception as e:
