@@ -33,9 +33,10 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 
 #header #header_right { float:right; height:99px; background:url('/static/images/header_right.png') right; width:552px; }
 #header #header_left { float:left; height:99px; background:url('/static/images/header_left.png'); width:520px; }
-#header #header_center { height:99px; background:url('/static/images/header_center.png'); width:189px; margin:0 auto;}
-#navigation { position:relative; top:84px; }
-#navigation li { display:inline-block;  width:91px; text-align:center;}
+#header #header_center { height:99px; background:url('/static/images/header_center.png'); width:189px; margin:0 auto; background-position:center -10px;}
+#navigation_container { padding-top:82px; }
+#navigation { width:110px; margin:0 auto; }
+#navigation li { display:inline-block;  width:50px; text-align:center;}
 #navigation li.first { }
 #navigation li a { color:#AAA; font-weight:bold; font-size:110%;}
 #navigation li a:hover { color:#FFF;}

@@ -29,80 +29,15 @@ def design1(request):
     return render_to_response('design1.html', template_data, context_instance=RequestContext(request))
 
 def design2(request):
-    template_data = {
-        'questions':FacetMapping.objects.filter(display_as_question=True),
-    }
+    questions = [q for q in FacetMapping.objects.filter(display_as_question=True)]
+    questions.insert(0, {
+        'display_name':'Mission Control Country',
+        'facet_name':'country_s',
+        'display_as_question':True
+    })
+    template_data = { 'questions': questions, }
     return render_to_response('create.html', template_data, context_instance=RequestContext(request))
 
-@csrf_exempt
-def get_graph_data(request):
-    facet_name = request.POST.get('facet_name')
-    filters = request.POST.get('filters')
-    if filters and filters != '[]':
-        filters = simplejson.loads(filters)
-        query = ' AND '.join('%s:%s' % (f['facet_name'], f['facet_value']) for f in filters)
-    else:
-        query = "*:*"
-    results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_name)
-    graph_dict = results.facet_counts['facet_fields'][facet_name]
-    graph_data = []
-    for key in graph_dict.keys():
-        graph_data.append({'label':key, 'value':graph_dict[key]})
-    graph_data = sorted(graph_data, key=lambda x: x['value'])
-    graph_data = graph_data[:10]
-    question_display_name = FacetMapping.objects.get(facet_name=facet_name).display_name
-    return JSONResponse({ 'graph_data':[{'key':question_display_name, 'values':graph_data}]})
-
-@csrf_exempt
-def get_graph_data2(request):
-    chart_area_id = request.POST.get('chart_area_id')
-    search_data = request.POST.get('search_data')
-    search_data = simplejson.loads(search_data)
-    questions = search_data['questions']
-    filters = search_data['filters']
-    return_data = { 'chart_area_id':chart_area_id, 'graph_data':[], 'filters':{} }
-    query = "*:*"
-    if len(questions) == 1:
-        return_data['graph_type'] = 'pie'
-        facet_names = [q['facet_name'] for q in questions]
-        facet_names += [f['facet_name'] for f in filters]
-        results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_names)
-        for question in questions:
-            facet_name = question['facet_name']
-            graph_dict = results.facet_counts['facet_fields'][facet_name]
-            graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in graph_dict.values())))} for key, value in graph_dict.items()]
-            graph_data = sorted(graph_data, key=lambda x: x['value'])
-            graph_data = graph_data[:10]
-            return_data['graph_data'].append({'key':question['display_name'], 'values':graph_data})
-            return_data['graph_colors'] = generate_color_pallet(len(graph_data))
-            for f in filters:
-                filter_facet_name = f['facet_name']
-                filter_graph_dict = results.facet_counts['facet_fields'][filter_facet_name]
-                filter_graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in filter_graph_dict.values())))} for key, value in filter_graph_dict.items()]
-                filter_graph_data = sorted(filter_graph_data, key=lambda x: x['value'])
-                filter_graph_data = filter_graph_data[:10]
-                return_data['filters'][filter_facet_name] = [{'key':f['display_name'], 'values':filter_graph_data }]
-
-
-
-    else:
-        facet_pivot = ','.join(q['facet_name'] for q in questions)
-        results = settings.SOLR.select(query, row=0, facet='true', facet_pivot=facet_pivot)
-        pivot_data = {}
-        for x_axis_field in results.facet_counts['facet_pivot'][facet_pivot]:
-            for y_axis_field in x_axis_field['pivot']:
-                facet_field = y_axis_field['field']
-                facet_field_display_name = [q['display_name'] for q in questions if q['facet_name'] == facet_field][0]
-                facet_value = y_axis_field['value']
-                facet_field_display_name += ': %s' % facet_value
-                if facet_field_display_name not in pivot_data.keys():
-                    pivot_data[facet_field_display_name] = []
-                pivot_data[facet_field_display_name].append({ 'label':x_axis_field['value'], 'value':y_axis_field['count']})
-        return_data['graph_data'] = [{'key':key.split(':')[-1].strip(), 'values':value} for key, value in pivot_data.items()]
-#        colors = generate_color_pallet(len(return_data['graph_data']))
-#        for x in range(return_data['graph_data']):
-#            return_data['graph_data'][x]['color'] = colors[x]
-    return JSONResponse(return_data)
 
 @csrf_exempt
 def get_graph_data3(request):
@@ -121,13 +56,16 @@ def get_graph_data3(request):
         facet_names = [q['facet_name'] for q in questions]
         facet_names += [f['facet_name'] for f in filters]
 
-        results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_names, facet_limit=20)
+        results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_names, facet_limit=100)
         for question in questions:
             facet_name = question['facet_name']
-            graph_dict = results.facet_counts['facet_fields'][facet_name]
-            graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in graph_dict.values())))} for key, value in graph_dict.items()]
-            graph_data = sorted(graph_data, key=lambda x: x['value'])
-            graph_data = graph_data[:10]
+            if facet_name == 'country_s':
+                graph_data = [{'label':c[0], 'value':c[1]} for c in [('United States', 70), ('United Kingdom', 20), ('Singapore', 10)]]
+            else:
+                graph_dict = results.facet_counts['facet_fields'][facet_name]
+                graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in graph_dict.values())))} for key, value in graph_dict.items()]
+                graph_data = sorted(graph_data, key=lambda x: x['value'], reverse=True)
+                graph_data = graph_data[:10]
             return_data['graph_data'] = {
                 'key':question['display_name'],
                 'values':[[g['label'], g['value']] for g in graph_data],
@@ -135,10 +73,16 @@ def get_graph_data3(request):
             return_data['graph_colors'] = generate_color_pallet(len(graph_data), 'green' if chart_area_id == 'chart_area_one' else 'orange')
             for f in filters:
                 filter_facet_name = f['facet_name']
-                filter_graph_dict = results.facet_counts['facet_fields'][filter_facet_name]
-                filter_graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in filter_graph_dict.values())))} for key, value in filter_graph_dict.items()]
-                filter_graph_data = sorted(filter_graph_data, key=lambda x: x['value'])
-                filter_graph_data = filter_graph_data[:10]
+                if filter_facet_name == 'country_s':
+                    if 'facet_value' in f and f['facet_value']:
+                        filter_graph_data = [{'label':f['facet_value'], 'value':100}]
+                    else:
+                        filter_graph_data = [{'label':c[0], 'value':c[1]} for c in [('United States', 70), ('United Kingdom', 20), ('Singapore', 10)]]
+                else:
+                    filter_graph_dict = results.facet_counts['facet_fields'][filter_facet_name]
+                    filter_graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in filter_graph_dict.values())))} for key, value in filter_graph_dict.items()]
+                    filter_graph_data = sorted(filter_graph_data, key=lambda x: x['value'], reverse=True)
+                    filter_graph_data = filter_graph_data[:10]
                 return_data['filters'][filter_facet_name] = {
                     'key':f['display_name'],
                     'colors':generate_color_pallet(len(filter_graph_data), 'blue') if not ('facet_value' in f and f['facet_value']) else generate_color_pallet(len(filter_graph_data), 'grey'),
@@ -418,6 +362,8 @@ def generate_color_pallet(number_needed, color='green'):
 
 
 def data_push(request):
+    if request.GET.get('password') != 'hfobd':
+        return
     from hfobd.solrbridge.controllers import SolrController
     import csv
     lines = [l for l in csv.reader(open('/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/assets/data/rich_export_01.csv', 'rb'))]
@@ -429,3 +375,73 @@ def data_push(request):
         f = FacetMapping.objects.get(display_name=display_name)
         f.display_as_question = False
         f.save()
+
+#@csrf_exempt
+#def get_graph_data(request):
+#    facet_name = request.POST.get('facet_name')
+#    filters = request.POST.get('filters')
+#    if filters and filters != '[]':
+#        filters = simplejson.loads(filters)
+#        query = ' AND '.join('%s:%s' % (f['facet_name'], f['facet_value']) for f in filters)
+#    else:
+#        query = "*:*"
+#    results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_name)
+#    graph_dict = results.facet_counts['facet_fields'][facet_name]
+#    graph_data = []
+#    for key in graph_dict.keys():
+#        graph_data.append({'label':key, 'value':graph_dict[key]})
+#    graph_data = sorted(graph_data, key=lambda x: x['value'])
+#    graph_data = graph_data[:10]
+#    question_display_name = FacetMapping.objects.get(facet_name=facet_name).display_name
+#    return JSONResponse({ 'graph_data':[{'key':question_display_name, 'values':graph_data}]})
+#
+#@csrf_exempt
+#def get_graph_data2(request):
+#    chart_area_id = request.POST.get('chart_area_id')
+#    search_data = request.POST.get('search_data')
+#    search_data = simplejson.loads(search_data)
+#    questions = search_data['questions']
+#    filters = search_data['filters']
+#    return_data = { 'chart_area_id':chart_area_id, 'graph_data':[], 'filters':{} }
+#    query = "*:*"
+#    if len(questions) == 1:
+#        return_data['graph_type'] = 'pie'
+#        facet_names = [q['facet_name'] for q in questions]
+#        facet_names += [f['facet_name'] for f in filters]
+#        results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_names)
+#        for question in questions:
+#            facet_name = question['facet_name']
+#            graph_dict = results.facet_counts['facet_fields'][facet_name]
+#            graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in graph_dict.values())))} for key, value in graph_dict.items()]
+#            graph_data = sorted(graph_data, key=lambda x: x['value'])
+#            graph_data = graph_data[:10]
+#            return_data['graph_data'].append({'key':question['display_name'], 'values':graph_data})
+#            return_data['graph_colors'] = generate_color_pallet(len(graph_data))
+#            for f in filters:
+#                filter_facet_name = f['facet_name']
+#                filter_graph_dict = results.facet_counts['facet_fields'][filter_facet_name]
+#                filter_graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in filter_graph_dict.values())))} for key, value in filter_graph_dict.items()]
+#                filter_graph_data = sorted(filter_graph_data, key=lambda x: x['value'])
+#                filter_graph_data = filter_graph_data[:10]
+#                return_data['filters'][filter_facet_name] = [{'key':f['display_name'], 'values':filter_graph_data }]
+#
+#
+#
+#    else:
+#        facet_pivot = ','.join(q['facet_name'] for q in questions)
+#        results = settings.SOLR.select(query, row=0, facet='true', facet_pivot=facet_pivot)
+#        pivot_data = {}
+#        for x_axis_field in results.facet_counts['facet_pivot'][facet_pivot]:
+#            for y_axis_field in x_axis_field['pivot']:
+#                facet_field = y_axis_field['field']
+#                facet_field_display_name = [q['display_name'] for q in questions if q['facet_name'] == facet_field][0]
+#                facet_value = y_axis_field['value']
+#                facet_field_display_name += ': %s' % facet_value
+#                if facet_field_display_name not in pivot_data.keys():
+#                    pivot_data[facet_field_display_name] = []
+#                pivot_data[facet_field_display_name].append({ 'label':x_axis_field['value'], 'value':y_axis_field['count']})
+#        return_data['graph_data'] = [{'key':key.split(':')[-1].strip(), 'values':value} for key, value in pivot_data.items()]
+##        colors = generate_color_pallet(len(return_data['graph_data']))
+##        for x in range(return_data['graph_data']):
+##            return_data['graph_data'][x]['color'] = colors[x]
+#    return JSONResponse(return_data)
