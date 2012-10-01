@@ -121,7 +121,7 @@ def get_graph_data3(request):
         facet_names = [q['facet_name'] for q in questions]
         facet_names += [f['facet_name'] for f in filters]
 
-        results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_names)
+        results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_names, facet_limit=20)
         for question in questions:
             facet_name = question['facet_name']
             graph_dict = results.facet_counts['facet_fields'][facet_name]
@@ -420,7 +420,7 @@ def generate_color_pallet(number_needed, color='green'):
 def data_push(request):
     from hfobd.solrbridge.controllers import SolrController
     import csv
-    lines = [l for l in csv.reader(open('assets/data/507.csv', 'rb'))]
+    lines = [l for l in csv.reader(open('/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/assets/data/rich_export_01.csv', 'rb'))]
     headers = lines[0]
     lines = lines[1:]
     SolrController.PushTabularData(headers, lines)
