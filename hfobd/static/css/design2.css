@@ -43,7 +43,7 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 
 #section_one {}
 #questions_block .question { display:inline-block; width: 140px; height: 47px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; cursor: pointer; background-image:url('/static/images/callout_dark.png'); background-size:100%; color:#BBB; }
-#questions_block .question .title { text-align:center; font-size:90%; font-weight:bold; }
+#questions_block .question .title { text-align:center; font-size:80%; font-weight:bold; }
 #questions_block .question.hover { background-image:url('/static/images/callout_dark_selected.png'); color:#FFF;}
 #questions_block .ui-widget-content { background:none; border:none; }
 
