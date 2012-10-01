@@ -64,7 +64,7 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 .chart_area_container .questions .questions_list { margin-top:120px;}
 .chart_area_container .questions .question_container { display:inline-block; width: 140px; height: 47px; margin:20px 10px; padding:10px;  white-space: normal;  vertical-align: top; cursor: pointer; background-image:url('/static/images/callout_dark_selected.png'); background-size:100%; color:#BBB; }
 .chart_area_container .drop_active .questions .question_container { background-image:url('/static/images/callout_dark_selected_hover.png'); }
-.chart_area_container .questions .question_container .title { font-size:90%; font-weight:bold; text-align:center; color:#FFF; }
+.chart_area_container .questions .question_container .title { font-size:80%; font-weight:bold; text-align:center; color:#FFF; }
 .chart_area_container .chart { width:355px; height:355px; float:right; text-align:center; background:url('/static/images/blanko_large.png') center center no-repeat; }
 .chart_area_container .drop_active .chart { background:url('/static/images/blanko_large_hover.png') center center no-repeat; }
 .chart_area_container .filters { height:185px; }
