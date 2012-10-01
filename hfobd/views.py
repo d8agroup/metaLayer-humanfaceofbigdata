@@ -69,7 +69,7 @@ def get_graph_data3(request):
             return_data['graph_data'] = {
                 'key':question['display_name'],
                 'values':[[g['label'], g['value']] for g in graph_data],
-                'labels':['%s - %i%s' % (g['label'], g['value'], "%") for g in graph_data]}
+                'labels':['%s : %i%s' % (g['label'], g['value'], "%") for g in graph_data]}
             return_data['graph_colors'] = generate_color_pallet(len(graph_data), 'green' if chart_area_id == 'chart_area_one' else 'orange')
             for f in filters:
                 filter_facet_name = f['facet_name']
@@ -87,7 +87,7 @@ def get_graph_data3(request):
                     'key':f['display_name'],
                     'colors':generate_color_pallet(len(filter_graph_data), 'blue') if not ('facet_value' in f and f['facet_value']) else generate_color_pallet(len(filter_graph_data), 'grey'),
                     'values':[[g['label'], g['value']] for g in filter_graph_data],
-                    'labels':['%s - %i%s' % (g['label'], g['value'], "%") for g in filter_graph_data],
+                    'labels':['%s : %i%s' % (g['label'], g['value'], "%") for g in filter_graph_data],
                     'is_selected':bool('facet_value' in f and f['facet_value'])}
 
 
@@ -376,6 +376,38 @@ def data_push(request):
         f = FacetMapping.objects.get(display_name=display_name)
         f.display_as_question = False
         f.save()
+
+def globe(request, facet_name=None):
+    if facet_name:
+        facet_pivot = 'raw_coordinates_s,%s' % facet_name
+        results = settings.SOLR.select('*:*', rows=0, facet='true', facet_pivot=facet_pivot, facet_limit=1000)
+        pivot_data = {}
+        for x_axis_field in results.facet_counts['facet_pivot'][facet_pivot]:
+            for y_axis_field in x_axis_field['pivot']:
+                facet_value = y_axis_field['value']
+                if facet_value not in pivot_data.keys():
+                    pivot_data[facet_value] = []
+                pivot_data[facet_value].append({ 'label':x_axis_field['value'], 'value':y_axis_field['count']})
+
+        return_data = { 'legend':[], 'data':[] }
+        for x in range(len(pivot_data.keys())):
+            key = pivot_data.keys()[x]
+            color = x
+            return_data['legend'].append({'color':color, 'label':key})
+            for value in pivot_data[key]:
+                return_data['data'].append(value['label'].split(',')[0])
+                return_data['data'].append(value['label'].split(',')[1])
+                return_data['data'].append(value['value'])
+                return_data['data'].append(color)
+
+        return HttpResponse(simplejson.dumps(return_data), content_type='application/json')
+
+
+    template_data = {
+        'questions':FacetMapping.objects.filter(display_as_question=True),
+    }
+    return render_to_response('globe.html', template_data, context_instance=RequestContext(request))
+
 
 #@csrf_exempt
 #def get_graph_data(request):

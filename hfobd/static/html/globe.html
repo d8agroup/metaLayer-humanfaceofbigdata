@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block page_title %}MetaLayer - Globe{% endblock %}
+
+{% block javascript %}
+    <script type="text/javascript" language="JavaScript">
+        $(document).ready(function(){
+            $('#questions_list_container').questionlist();
+
+
+            $('#question_container').droppable({
+                accept:'.question',
+                activeClass:'drop_active',
+                drop:function(event, ui){
+                    var droppable = $(this);
+                    var draggable = ui.draggable;
+                    var facet_name = draggable.data('facet_name');
+                    var display_name = draggable.data('display_name');
+                    var html = $("<p class='title'>"+display_name+"</p>");
+                    droppable.html(html);
+                    droppable.data('facet_name', facet_name);
+                    droppable.data('display_name', display_name);
+                    $('#globe_container').html('<img id="globe_waiting" src="/static/images/loading_1d2228.gif" />');
+                    $.get('/globe/' + facet_name, function(data){
+
+                        ML.Globe.init('globe_container');
+                        ML.Globe.render_with_data(data.data);
+                        $('#legend').html('');
+                        html = '';
+                        for (var x=0; x<data.legend.length; x++){
+                            html += "<div class='legend_entry'><span class='swatch' style='background-color:" + legend_color(data.legend[x].color)+
+                                    "'></span><span class='title'>" + data.legend[x].label + "</span></div>";
+                        }
+                        $('#legend').html(html);
+                    });
+                }
+            });
+
+            if(!Detector.webgl){
+                Detector.addGetWebGLMessage();
+            } else {
+                ML.Globe.init('globe_container');
+                ML.Globe.render_with_data([]);
+            }
+        });
+
+        function legend_color(color_index){
+            return [
+                '#be1111', '#b6b4b5', '#9966cc', '#15adff', '#3e66a3', '#216288', '#ff7e7e', '#ff1f13',
+                '#c0120b', '#5a1301', '#ffcc02', '#edb113', '#9fce66', '#0c9a39', '#fe9872', '#7f3f98',
+                '#f26522', '#2bb673', '#d7df23', '#e6b23a', '#7ed3f7'
+            ][color_index]
+        }
+    </script>
+{% endblock %}
+
+{% block page %}
+    <div id="section_one">
+        <div id="questions_block">
+            <div id="questions_list_container">
+                <ul>
+                    {% for question in questions %}
+                        <li class="question" data-facet_name='{{ question.facet_name }}' data-display_name='{{ question.display_name }}'>
+                            <p class="title">{{ question.display_name }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="globe_and_question_container">
+        <div class="clearfix fill_width">
+            <div id="question_and_legend">
+                <div id="instructions">
+                    <h3>The MetaLayer Globe</h3>
+                    <p>This globe can show how answers to the questions above are globally distributed!</p>
+                </div>
+                <div id="question_container">
+
+                </div>
+                <div id="legend">
+
+                </div>
+            </div>
+            <div id="globe_container">
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

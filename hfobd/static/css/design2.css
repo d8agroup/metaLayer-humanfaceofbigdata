@@ -1,3 +1,15 @@
+#globe_and_question_container { width:1024px; margin:30px auto 10px; }
+#question_and_legend { float:left; width:200px; }
+#question_and_legend #instructions { margin-bottom:10px; }
+#question_and_legend #instructions h3 { font-size:200%; color:#888; }
+#question_and_legend #instructions p { color:#555; padding:10px 0;}
+#question_and_legend #question_container { width: 140px; height: 47px; margin:20px 10px; padding:10px;  white-space: normal;  vertical-align: top; background-image:url('/static/images/callout_dark_selected.png'); background-size:100%; color:#BBB; }
+#question_and_legend #question_container .title { font-size:80%; font-weight:bold; text-align:center; color:#FFF; }
+#question_and_legend #question_container.drop_active { background-image:url('/static/images/callout_dark_selected_hover.png'); }
+#globe_container { float:right; width:800px; border:1px solid #555; height:500px; background:#1d2228; text-align:center;}
+#globe_waiting { position:relative; top:230px;}
+
+
 #gallery_container { width:1100px; margin:20px auto; }
 #gallery_container #gallery { overflow:auto; margin-top:20px;}
 #gallery_container #gallery.small { height:200px; }
@@ -63,7 +75,7 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 .chart_area_container .questions { width:180px; height:355px; float:left; }
 .chart_area_container .questions .questions_list { margin-top:120px;}
 .chart_area_container .questions .question_container { display:inline-block; width: 140px; height: 47px; margin:20px 10px; padding:10px;  white-space: normal;  vertical-align: top; cursor: pointer; background-image:url('/static/images/callout_dark_selected.png'); background-size:100%; color:#BBB; }
-.chart_area_container .drop_active .questions .question_container { background-image:url('/static/images/callout_dark_selected_hover.png'); }
+.chart_area_container .drop_active .questions .questioncontainer { background-image:url('/static/images/callout_dark_selected_hover.png'); }
 .chart_area_container .questions .question_container .title { font-size:80%; font-weight:bold; text-align:center; color:#FFF; }
 .chart_area_container .chart { width:355px; height:355px; float:right; text-align:center; background:url('/static/images/blanko_large.png') center center no-repeat; }
 .chart_area_container .drop_active .chart { background:url('/static/images/blanko_large_hover.png') center center no-repeat; }
