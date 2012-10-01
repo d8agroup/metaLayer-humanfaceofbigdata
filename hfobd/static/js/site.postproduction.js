@@ -22,6 +22,7 @@
             var left_chart = $('#chart_area_one .chart');
             if (left_chart.html() > ''){
                 data.left['main_question'] = $('#chart_area_one .question_container .title').html();
+                data.left['facet_name'] = $('#chart_area_one .question_container').data('facet_name');
                 data.left['main_chart'] = jqplotToImg(left_chart);
                 data.left['filters'] = [];
                 var filters = $('#chart_area_one .filter_container');
@@ -42,6 +43,7 @@
             var right_chart = $('#chart_area_two .chart');
             if (right_chart.html() > ''){
                 data.right['main_question'] = $('#chart_area_two .question_container .title').html();
+                data.right['facet_name'] = $('#chart_area_two .question_container').data('facet_name');
                 data.right['main_chart'] = jqplotToImg(right_chart);
                 data.right['filters'] = [];
                 var filters = $('#chart_area_two .filter_container');

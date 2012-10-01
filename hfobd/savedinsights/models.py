@@ -6,12 +6,19 @@ class SavedInsight(models.Model):
     image_id = models.CharField(max_length=1024)
     title = models.TextField()
     author = models.TextField()
+    data = models.TextField(default='')
     visible = models.BooleanField()
     created = models.DateTimeField()
 
     @classmethod
-    def Create(cls, image_id, title, author):
-        saved_insight = SavedInsight(image_id=image_id, title=title, author=author, visible=False, created=datetime.datetime.now().replace(tzinfo=pytz.UTC))
+    def Create(cls, image_id, title, author, data):
+        saved_insight = SavedInsight(
+            image_id=image_id,
+            title=title,
+            author=author,
+            data=data,
+            visible=False,
+            created=datetime.datetime.now().replace(tzinfo=pytz.UTC))
         saved_insight.save()
         return saved_insight
 
@@ -29,4 +36,4 @@ class SavedInsight(models.Model):
 
     @classmethod
     def Gallery(cls):
-        return SavedInsight.objects.filter(visible=True).order_by('created')
+        return SavedInsight.objects.filter(visible=True).order_by('-created')

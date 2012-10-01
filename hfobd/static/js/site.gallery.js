@@ -32,8 +32,26 @@
                     gallery.gallery('close_focus');
                 });
             });
+            gallery.find('#focus_download').attr('href', '/download/'+focus_id)
             gallery.find('#focus_close').click(function(){
                 gallery.gallery('close_focus');
+            });
+            gallery.find('#focus_email input[type=email]').focus(function(){
+                if($(this).val() == 'your email here')
+                    $(this).val('');
+            });
+            gallery.find('#focus_email input[type=email]').blur(function(){
+                    if($(this).val() == '')
+                        $(this).val('your email here');
+            });
+            gallery.find('#focus_email .button').click(function(){
+                $.get('/send/email/' + focus_id + '/' + gallery.find('#focus_email input[type=email]').val());
+                $(this).find('span').html('Sending Now!');
+                $(this).addClass('ui-state-disabled');
+                setTimeout(function(){
+                    $('#focus_email .button').removeClass('ui-state-disabled');
+                    $('#focus_email .button span').html('Send Now!')
+                }, 2000);
             });
             if (page_image_id != focus_id) {
                 gallery.find('#focus_delete').hide();
@@ -54,6 +72,7 @@
             gallery.find('#focus_delete').show();
             gallery.find('#focus_save').show();
             gallery.find('#focus_close').hide();
+            gallery.find('#focus_email input[type=email]').val('your email here');
         }
     };
 

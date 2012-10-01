@@ -1,6 +1,8 @@
 import StringIO
 from random import randint
 from urllib import quote
+from django.core.mail.message import EmailMessage
+from django.core.validators import email_re
 from django.http import HttpResponse
 from django.shortcuts import render_to_response, redirect
 from django.template.context import RequestContext
@@ -222,11 +224,11 @@ def save_and_share(request):
     for side in ['left', 'right']:
         if data[side]:
             final_image_config[side] = { 'main_question':data[side]['main_question'], 'filters':[] }
-            main_image_id = '%s_main_chart.png' % guid
+            main_image_id = '%s_%s_main_chart.png' % (guid, side)
             final_image_config[side]['main_chart'] = main_image_id
             write_image(data[side]['main_chart'], main_image_id)
             for x in range(len(data[side]['filters'])):
-                filter_image_id = '%s_filter_image_%i.png' % (guid, x+1)
+                filter_image_id = '%s_%s_filter_image_%i.png' % (guid, side, x+1)
                 final_image_config[side]['filters'].append({
                     'facet_name':data[side]['filters'][x]['facet_name'],
                     'facet_value':data[side]['filters'][x]['facet_value'] if 'facet_value' in data[side]['filters'][x] else None,
@@ -288,7 +290,7 @@ def save_and_share(request):
     
         #question
         if 'main_question' in final_image_config[side[0]]:
-            context.set_font_size(10)
+            context.set_font_size(8)
             context.select_font_face("Sans", cairo.FONT_SLANT_NORMAL, cairo.FONT_WEIGHT_BOLD)
             context.set_source_rgb(1.0, 1.0, 1.0)
             text = final_image_config[side[0]]['main_question']
@@ -302,9 +304,9 @@ def save_and_share(request):
                     x, w, w, h = context.text_extents(t)[:4]
                     a+=1
 
-                context.move_to(30 + side[1], 350 + (row * 14))
-                context.show_text(' '.join(text_pieces[words_used:words_used+a]))
-                words_used += a
+                context.move_to(30 + side[1], 350 + (row * 12))
+                context.show_text(' '.join(text_pieces[words_used:words_used+a-2]))
+                words_used += a-2
                 row += 1
 
         if 'main_chart' in final_image_config[side[0]]:
@@ -361,8 +363,39 @@ def save_and_share(request):
     image.save(image_path.replace('.png', '_medium.png'))
     image.thumbnail((200, 148), Image.ANTIALIAS)
     image.save(image_path.replace('.png', '_small.png'))
-    SavedInsight.Create(guid, final_image_config['title'], final_image_config['author'])
+    SavedInsight.Create(guid, final_image_config['title'], final_image_config['author'], request.POST['data'])
     return redirect('/gallery/'+ guid)
+
+def download(request, image_id):
+    saved_insight = SavedInsight.objects.get(image_id=image_id)
+    image = Image.open(settings.MEDIA_ROOT + image_id + '.png')
+    response = HttpResponse(mimetype='image/png')
+    file_name = ''.join([s for s in saved_insight.title if s.isalnum()]) or 'HumanFaceOfBigData_MetaLayer'
+    response['Content-Disposition'] = 'attachment; filename=%s.png' % file_name
+    image.save(response, 'png')
+    return response
+
+def email(request, image_id, email_address):
+    if not email_re.match(email_address):
+        return HttpResponse()
+    saved_insight = SavedInsight.objects.get(image_id=image_id)
+    image_data = open(settings.MEDIA_ROOT + image_id + '.png', 'rb')
+    image_title = ''.join([s for s in saved_insight.title if s.isalnum()]) or 'HumanFaceOfBigData_MetaLayer'
+    subject = 'Human Face of Big Data & MetaLayer - Insight: %s' % (saved_insight.title or 'Untitled')
+    body = """
+        Thank you for taking the time to explore the Human Face of Big Data project with MetaLayer! \n
+        \n
+        The insight you chose to download is attached to this email.\n
+        \n
+        \tThis insight is titled: %s\n
+        \tAnd was created by: %s\n
+        \n
+        Thanks!
+        """ % (saved_insight.title or 'Untitled', saved_insight.author or 'No Author')
+    email = EmailMessage(subject, body, 'team@metalayer.com', [email_address], attachments=[(image_title + '.png', image_data.read(), 'image/png')])
+    image_data.close()
+    email.send()
+    return HttpResponse()
 
 
 def generate_color_pallet(number_needed, color='green'):

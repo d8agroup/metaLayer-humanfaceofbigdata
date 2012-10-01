@@ -1,18 +1,20 @@
-#gallery_container { width:1024px; margin:20px auto; }
+#gallery_container { width:1100px; margin:20px auto; }
 #gallery_container #gallery { overflow:auto; margin-top:20px;}
-#gallery_container #gallery.small { height:198px; }
+#gallery_container #gallery.small { height:200px; }
 #gallery_container #gallery.large { height:500px;}
-#gallery_container #gallery li { padding:5px; float:left; color:#DDD; text-align:center; height:180px; overflow:hidden; cursor:pointer; }
+#gallery_container #gallery li { float:left; color:#DDD; text-align:center; height:180px; overflow:hidden; cursor:pointer; margin:5px; border:1px solid #555; width:200px;}
 #gallery_container #gallery li .title { height:15px; overflow:hidden; font-weight:bold; }
 #gallery_container #gallery li .author { height:15px; overflow:hidden; }
 
-#gallery_container #focus { background-color:#1d2228; padding:10px 0; width:800px; margin:10px auto 0; }
+#gallery_container #focus { background-color:#1d2228; padding:10px 0; width:800px; margin:10px auto 0; border:1px solid #555;}
 #gallery_container #focus.small { display:none;}
-#gallery_container #focus #focus_image_container { width:614px; height:453px; text-align: center; margin:0 auto;     }
+#gallery_container #focus #focus_image_container { width:614px; height:453px; text-align: center; margin:0 auto; }
 #gallery_container #focus #focus_image_loading { position:relative; top:206px; }
-#gallery_container #focus #focus_image { width:614px; height:453px; border:2px solid #DDD;}
+#gallery_container #focus #focus_image { width:614px; height:453px; border:1px solid #555;}
 #gallery_container #focus #focus_actions { width:700px; margin:20px auto 10px;}
 #gallery_container #focus #focus_actions #focus_actions_save_or_delete { float:right;}
+#gallery_container #focus #focus_actions #focus_email { float:left; }
+#gallery_container #focus #focus_actions #focus_email input[type=email] { padding:5px; position:relative; top:-1px; width:200px;}
 
 
 
@@ -28,14 +30,15 @@ text { fill:#FFF !important;}
 body { background:url('/static/images/background_page.png') top center repeat-y  #21262C;}
 
 #header { background-color:#1d2228; height:99px; }
-#navigation { position:relative; top:77px; left:30px; }
-#navigation li { display:inline-block;  width:80px; text-align:center;}
-#navigation li.first { border-right:2px solid #AAA;}
-#navigation li a { color:#AAA; font-weight:bold; font-size:140%;}
-#navigation li a:hover { color:#FFF;}
+
 #header #header_right { float:right; height:99px; background:url('/static/images/header_right.png') right; width:552px; }
 #header #header_left { float:left; height:99px; background:url('/static/images/header_left.png'); width:520px; }
 #header #header_center { height:99px; background:url('/static/images/header_center.png'); width:189px; margin:0 auto;}
+#navigation { position:relative; top:84px; }
+#navigation li { display:inline-block;  width:91px; text-align:center;}
+#navigation li.first { }
+#navigation li a { color:#AAA; font-weight:bold; font-size:110%;}
+#navigation li a:hover { color:#FFF;}
 
 #section_one {}
 #questions_block .question { display:inline-block; width: 140px; height: 47px; margin:5px; padding:10px;  white-space: normal;  vertical-align: top; cursor: pointer; background-image:url('/static/images/callout_dark.png'); background-size:100%; color:#BBB; }

@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^save_and_share$', views.save_and_share),
     url(r'^gallery$', views.gallery),
     url(r'^gallery/(\w+)$', views.gallery),
+    url(r'^download/(\w+)$', views.download),
+    url(r'^send/email/(\w+)/(.+)$', views.email),
     url(r'old', views.home),
     url(r'', views.design2),
 )
