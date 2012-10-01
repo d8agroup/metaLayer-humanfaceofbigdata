@@ -366,7 +366,7 @@ def data_push(request):
         return
     from hfobd.solrbridge.controllers import SolrController
     import csv
-    lines = [l for l in csv.reader(open('/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/assets/data/rich_export_01.csv', 'rb'))]
+    lines = [l for l in csv.reader(open('/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/assets/data/rich_export_02.csv', 'rb'))]
     #lines = [l for l in csv.reader(open('assets/data/rich_export_01.csv', 'rb'))]
     headers = lines[0]
     lines = lines[1:]
