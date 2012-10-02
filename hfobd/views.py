@@ -399,7 +399,7 @@ def globe(request, facet_name=None):
             for value in pivot_data[key]:
                 return_data['data'].append('%s' % (float(value['label'].split(',')[0]) + x))
                 return_data['data'].append('%s' % (float(value['label'].split(',')[1]) + x))
-                return_data['data'].append(1.0/value['value'])
+                return_data['data'].append((1.0/value['value'])/3)
                 return_data['data'].append(color)
 
         return HttpResponse(simplejson.dumps(return_data), content_type='application/json')
