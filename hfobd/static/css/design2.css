@@ -65,7 +65,7 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 #navigation { width:110px; margin:0 auto; }
 #navigation li { display:inline-block; text-align:center;}
 #navigation li.first { }
-#navigation li a { color:#AAA; font-weight:bold; font-size:80%;}
+#navigation li a { color:#AAA; font-weight:bold; font-size:120%;}
 #navigation li a:hover { color:#FFF;}
 
 #section_one {}
