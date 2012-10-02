@@ -63,9 +63,9 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 #header #header_center { height:99px; background:url('/static/images/header_center.png'); width:189px; margin:0 auto; background-position:center -10px;}
 #navigation_container { padding-top:82px; }
 #navigation { width:110px; margin:0 auto; }
-#navigation li { display:inline-block;  width:50px; text-align:center;}
+#navigation li { display:inline-block; text-align:center;}
 #navigation li.first { }
-#navigation li a { color:#AAA; font-weight:bold; font-size:110%;}
+#navigation li a { color:#AAA; font-weight:bold; font-size:80%;}
 #navigation li a:hover { color:#FFF;}
 
 #section_one {}
