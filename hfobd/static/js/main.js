@@ -22,6 +22,7 @@ ML.Globe = {
     },
 
     render_with_data:function(data) {
+        TWEEN.start();
         this.globe.addData(data, {format: 'legend'});
         this.globe.createPoints();
         this.globe.animate();
