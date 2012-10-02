@@ -401,10 +401,11 @@ def globe(request, facet_name=None):
             color = x
             return_data['legend'].append({'color':color, 'label':key})
             for value in pivot_data[key]:
-                return_data['data'].append('%s' % (float(value['label'].split(',')[0]) + x))
-                return_data['data'].append('%s' % (float(value['label'].split(',')[1]) + x))
-                return_data['data'].append((1.0/value['value'])/3)
-                return_data['data'].append(color)
+                for y in range(value['value']):
+                    return_data['data'].append('%s' % (float(value['label'].split(',')[0]) + (x/100)))
+                    return_data['data'].append('%s' % (float(value['label'].split(',')[1]) + (y/100)))
+                    return_data['data'].append(0.01)
+                    return_data['data'].append(color)
 
         return HttpResponse(simplejson.dumps(return_data), content_type='application/json')
 

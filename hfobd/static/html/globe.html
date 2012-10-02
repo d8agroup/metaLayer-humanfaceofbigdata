@@ -20,6 +20,7 @@
                     droppable.html(html);
                     droppable.data('facet_name', facet_name);
                     droppable.data('display_name', display_name);
+                    $('#legend').html('');
                     $('#globe_container').html('<img id="globe_waiting" src="/static/images/loading_1d2228.gif" />');
                     $.get('/globe/' + facet_name, function(data){
                         $('#globe_container').html('');
@@ -29,9 +30,9 @@
                         html = '';
                         for (var x=0; x<data.legend.length; x++){
                             html += "<div class='legend_entry'><span class='swatch' style='background-color:" + legend_color(data.legend[x].color)+
-                                    "'></span><span class='title'>" + data.legend[x].label + "</span></div>";
+                                    "'></span><span class='title' style='background-color:" + legend_color(data.legend[x].color) + ";'>" + data.legend[x].label + "</span></div>";
                         }
-                        $('#legend').html(html);
+                        $('#legend').html(html).fadeIn();
                     });
                 }
             });
@@ -46,9 +47,7 @@
 
         function legend_color(color_index){
             return [
-                '#be1111', '#b6b4b5', '#9966cc', '#15adff', '#3e66a3', '#216288', '#ff7e7e', '#ff1f13',
-                '#c0120b', '#5a1301', '#ffcc02', '#edb113', '#9fce66', '#0c9a39', '#fe9872', '#7f3f98',
-                '#f26522', '#2bb673', '#d7df23', '#e6b23a', '#7ed3f7'
+                '#FF0000', '#00FF00', '#0000FF', '#F0F000', '#60060', '#FF7000', '#905030', '#FFFFFF','#FFFFFF','#FFFFFF','#FFFFFF','#FFFFFF'
             ][color_index]
         }
     </script>
@@ -79,7 +78,6 @@
 
                 </div>
                 <div id="legend">
-
                 </div>
             </div>
         </div>
