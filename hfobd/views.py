@@ -30,11 +30,11 @@ def design1(request):
 
 def design2(request):
     questions = [q for q in FacetMapping.objects.filter(display_as_question=True)]
-    questions.insert(0, {
-        'display_name':'Mission Control Country',
-        'facet_name':'country_s',
-        'display_as_question':True
-    })
+#    questions.insert(0, {
+#        'display_name':'Mission Control Country',
+#        'facet_name':'country_s',
+#        'display_as_question':True
+#    })
     template_data = { 'questions': questions, }
     return render_to_response('create.html', template_data, context_instance=RequestContext(request))
 
