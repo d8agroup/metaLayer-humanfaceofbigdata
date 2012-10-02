@@ -8,7 +8,7 @@
 #question_and_legend #question_container { width: 140px; height: 47px; margin:20px 10px; padding:10px;  white-space: normal;  vertical-align: top; background-image:url('/static/images/callout_dark_selected.png'); background-size:100%; color:#BBB; float:left; }
 #question_and_legend #question_container .title { font-size:80%; font-weight:bold; text-align:center; color:#FFF; }
 #question_and_legend #question_container.drop_active { background-image:url('/static/images/callout_dark_selected_hover.png'); }
-#legend { display:none; float:left; margin-left: 50px; border: 2px solid #bbb; padding: 2px; }
+#legend {  }
 #globe_container { width:1000px;}
 #globe_waiting { position:relative; top:230px; display:none;}
 
