@@ -34,7 +34,7 @@
 .nv-y.nv-axis text { display:none; }
 text { fill:#FFF !important;}
 .jqplot-data-label { color:#FFF; text-shadow: 2px 2px 2px #000;}
-.jqplot-highlighter-tooltip { color:#FFF; background:#1d2228; font-size:120%;  border:none;}
+.jqplot-highlighter-tooltip { color:#FFF; background:#1d2228; font-size:120%;  border:none; z-index: 100 !important; }
 
 /**********************************************************************************************************************/
 /* PAGE STYLING                                                                                                       */
