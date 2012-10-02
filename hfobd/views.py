@@ -66,6 +66,7 @@ def get_graph_data3(request):
                 graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in graph_dict.values())))} for key, value in graph_dict.items()]
                 graph_data = sorted(graph_data, key=lambda x: x['value'], reverse=True)
                 graph_data = graph_data[:10]
+                graph_data = sorted(graph_data, key=lambda x: x['label'])
             return_data['graph_data'] = {
                 'key':question['display_name'],
                 'values':[[g['label'], g['value']] for g in graph_data],
@@ -83,6 +84,7 @@ def get_graph_data3(request):
                     filter_graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in filter_graph_dict.values())))} for key, value in filter_graph_dict.items()]
                     filter_graph_data = sorted(filter_graph_data, key=lambda x: x['value'], reverse=True)
                     filter_graph_data = filter_graph_data[:10]
+                    filter_graph_data = sorted(filter_graph_data, key=lambda x: x['label'], reverse=True)
                 return_data['filters'][filter_facet_name] = {
                     'key':f['display_name'],
                     'colors':generate_color_pallet(len(filter_graph_data), 'blue') if not ('facet_value' in f and f['facet_value']) else generate_color_pallet(len(filter_graph_data), 'grey'),
