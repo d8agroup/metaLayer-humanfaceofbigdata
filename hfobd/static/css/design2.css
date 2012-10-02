@@ -7,8 +7,7 @@
 #question_and_legend #question_container .title { font-size:80%; font-weight:bold; text-align:center; color:#FFF; }
 #question_and_legend #question_container.drop_active { background-image:url('/static/images/callout_dark_selected_hover.png'); }
 #legend { float:right; width:400px; height:100px;}
-#globe_container { width:800px; border:1px solid #555; height:500px; background:#1d2228; text-align:center; margin:0 auto; }
-#globe_waiting { position:relative; top:230px;}
+#globe_waiting { position:relative; top:230px; display:none;}
 
 
 #gallery_container { width:1100px; margin:20px auto; }
