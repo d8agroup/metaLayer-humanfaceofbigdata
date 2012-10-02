@@ -59,7 +59,7 @@ def get_graph_data3(request):
         results = settings.SOLR.select(query, row=0, facet='true', facet_field=facet_names, facet_limit=100)
         for question in questions:
             facet_name = question['facet_name']
-            if facet_name == 'country_s':
+            if facet_name == False:#'country_s':
                 graph_data = [{'label':c[0], 'value':c[1]} for c in [('United States', 70), ('United Kingdom', 20), ('Singapore', 10)]]
             else:
                 graph_dict = results.facet_counts['facet_fields'][facet_name]
@@ -74,7 +74,7 @@ def get_graph_data3(request):
             return_data['graph_colors'] = generate_color_pallet(len(graph_data), 'green' if chart_area_id == 'chart_area_one' else 'orange')
             for f in filters:
                 filter_facet_name = f['facet_name']
-                if filter_facet_name == 'country_s':
+                if filter_facet_name == False:#'country_s':
                     if 'facet_value' in f and f['facet_value']:
                         filter_graph_data = [{'label':f['facet_value'], 'value':100}]
                     else:
