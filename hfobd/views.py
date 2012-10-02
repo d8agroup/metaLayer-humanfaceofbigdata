@@ -41,6 +41,10 @@ def design2(request):
 
 @csrf_exempt
 def get_graph_data3(request):
+    def stringify_label(label):
+        if label.isdigit():
+            return '&nbsp;%s' % label
+        return label
     chart_area_id = request.POST.get('chart_area_id')
     search_data = request.POST.get('search_data')
     search_data = simplejson.loads(search_data)
@@ -63,7 +67,7 @@ def get_graph_data3(request):
                 graph_data = [{'label':c[0], 'value':c[1]} for c in [('United States', 70), ('United Kingdom', 20), ('Singapore', 10)]]
             else:
                 graph_dict = results.facet_counts['facet_fields'][facet_name]
-                graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in graph_dict.values())))} for key, value in graph_dict.items()]
+                graph_data = [{'label':stringify_label(key), 'value':int(100*(float(value)/sum(v for v in graph_dict.values())))} for key, value in graph_dict.items()]
                 graph_data = sorted(graph_data, key=lambda x: x['value'], reverse=True)
                 graph_data = graph_data[:10]
                 graph_data = sorted(graph_data, key=lambda x: x['label'])
@@ -81,7 +85,7 @@ def get_graph_data3(request):
                         filter_graph_data = [{'label':c[0], 'value':c[1]} for c in [('United States', 70), ('United Kingdom', 20), ('Singapore', 10)]]
                 else:
                     filter_graph_dict = results.facet_counts['facet_fields'][filter_facet_name]
-                    filter_graph_data = [{'label':key, 'value':int(100*(float(value)/sum(v for v in filter_graph_dict.values())))} for key, value in filter_graph_dict.items()]
+                    filter_graph_data = [{'label':stringify_label(key), 'value':int(100*(float(value)/sum(v for v in filter_graph_dict.values())))} for key, value in filter_graph_dict.items()]
                     filter_graph_data = sorted(filter_graph_data, key=lambda x: x['value'], reverse=True)
                     filter_graph_data = filter_graph_data[:10]
                     filter_graph_data = sorted(filter_graph_data, key=lambda x: x['label'], reverse=True)
