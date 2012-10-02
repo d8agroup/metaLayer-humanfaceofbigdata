@@ -1,6 +1,6 @@
 #legend { width:200px; border:1px solid #555 !important; }
 #legend .title { display:inline-block; line-height:18px; vertical-align:middle; width:95%; padding:2px; }
-#globe_and_question_container { width:1100px; margin:30px auto 10px; }
+#globe_and_question_container { width:1200px; margin:30px auto 10px; }
 #question_and_legend { }
 #question_and_legend #instructions { margin-bottom:10px; width:200px;  }
 #question_and_legend #instructions h3 { font-size:200%; color:#888; }
@@ -9,6 +9,7 @@
 #question_and_legend #question_container .title { font-size:80%; font-weight:bold; text-align:center; color:#FFF; }
 #question_and_legend #question_container.drop_active { background-image:url('/static/images/callout_dark_selected_hover.png'); }
 #legend { display:none; float:left; margin-left: 50px; border: 2px solid #bbb; padding: 2px; }
+#globe_container { width:1000px;}
 #globe_waiting { position:relative; top:230px; display:none;}
 
 
