@@ -22,7 +22,7 @@
                     droppable.data('display_name', display_name);
                     $('#globe_container').html('<img id="globe_waiting" src="/static/images/loading_1d2228.gif" />');
                     $.get('/globe/' + facet_name, function(data){
-
+                        $('#globe_container').html('');
                         ML.Globe.init('globe_container');
                         ML.Globe.render_with_data(data.data);
                         $('#legend').html('');
