@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 
+    url(r'', views.splash),
     url(r'^push/data$', push_data_one),
 #    url(r'^get_graph_data$', views.get_graph_data),
 #    url(r'^get_graph_data2$', views.get_graph_data2),
@@ -32,6 +33,5 @@ urlpatterns = patterns('',
     url(r'globe/(.+)$', views.globe),
     url(r'globe$', views.globe),
     url(r'data_push', views.data_push),
-    url(r'', views.design2),
 )
 
