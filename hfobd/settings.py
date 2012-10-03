@@ -102,6 +102,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'hfobd.middleware.loggedinmiddleware.LoggedInMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -129,6 +130,7 @@ INSTALLED_APPS = (
     'south',
     'hfobd.solrbridge',
     'hfobd.savedinsights',
+    'hfobd.guestbook',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -187,6 +189,7 @@ SENTRY_DSN = 'http://6cd19fe54e974d8c812768607612c1a0:6e6569fb84f94b41ab37e1a18e
 SOLR = Solr('http://hfobd.metalayer.com:8983/solr/core1')
 #SOLR = Solr('http://hfobd.metalayer.com:8983/solr/core0')
 
+LOGIN_REQUIRED = True
 
 import socket
 if socket.gethostname() in ['hfobd.web.01']:

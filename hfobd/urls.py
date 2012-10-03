@@ -32,6 +32,8 @@ urlpatterns = patterns('',
     url(r'globe/(.+)$', views.globe),
     url(r'globe$', views.globe),
     url(r'data_push', views.data_push),
+    url(r'landing', views.landing_page),
+    url(r'logout', views.user_logout),
     url(r'', views.design2),
 )
 

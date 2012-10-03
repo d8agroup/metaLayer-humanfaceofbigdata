@@ -1,6 +1,7 @@
 import StringIO
 from random import randint
 from urllib import quote
+from django.contrib.auth import authenticate, login, logout
 from django.core.mail.message import EmailMessage
 from django.core.validators import email_re
 from django.http import HttpResponse
@@ -15,6 +16,27 @@ from hfobd.utils import JSONResponse
 from django.conf import settings
 from hashlib import md5
 from PIL import Image
+
+def landing_page(request):
+    template_data = { 'errors':[] }
+    if request.method == 'POST' and request.POST.get('login'):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        template_data['form_data'] = { 'username': username }
+        if not username or not password:
+            template_data['errors'].append('Sorry, that username and password wont work')
+        if not template_data['errors']:
+            user = authenticate(username=username, password=password)
+            if not user or not user.is_active:
+                template_data['errors'].append('Sorry, that username and password wont work')
+            if not template_data['errors']:
+                login(request, user)
+                return redirect('/')
+    return render_to_response('landing.html', template_data, context_instance=RequestContext(request))
+
+def user_logout(request):
+    logout(request)
+    return redirect(home)
 
 def home(request):
     template_data = {

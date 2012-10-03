@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block page_title %}MetaLayer - Human Face of Big Data{% endblock %}
+
+{% block page_navigation %}{% endblock %}
+
+{% block page %}
+    <div id="landing_page">
+        <h1><span class="metalayer">metaLayer</span> builds dynamic applications for visualizing and exploring <span class="bigdata">Big Data</span></h1>
+        <div id="login_section">
+            <div class="clearfix fill_width">
+                <div id="login">
+                    <p class="info">This project is not currently open to the public, if you are in the know, log in</p>
+                    <form class="ui-form" method="POST">
+                        {% csrf_token %}
+                        {% if errors %}
+                            <div class="errors">
+                                <div class="errors_inner">
+                                    {% for error in errors %}
+                                        <p>
+                                            <span class="ui-icon ui-icon-alert" style="float: left; margin-right: .7em;"></span>
+                                            <strong>Error:</strong>
+                                            {{ error }}
+                                        </p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="form_row">
+                            <label>Username</label>
+                            <input name="username" type="text" />
+                        </div>
+                        <div class="form_row">
+                            <label>Password</label>
+                            <input name="password" type="password" />
+                        </div>
+                        <div class="form_row">
+                            <input type="submit" value="login" class="button" name="login" />
+                        </div>
+                    </form>
+                </div>
+                <div id="register">
+                    <p class="info">Want to be first to hear when this goes public? Leave your email here and we'll give you a shout!</p>
+                    <form class="ui-form" method="POST">
+                        {% csrf_token %}
+                        <div class="form_row">
+                            <label>Your Email</label>
+                            <input name="email_address" type="text" />
+                        </div>
+                        <div class="form_row">
+                            <input type="submit" value="tell me when" class="button" name="register" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
