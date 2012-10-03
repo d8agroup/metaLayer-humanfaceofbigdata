@@ -60,6 +60,8 @@ def design2(request):
     template_data = { 'questions': questions, }
     return render_to_response('create.html', template_data, context_instance=RequestContext(request))
 
+def splash(request):
+    return render_to_response('splash.html', context_instance=RequestContext(request))
 
 @csrf_exempt
 def get_graph_data3(request):
