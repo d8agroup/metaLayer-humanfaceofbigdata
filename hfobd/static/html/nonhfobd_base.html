@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>{% block page_title %}{% endblock %}</title>
+        <link rel="stylesheet" href="/static/css/reset.css" />
+        <link rel="stylesheet" href="/static/css/hacks.css" />
+        <link rel="stylesheet" href="/static/css/Aristo.css" />
+        <link rel="stylesheet" href="/static/css/nv.d3.css" />
+        <link rel="stylesheet" href="/static/css/jquery.hoverscroll.css" />
+        <link rel="stylesheet" href="/static/css/jquery.jqplot.css" />
+        <link rel="stylesheet" href="/static/css/nonhfobd.css" />
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.ui.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.livequery.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.carousel.min.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.corner.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.cookie.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.hoverscroll.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.popupWindow.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jqplot/jquery.jqplot.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jqplot/jqplot.donutRenderer.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jqplot/jqplot.highlighter.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/jquery.jqplot.toimage.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/site.question.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/site.questionlist.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/site.chartarea.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/site.filters.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/site.postproduction.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/site.copybuttons.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/site.gallery.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/nvd3/lib/d3.v2.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/nvd3/nv.d3.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/legend.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/pie.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/nvd3/models/pieChart.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/nvd3/utils.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/Three/ThreeWebGL.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/Three/ThreeExtras.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/Three/RequestAnimationFrame.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/Three/Detector.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/Tween.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/globe/globe.js"></script>
+        <script type="text/javascript" language="javascript" src="/static/js/main.js"></script>
+        <script type="text/javascript" language="javascript">
+            $(document).ready(function(){
+                $('.section_header').livequery(function(){
+                    $(this).addClass('ui-state-default');
+                });
+                $('.errors').livequery(function(){
+                    $(this).addClass('ui-widget');
+                });
+                $('.errors_inner').livequery(function(){
+                    $(this).addClass('ui-state-error ui-corner-all');
+                });
+                $('.button').livequery(function(){
+                    $(this).button();
+                });
+                $('form').livequery(function(){
+                    $(this).addClass('ui-form');
+                });
+                $('.corner_small').livequery(function(){
+                    $(this).corner('5px');
+                });
+                $('.corner_large').livequery(function(){
+                    $(this).corner('15px');
+                });
+            });
+
+            function clone(object)
+            {
+                var newObj = (object instanceof Array) ? [] : {};
+                for (i in object)
+                {
+                    if (i == 'clone')
+                        continue;
+                    if (object[i] && typeof object[i] == "object")
+                        newObj[i] = clone(object[i]);
+                    else
+                        newObj[i] = object[i];
+                }
+                return newObj;
+            }
+
+            function guid(){
+                return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace( /[xy]/g, function(c) {
+                    var r = Math.random()*16|0,v=c=='x'?r:r&0x3|0x8;return v.toString(16);
+                });
+            }
+        </script>
+        {% block javascript %}{% endblock %}
+
+    </head>
+    <body>
+        <div id="header">
+            <div id="header_inner">
+                <div class="clearfix fill_width">
+                    <div id="header_right">
+                        <img src='/static/images/logo_metalayer_square.jpg' class="corner_large" />
+                    </div>
+                    <div id="header_left">
+                        <h1>MetaLayer - Survey Analysis Tool</h1>
+                    </div>
+                    <div id="header_center">
+                        {% block page_navigation %}
+                            <div id="navigation_container">
+                                <ul id="navigation">
+                                    <li class="first"><a href="/">create</a></li>
+                                    <li><a href="/gallery">explore</a></li>
+    {#                                <li><a href="/globe">globe</a></li>#}
+                                </ul>
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page">
+            {% block page %}{% endblock %}
+
+        </div>
+        <footer>
+        </footer>
+        <script type="text/javascript">
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-35216859-1']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
+        </script>
+    </body>
+</html>
+
+
+

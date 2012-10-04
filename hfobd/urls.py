@@ -35,6 +35,7 @@ urlpatterns = patterns('',
     url(r'splash', views.splash),
     url(r'login', views.landing_page),
     url(r'logout', views.user_logout),
+    url(r'ml', views.nonhfobd),
     url(r'', views.design2),
 )
 
