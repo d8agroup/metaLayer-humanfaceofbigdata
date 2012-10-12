@@ -118,7 +118,7 @@ body { background:url('/static/images/background_page.png') top center repeat-y 
 .filters .filters_list .filter_container .close_button_container { height:22px; }
 .filters .filters_list .filter_container .close_button { float:right; position:relative; top:-145px; left:-0px; width:22px; z-index:3000; display:none; cursor:pointer; }
 
-#post_production { position:fixed; bottom:0px; color:#DDD; width:100%; z-index:100000; }
+#post_production { position:fixed; bottom:0px; color:#DDD; width:100%; z-index:100000; display:none;}
 #post_production.active { bottom:0;}
 #post_production_tab { background-color:#1d2228; padding:20px; position:relative; left:20px; bottom:-1px; border:1px solid #555; border-bottom:none; width:100px; text-align:center; font-weight:bold;
     cursor: pointer;}
