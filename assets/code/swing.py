@@ -4,6 +4,14 @@ from hfobd.solrbridge.models import FacetMapping
 solr = settings.SOLR
 
 def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
+    if output_file:
+        try:
+            os.unlink(output_file)
+        except Exception:
+            pass
+        f = open(output_file, 'wb')
+        f.close()
+
     exclude = [
         'How many languages do you speak fluently?',
         'How much time do you spend alone each day?',
@@ -59,6 +67,14 @@ def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
         os.rename('%s.wip' % output_file, output_file)
 
 def by_subject(subject_facet='areyoumaleorfemale_s', min_swing=1, max_swing=99, output_file=None):
+    if output_file:
+        try:
+            os.unlink(output_file)
+        except Exception:
+            pass
+        f = open(output_file, 'wb')
+        f.close()
+
     exclude = [
         'How many languages do you speak fluently?',
         'How much time do you spend alone each day?',
