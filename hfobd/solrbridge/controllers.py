@@ -15,7 +15,7 @@ class SolrController(object):
         additional_mapped_fields = [
             {
                 'original_field':"What's your Age?",
-                'mapped_field':"Age",
+                'mapped_field':"How old are you",
                 'function':lambda age: SolrController._MapAge(age)
             },
             {
@@ -35,7 +35,7 @@ class SolrController(object):
             },
             {
                 'original_field':"How many languages do you speak fluently?",
-                'mapped_field':'Languages spoken',
+                'mapped_field':'Number of languages spoken',
                 'function':lambda l: SolrController._MapLanguages(l)
             },
             {
