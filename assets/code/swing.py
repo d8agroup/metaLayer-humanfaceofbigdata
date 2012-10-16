@@ -1,10 +1,9 @@
+import os
 from django.conf import settings
 from hfobd.solrbridge.models import FacetMapping
 solr = settings.SOLR
 
-def two_facet_swing():
-    min_swing = 10
-    max_swing = 19
+def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
     exclude = [
         'How many languages do you speak fluently?',
         'How much time do you spend alone each day?',
@@ -47,12 +46,19 @@ def two_facet_swing():
                         output += '%i%s swing (from %i%s to %i%s)' % ((-1*difference), '%', original_percent, '%', filter_percent, '%')
                         outputs.append(output)
         if outputs:
-            print ''
             outputs = sorted(outputs)
-            for o in outputs:
-                print o
+            if output_file:
+                with open('%s.wip' % output_file, 'a') as f:
+                    f.writelines(outputs)
+            else:
+                print ''
+                for o in outputs:
+                    print o
+    if output_file:
+        os.unlink(output_file)
+        os.rename('%s.wip' % output_file, output_file)
 
-def by_subject(subject_facet='areyoumaleorfemale_s', min_swing=1, max_swing=99):
+def by_subject(subject_facet='areyoumaleorfemale_s', min_swing=1, max_swing=99, output_file=None):
     exclude = [
         'How many languages do you speak fluently?',
         'How much time do you spend alone each day?',
@@ -92,8 +98,15 @@ def by_subject(subject_facet='areyoumaleorfemale_s', min_swing=1, max_swing=99):
                     output += '%i%s swing (from %i%s to %i%s)' % ((-1*difference), '%', original_percent, '%', filter_percent, '%')
                     outputs.append(output)
         if outputs:
-            print ''
             outputs = sorted(outputs)
-            for o in outputs:
-                print o
+            if output_file:
+                with open('%s.wip' % output_file, 'a') as f:
+                    f.writelines(outputs)
+            else:
+                print ''
+                for o in outputs:
+                    print o
+    if output_file:
+        os.unlink(output_file)
+        os.rename('%s.wip' % output_file, output_file)
 
