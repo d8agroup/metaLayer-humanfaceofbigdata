@@ -57,7 +57,7 @@ def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
             outputs = sorted(outputs)
             if output_file:
                 with open('%s.wip' % output_file, 'a') as f:
-                    f.writelines(outputs)
+                    f.writelines([o + '\n' for o in outputs])
             else:
                 print ''
                 for o in outputs:
@@ -117,7 +117,7 @@ def by_subject(subject_facet='areyoumaleorfemale_s', min_swing=1, max_swing=99, 
             outputs = sorted(outputs)
             if output_file:
                 with open('%s.wip' % output_file, 'a') as f:
-                    f.writelines(outputs)
+                    f.writelines([o + '\n' for o in outputs])
             else:
                 print ''
                 for o in outputs:
