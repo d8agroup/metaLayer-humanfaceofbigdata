@@ -97,7 +97,10 @@ def by_subject(subject_facet='areyoumaleorfemale_s', min_swing=1, max_swing=99, 
         pivot_response = solr.select('*:*', rows=0, facet='true', facet_mincount=1, facet_pivot=pivot_key)
         for pivot in pivot_response.facet_counts['facet_pivot'][pivot_key]:
             for filter in pivot['pivot']:
-                original_percent = [o['percent'] for o in outer_response_data if o['facet_name'] == filter['value']][0]
+                try:
+                    original_percent = [o['percent'] for o in outer_response_data if o['facet_name'] == filter['value']][0]
+                except IndexError:
+                    continue
                 filter_percent = int(100*(float(filter['count'])/sum(f['count'] for f in pivot['pivot'])))
                 difference = original_percent - filter_percent
                 if ((-1*max_swing) < difference < (-1*min_swing)) or (min_swing > difference > max_swing):
