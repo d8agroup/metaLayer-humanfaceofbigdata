@@ -12,7 +12,7 @@ class FacetMapping(models.Model):
     def CreateFromDisplayName(cls, display_name):
         facet_name = ''.join(c for c in display_name.lower() if c.isalnum()) + "_s"
         try:
-            facet_mapping = FacetMapping.objects.get(facet_name=facet_name)
+            facet_mapping = FacetMapping.objects.get(display_name=display_name)
         except FacetMapping.DoesNotExist:
             facet_mapping = FacetMapping(display_name=display_name, facet_name=facet_name)
             facet_mapping.save()
