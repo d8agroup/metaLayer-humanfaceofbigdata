@@ -17,7 +17,7 @@ def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
         'How much time do you spend alone each day?',
         'I usually average X hours sleep each night',
         'I was X years old when I got married',
- #       'Where do you live? (City and State/Country)',
+        'Where do you live? (City and State/Country)',
         'lat',
         'lon',
         'How many generations currently live in your household?',
@@ -48,11 +48,11 @@ def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
                         original_answer = filter['value']
                         filter_question = [f.display_name for f in all_facets if f.facet_name == pivot['field']][0]
                         filter_answer = pivot['value']
-                        output = '%s,%s,' % (original_question, original_answer)
+                        output = '%s,%s,' % (original_question.replace(',', ' '), original_answer.replace(',',' '))
 #                        while len(output) < 100:
 #                            output += ' '
 #                        output += ' >> %s : %s' % (filter_question, filter_answer)
-                        output += '%s,%s,' % (filter_question, filter_answer)
+                        output += '%s,%s,' % (filter_question.replace(',',' '), filter_answer.replace(',',' '))
 #                        while len(output) < 200:
 #                            output += ' '
 #                        output += '%i%s swing (from %i%s to %i%s)' % ((-1*difference), '%', original_percent, '%', filter_percent, '%')
