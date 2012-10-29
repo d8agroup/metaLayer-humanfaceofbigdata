@@ -48,13 +48,15 @@ def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
                         original_answer = filter['value']
                         filter_question = [f.display_name for f in all_facets if f.facet_name == pivot['field']][0]
                         filter_answer = pivot['value']
-                        output = '%s : %s' % (original_question, original_answer)
-                        while len(output) < 100:
-                            output += ' '
-                        output += ' >> %s : %s' % (filter_question, filter_answer)
-                        while len(output) < 200:
-                            output += ' '
-                        output += '%i%s swing (from %i%s to %i%s)' % ((-1*difference), '%', original_percent, '%', filter_percent, '%')
+                        output = '%s,%s,' % (original_question, original_answer)
+#                        while len(output) < 100:
+#                            output += ' '
+#                        output += ' >> %s : %s' % (filter_question, filter_answer)
+                        output += '%s,%s,' % (filter_question, filter_answer)
+#                        while len(output) < 200:
+#                            output += ' '
+#                        output += '%i%s swing (from %i%s to %i%s)' % ((-1*difference), '%', original_percent, '%', filter_percent, '%')
+                        output += '%i,%i,%i' % ((-1*difference), original_percent, filter_percent)
                         outputs.append(output)
         if outputs:
             outputs = sorted(outputs)
