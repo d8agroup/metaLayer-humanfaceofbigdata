@@ -4,7 +4,7 @@ import datetime
 now = datetime.datetime.now()
 start = 0
 count = 1000000
-lines = [l for l in csv.reader(open('/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/assets/data/rich_export_02.csv', 'rb'))]
+lines = [l for l in csv.reader(open('/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/assets/data/hfobd-3.csv', 'rb'))]
 headers = lines[0]
 lines = lines[start+1:count+start+1]
 SolrController.PushTabularData(headers, lines)
