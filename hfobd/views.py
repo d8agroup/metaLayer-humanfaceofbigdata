@@ -414,8 +414,11 @@ def data_push(request):
 
 def globe(request, facet_name=None):
     if facet_name:
+	now = time.time()
+	times = {}
         facet_pivot = 'raw_coordinates_s,%s' % facet_name
-        results = settings.SOLR.select('*:*', rows=0, facet='true', facet_pivot=facet_pivot, facet_limit=1000)
+        results = settings.SOLR.select('*:*', rows=0, facet='true', facet_pivot=facet_pivot, facet_limit=10000)
+	times['one'] = '%i seconds' % (time.time() - now)
         pivot_data = {}
         for x_axis_field in results.facet_counts['facet_pivot'][facet_pivot]:
             for y_axis_field in x_axis_field['pivot']:
@@ -424,6 +427,7 @@ def globe(request, facet_name=None):
                     pivot_data[facet_value] = []
                 pivot_data[facet_value].append({ 'label':x_axis_field['value'], 'value':y_axis_field['count']})
 
+        times['two'] = '%i seconds' % (time.time() - now)
         return_data = { 'legend':[], 'data':[] }
         for x in range(len(pivot_data.keys())):
             key = pivot_data.keys()[x]
@@ -435,6 +439,8 @@ def globe(request, facet_name=None):
                     return_data['data'].append('%s' % (float(value['label'].split(',')[1]) + (y/100)))
                     return_data['data'].append(0.01)
                     return_data['data'].append(color)
+        times['three'] = '%i seconds' % (time.time() - now)
+	return_data['times'] = times
 
         return HttpResponse(simplejson.dumps(return_data), content_type='application/json')
 
