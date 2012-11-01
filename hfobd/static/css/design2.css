@@ -22,7 +22,7 @@
 #question_and_legend #question_container.drop_active { background-image:url('/static/images/callout_dark_selected_hover.png'); }
 #legend {  }
 #globe_container { width:1000px; }
-#globe_loading {width:180px; text-align:center;  }
+#globe_loading {width:180px; text-align:center; display: none; }
 #globe_loading p { color:#FFF; font-weight:bold; padding-top:10px; }
 
 
