@@ -9,9 +9,10 @@
 #register p.info { color:#777; font-size:180%; text-shadow: 2px 2px 2px #000; padding-bottom:20px;}
 
 
-#legend { width:200px; border:1px solid #555 !important; }
-#legend .title { display:inline-block; line-height:18px; vertical-align:middle; width:95%; padding:2px; }
-#globe_and_question_container { width:1200px; margin:30px auto 10px; }
+#legend { width:200px; }
+#legend .title { display:inline-block; line-height:18px; vertical-align:middle; width:170px; padding:2px; color:white; position:relative; top:-4px; right:-3px; }
+#legend .swatch { display:inline-block; height:18px; width:18px; margin-right:2px; }
+#globe_and_question_container { width:1200px; margin:30px auto 10px;  }
 #question_and_legend { }
 #question_and_legend #instructions { margin-bottom:10px; width:200px;  }
 #question_and_legend #instructions h3 { font-size:200%; color:#888; }
@@ -20,8 +21,9 @@
 #question_and_legend #question_container .title { font-size:80%; font-weight:bold; text-align:center; color:#FFF; }
 #question_and_legend #question_container.drop_active { background-image:url('/static/images/callout_dark_selected_hover.png'); }
 #legend {  }
-#globe_container { width:1000px;}
-#globe_waiting { position:relative; top:230px; display:none;}
+#globe_container { width:1000px; }
+#globe_loading {width:200px; text-align:center; display:none; }
+#globe_loading p { color:#FFF; font-weight:bold; padding-top:10px; }
 
 
 #gallery_container { width:1100px; margin:20px auto; }
