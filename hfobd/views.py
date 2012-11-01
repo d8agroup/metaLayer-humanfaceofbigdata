@@ -417,7 +417,7 @@ def globe(request, facet_name=None):
 	now = time.time()
 	times = {}
         facet_pivot = 'raw_coordinates_s,%s' % facet_name
-        results = settings.SOLR.select('*:*', rows=0, facet='true', facet_pivot=facet_pivot, facet_limit=10000)
+        results = settings.SOLR.select('*:*', rows=0, facet='true', facet_pivot=facet_pivot, facet_limit=100000)
 	times['one'] = '%i seconds' % (time.time() - now)
         pivot_data = {}
         for x_axis_field in results.facet_counts['facet_pivot'][facet_pivot]:
@@ -434,11 +434,11 @@ def globe(request, facet_name=None):
             color = x
             return_data['legend'].append({'color':color, 'label':key})
             for value in pivot_data[key]:
-                for y in range(value['value']):
-                    return_data['data'].append('%s' % (float(value['label'].split(',')[0]) + (x/100)))
-                    return_data['data'].append('%s' % (float(value['label'].split(',')[1]) + (y/100)))
-                    return_data['data'].append(0.01)
-                    return_data['data'].append(color)
+#                for y in range(value['value']):
+                return_data['data'].append('%s' % (float(value['label'].split(',')[0])))
+                return_data['data'].append('%s' % (float(value['label'].split(',')[1])))
+                return_data['data'].append(float(value['value'])/10000)#0.01)
+                return_data['data'].append(color)
         times['three'] = '%i seconds' % (time.time() - now)
 	return_data['times'] = times
 
