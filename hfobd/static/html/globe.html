@@ -23,9 +23,10 @@
                     droppable.data('facet_name', facet_name);
                     droppable.data('display_name', display_name);
                     $('#legend').html('');
-                    $('#globe_container').html('<img id="globe_waiting" src="/static/images/loading_1d2228.gif" />');
+                    setTimeout(function(){ globe.render_with_data([]); }, 500);
+                    //$('#globe_container').html('<img id="globe_waiting" src="/static/images/loading_1d2228.gif" />');
                     $.get('/globe/' + facet_name, function(data){
-                        $('#globe_container').html('');
+                        //$('#globe_container').html('');
                         globe.render_with_data(data.data);
                         $('#legend').html('');
                         html = '';
