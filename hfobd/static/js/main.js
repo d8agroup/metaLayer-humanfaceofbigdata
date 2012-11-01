@@ -8,6 +8,7 @@ ML.Globe = {
     init: function(container) {
         this.globe = new DAT.Globe(document.getElementById(container), this.color_func);
         this.data = null;
+        return this;
     },
 
     color_func: function(x) {
