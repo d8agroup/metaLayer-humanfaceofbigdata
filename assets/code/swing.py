@@ -259,6 +259,63 @@ def average(output_file=None):
                 f.write('\n\n')
 
 
+def ad_hoc_nny_magazine(output_file=None):
+    if output_file:
+        try:
+            os.unlink(output_file)
+        except Exception:
+            pass
+        f = open(output_file, 'wb')
+        f.close()
+
+    exclude = [
+        'How many languages do you speak fluently?',
+        'How much time do you spend alone each day?',
+        'I usually average X hours sleep each night',
+        'I was X years old when I got married',
+        'lat',
+        'lon',
+        'How many generations currently live in your household?',
+        "What's your Age?",
+        "In general, I do/do not feel that life has been fair to me",
+        "Select how obedient or independent you think children should be",
+        "Would you kill another person if your life depended on it?"]
+    all_facets = [f for f in FacetMapping.objects.filter(display_as_question=True) if f.display_name not in exclude]
+    full_output = {}
+    demographic_value_response = solr.select('wheredoyoulivecityandstatecountry_s:"New York" OR wheredoyoulivecityandstatecountry_s:"New York New York United States" OR wheredoyoulivecityandstatecountry_s:"New.York  United.States" OR wheredoyoulivecityandstatecountry_s:"New York United States" OR wheredoyoulivecityandstatecountry_s:"New York City New York United States" OR wheredoyoulivecityandstatecountry_s:"New York New York USA"', facet='true', facet_field=[f.facet_name for f in all_facets])
+    for facet_field in demographic_value_response.facet_counts['facet_fields'].keys():
+        if facet_field not in full_output:
+            full_output[facet_field] = {'question':[f.display_name for f in all_facets if f.facet_name == facet_field][0]}
+        full_output[facet_field]['values'] = demographic_value_response.facet_counts['facet_fields'][facet_field]
+    if not output_file:
+        print full_output
+        return
+    with open(output_file, 'wb') as f:
+        cell_width = 30
+
+        for group in question_split.keys():
+            all_lines = []
+            for key, value in full_output.items():
+                if key in question_split[group]:
+                    all_lines.append(value)
+            f.write(group.upper() + '\n')
+            f.write(''.join('=' for x in range(len(group))) + '\n\n')
+            for line in all_lines:
+                f.write('\t' + line['question'].upper() + '\n')
+                f.write('\t' + ''.join('-' for x in range(len(line['question']))) + '\n')
+                f.write('\t' + _pad('', cell_width))
+                for key in line['values'].keys():
+                    f.write('\t' + _pad(key, cell_width))
+                f.write('\n')
+                f.write('\t' + _pad('everyone', cell_width))
+                for key, value in line['values'].items():
+                    value = int(100 * float(value)/sum(line['values'].values()))
+                    f.write('\t' + _pad('%i%s' % (value, '%'), cell_width))
+                f.write('\n')
+                    #f.write(demographic_value + ' >> ' + ' '.join('%s:%i' % (key, value) for key, value in line[demographic_value].items()) + '\n')
+                f.write('\n\n')
+
+
 def _pad(value, length):
     while len(value) < length:
         value += ' '
@@ -315,6 +372,7 @@ question_split = {
         'hourssleepeachnight_s',
         ],
     'Life':[
+        'iftherewereafireatmyhomeiwouldtakethefollowingitemfirst_s',
         'ingeneraldoyoufeellifehasbeenfairtoyou_s',
         'howoptimisticorpessimisticareyou_s',
         'thefollowingwouldmakemylifebetterchooseone_s',
@@ -326,7 +384,6 @@ question_split = {
         'whichclosesfitswhatyouthinkwillhappenwhenyoudie_s',
         ],
     'Other':[
-        'iftherewereafireatmyhomeiwouldtakethefollowingitemfirst_s',
         'selectwhereyouusuallygetyourinformationabouttheworldfrom_s',
         'whowouldyouvoteforpresidentoftheus_s',
         'numberoflanguagesspoken_s',
