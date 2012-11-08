@@ -284,10 +284,10 @@ def ad_hoc_us_europe(output_file=None):
             full_output[facet_field] = {'question':[f.display_name for f in all_facets if f.facet_name == facet_field][0]}
         full_output[facet_field]['US'] = us_response.facet_counts['facet_fields'][facet_field]
 
-    countries = ['"United Kingdom"', '"Nederland"', '"Deutschland"', '"Italia"', '"France"', '"Espaa"', '"Ireland"',
-                 'Sverige"', '"Germany"', '"Italy"', '"Norge"', '"Netherlands"', '"Greece"', '"Belgium"', '"Portugal"',
-                 '"Romania"', '"Spain"', '"Poland"', '"Macedonia"', '"Danmark"', '"Finland"', '"Serbia"', '"Denmark"',
-                 '"Schweiz"', '"Polska"', '"Slovenija"', '"Northern Ireland"', '"Belgi"', '"Sweden"', '"Switzerland"']
+    countries = ['"United Kingdom"', '"Nederland"', 'Deutschland', 'Italia', 'France', 'Espaa', 'Ireland',
+                 'Sverige', 'Germany', 'Italy', 'Norge', 'Netherlands', 'Greece', 'Belgium', 'Portugal',
+                 'Romania', 'Spain', 'Poland', 'Macedonia', 'Danmark', 'Finland', 'Serbia', 'Denmark',
+                 'Schweiz', 'Polska', 'Slovenija', 'Northern Ireland', 'Belgi', 'Sweden', 'Switzerland']
     query = 'country_s:' + ' OR country_s:'.join(countries)
     us_response = solr.select(query, facet='true', facet_field=[f.facet_name for f in all_facets])
     for facet_field in us_response.facet_counts['facet_fields'].keys():
