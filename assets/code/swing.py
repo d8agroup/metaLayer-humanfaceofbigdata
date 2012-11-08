@@ -310,7 +310,7 @@ def ad_hoc_us_europe(output_file=None):
             f.writerow([''])
             f.writerow([''])
             for line in all_lines:
-                f.writerow(['', line['question'].upper()] + line['values'].keys())
+                f.writerow(['', line['question'].upper()] + line['US'].keys())
                 for demographic_value in ['US', 'Europe']:
                     f.writerow(['', demographic_value] + ['%i%s' % (int(100 * float(value)/sum(line[demographic_value].values())), '%') for value in line[demographic_value].values()])
                 f.writerow([''])
