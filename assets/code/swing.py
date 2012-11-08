@@ -290,30 +290,45 @@ def ad_hoc_nny_magazine(output_file=None):
     if not output_file:
         print full_output
         return
-    with open(output_file, 'wb') as f:
+    with open(output_file, 'wb') as f2:
         cell_width = 30
 
+#        for group in question_split.keys():
+#            all_lines = []
+#            for key, value in full_output.items():
+#                if key in question_split[group]:
+#                    all_lines.append(value)
+#            f.write(group.upper() + '\n')
+#            f.write(''.join('=' for x in range(len(group))) + '\n\n')
+#            for line in all_lines:
+#                f.write('\t' + line['question'].upper() + '\n')
+#                f.write('\t' + ''.join('-' for x in range(len(line['question']))) + '\n')
+#                f.write('\t' + _pad('', cell_width))
+#                for key in line['values'].keys():
+#                    f.write('\t' + _pad(key, cell_width))
+#                f.write('\n')
+#                f.write('\t' + _pad('everyone', cell_width))
+#                for key, value in line['values'].items():
+#                    value = int(100 * float(value)/sum(line['values'].values()))
+#                    f.write('\t' + _pad('%i%s' % (value, '%'), cell_width))
+#                f.write('\n')
+#                    #f.write(demographic_value + ' >> ' + ' '.join('%s:%i' % (key, value) for key, value in line[demographic_value].items()) + '\n')
+#                f.write('\n\n')
+
+        f = csv.writer(f2)
         for group in question_split.keys():
             all_lines = []
             for key, value in full_output.items():
                 if key in question_split[group]:
                     all_lines.append(value)
-            f.write(group.upper() + '\n')
-            f.write(''.join('=' for x in range(len(group))) + '\n\n')
+            f.writerow([group.upper()])
+            f.writerow([''])
+            f.writerow([''])
             for line in all_lines:
-                f.write('\t' + line['question'].upper() + '\n')
-                f.write('\t' + ''.join('-' for x in range(len(line['question']))) + '\n')
-                f.write('\t' + _pad('', cell_width))
-                for key in line['values'].keys():
-                    f.write('\t' + _pad(key, cell_width))
-                f.write('\n')
-                f.write('\t' + _pad('everyone', cell_width))
-                for key, value in line['values'].items():
-                    value = int(100 * float(value)/sum(line['values'].values()))
-                    f.write('\t' + _pad('%i%s' % (value, '%'), cell_width))
-                f.write('\n')
-                    #f.write(demographic_value + ' >> ' + ' '.join('%s:%i' % (key, value) for key, value in line[demographic_value].items()) + '\n')
-                f.write('\n\n')
+                f.writerow(['', line['question'].upper()] + line['values'].keys())
+                f.writerow(['', 'New York'] + ['%i%s' % (int(100 * float(value)/sum(line['values'].values())), '%') for value in line['values'].values()])
+                f.writerow([''])
+                f.writerow([''])
 
 
 def _pad(value, length):
@@ -327,65 +342,55 @@ question_split = {
         'howoldareyou_s',
         'wheredoyoulivecityandstatecountry_s',
         'country_s',
-        ],
-    'Health':[
-        'ithinkthefollowingismostimportantforgoodhealthchooseone_s',
-        'howmuchdoyouthinkaboutyourweight_s',
-        'whatdoyoudotohelpcopewithstressmost_s',
-        ],
-    'Safety':[
-        'selectwhereyoufeelsafest_s',
-        'doyouknowthenamesofyourclosestneighbors_s',
-        'howsafeorscaryisyourneighborhood_s',
-        ],
-    'Pets':[
-        'didyougrowupwithapet_s',
-        'mypetthinksofmeasitschooseone_s',
-        'doyoukickyourpetoutoftheroombeforehavingsex_s',
-        ],
-    'Parents and Children':[
-        'ificouldenhancemyunbornchildsdnainonlyonewayiwouldimprovetheirchooseone_s',
-        'numberofgenerationslivinginyourhousehold_s',
-        'howstrictorlenientwereyourparentswhenyouweregrowingup_s',
-        'whoareyoumoresimilarto_s',
+    ],
+    'Family and Relationships':[
         'whereareyouinthebirthorderofyoursiblings_s',
-        'iwouldorwouldnotsaythatoneofthemaingoalsinmylifehasbeentomakemyparentsproud_s',
-        ],
-    'Love and Marrage':[
-        'haveyouexperiencedloveatfirstsight_s',
+        'imarriedatxyearsold_s',
+        'mycurrentrelationshipstatus_s',
+        'howstrictorlenientwereyourparentswhenyouweregrowingup_s',
+        'ificouldenhancemyunbornchildsdnainonlyonewayiwouldimprovetheirchooseone_s',
+        'ificouldchangeonethingaboutmypartneritwouldbethefollowingpickone_s',
+        'whoareyoumoresimilarto_s',
         'wouldyoumarrysomeonewithwhomyoucouldneverhavechildren_s',
         'doyouthinkitisacceptableforamarriedpersontohaveanaffair_s',
-        'doyouthinkloveisnecessaryformarriage_s',
-        'imarriedatxyearsold_s',
-        'ificouldchangeonethingaboutmypartneritwouldbethefollowingpickone_s',
-        'mycurrentrelationshipstatus_s',
-        ],
-    'Sleep':[
-        'ifyouspendthedaybeinglazydoyoufeelgoodorbad_s',
+    ],
+    'My Lifestyle':[
+        'selectwhereyouusuallygetyourinformationabouttheworldfrom_s',
+        'numberofgenerationslivinginyourhousehold_s',
+        'numberoflanguagesspoken_s',
+        'timespentaloneeachday_s',
         'iusuallywakeupinthefollowingway_s',
-        'pickhowoftenyouhaveluciddreams_s',
-        'pickhowoftenyourrememberyourdreamsduringtheday_s',
-        'pickwhatyoumostlydreamabout_s',
-        'iftherewereapillthateliminatedtheneedforsleepiwouldwouldnotnottakeit_s',
-        'haveyousleptwalkedbefore_s',
-        'doyounapregularly_s',
+        'howsafeorscaryisyourneighborhood_s',
         'hourssleepeachnight_s',
+        'doyounapregularly_s',
+        'doyouknowthenamesofyourclosestneighbors_s',
+        'didyougrowupwithapet_s',
+        'mypetthinksofmeasitschooseone_s',
+        'haveyousleptwalkedbefore_s',
+        'whatdoyoudotohelpcopewithstressmost_s',
         ],
-    'Life':[
-        'iftherewereafireatmyhomeiwouldtakethefollowingitemfirst_s',
-        'ingeneraldoyoufeellifehasbeenfairtoyou_s',
-        'howoptimisticorpessimisticareyou_s',
-        'thefollowingwouldmakemylifebetterchooseone_s',
+    'Personal Attitudes':[
+        'selectwhereyoufeelsafest_s',
         'rankhowtrustworthyyouthinkpeopleare_s',
         'ithinksuccessfulpeoplemorelesshonestthantheaverageperson_s',
-        'timespentaloneeachday_s',
-        ],
-    'Religion':[
-        'whichclosesfitswhatyouthinkwillhappenwhenyoudie_s',
-        ],
-    'Other':[
-        'selectwhereyouusuallygetyourinformationabouttheworldfrom_s',
+        'doyouthinkloveisnecessaryformarriage_s',
+        'ingeneraldoyoufeellifehasbeenfairtoyou_s',
+        'iftherewereafireatmyhomeiwouldtakethefollowingitemfirst_s',
+        'ithinkthefollowingismostimportantforgoodhealthchooseone_s',
+        'howmuchdoyouthinkaboutyourweight_s',
+        'howoptimisticorpessimisticareyou_s',
+        'iwouldorwouldnotsaythatoneofthemaingoalsinmylifehasbeentomakemyparentsproud_s',
         'whowouldyouvoteforpresidentoftheus_s',
-        'numberoflanguagesspoken_s',
-        ]
+        'doyoukickyourpetoutoftheroombeforehavingsex_s',
+        'ifyouspendthedaybeinglazydoyoufeelgoodorbad_s',
+        'iftherewereapillthateliminatedtheneedforsleepiwouldwouldnotnottakeit_s',
+        ],
+    'Hopes Dreams and the Future':[
+        'thefollowingwouldmakemylifebetterchooseone_s',
+        'pickwhatyoumostlydreamabout_s',
+        'pickhowoftenyouhaveluciddreams_s',
+        'pickhowoftenyourrememberyourdreamsduringtheday_s',
+        'whichclosesfitswhatyouthinkwillhappenwhenyoudie_s',
+        'haveyouexperiencedloveatfirstsight_s',
+    ]
 }
