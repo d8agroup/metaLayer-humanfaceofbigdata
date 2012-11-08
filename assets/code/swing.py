@@ -190,7 +190,7 @@ def all_by_demographic(demographic='areyoumaleorfemale_s', output_file=None):
                 for demographic_value in demographic_values:
                     f.write('\t' + _pad(demographic_value, cell_width))
                     for key, value in line[demographic_value].items():
-                        value = int(100 * float(value)/sum(line[demographic_value].values()))
+                        value = int(100 * float(value)/sum(line[demographic_value].values())) if sum(line[demographic_value].values()) > 0 else 0
                         f.write('\t' + _pad('%i%s' % (value, '%'), cell_width))
                     f.write('\n')
                 f.write('\n\n')
