@@ -2,6 +2,7 @@ import os
 import csv
 from django.conf import settings
 from hfobd.solrbridge.models import FacetMapping
+
 solr = settings.SOLR
 
 def two_facet_swing(min_swing = 10, max_swing = 19, output_file=None):
@@ -190,7 +191,7 @@ def all_by_demographic(demographic='areyoumaleorfemale_s', output_file=None):
                 for demographic_value in demographic_values:
                     f.write('\t' + _pad(demographic_value, cell_width))
                     for key, value in line[demographic_value].items():
-                        value = int(100 * float(value)/sum(line[demographic_value].values())) if sum(line[demographic_value].values()) > 0 else 0
+                        value = int(100 * float(value)/sum(line[demographic_value].values())) #if sum(line[demographic_value].values()) > 0 else 0
                         f.write('\t' + _pad('%i%s' % (value, '%'), cell_width))
                     f.write('\n')
                 f.write('\n\n')
@@ -316,7 +317,6 @@ def ad_hoc_us_europe(output_file=None):
                 f.writerow([''])
                 f.writerow([''])
 
-
 def ad_hoc_nny_magazine(output_file=None):
     if output_file:
         try:
@@ -364,7 +364,6 @@ def ad_hoc_nny_magazine(output_file=None):
                 f.writerow([''])
                 f.writerow([''])
 
-
 def _pad(value, length):
     while len(value) < length:
         value += ' '
@@ -402,7 +401,7 @@ question_split = {
         'mypetthinksofmeasitschooseone_s',
         'haveyousleptwalkedbefore_s',
         'whatdoyoudotohelpcopewithstressmost_s',
-        ],
+    ],
     'Personal Attitudes':[
         'selectwhereyoufeelsafest_s',
         'rankhowtrustworthyyouthinkpeopleare_s',
@@ -418,7 +417,7 @@ question_split = {
         'doyoukickyourpetoutoftheroombeforehavingsex_s',
         'ifyouspendthedaybeinglazydoyoufeelgoodorbad_s',
         'iftherewereapillthateliminatedtheneedforsleepiwouldwouldnotnottakeit_s',
-        ],
+    ],
     'Hopes Dreams and the Future':[
         'thefollowingwouldmakemylifebetterchooseone_s',
         'pickwhatyoumostlydreamabout_s',
