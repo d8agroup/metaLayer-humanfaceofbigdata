@@ -164,7 +164,7 @@ def all_by_demographic(demographic='areyoumaleorfemale_s', output_file=None):
     demographic_values = [key for key in demographic_response.facet_counts['facet_fields'][demographic].keys()]
     full_output = {}
     for demographic_value in demographic_values:
-        demographic_value_response = solr.select('%s:%s' % (demographic, demographic_value), facet='true', facet_field=[f.facet_name for f in all_facets])
+        demographic_value_response = solr.select('%s:"%s"' % (demographic, demographic_value), facet='true', facet_field=[f.facet_name for f in all_facets])
         for facet_field in demographic_value_response.facet_counts['facet_fields'].keys():
             if facet_field not in full_output:
                 full_output[facet_field] = {'question':[f.display_name for f in all_facets if f.facet_name == facet_field][0]}
