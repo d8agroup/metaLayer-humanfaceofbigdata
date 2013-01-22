@@ -444,9 +444,9 @@ def globe(request, facet_name=None):
 
         return HttpResponse(simplejson.dumps(return_data), content_type='application/json')
 
-
+    excluded_questions = ['I married at X years old', 'How old are you', 'Number of generations living in your household']
     template_data = {
-        'questions':FacetMapping.objects.filter(display_as_question=True),
+        'questions':[f for f in FacetMapping.objects.filter(display_as_question=True) if f.display_name not in excluded_questions],
     }
     return render_to_response('globe.html', template_data, context_instance=RequestContext(request))
 

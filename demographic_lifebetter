@@ -1,0 +1,510 @@
+BASIC DEMOGRAPHICS
+==================
+
+	HOW OLD ARE YOU
+	---------------
+	                              	Under 20                      	31 - 40                       	41 - 50                       	21 - 30                       	Over 50                       
+	Better health                 	18%                           	22%                           	13%                           	37%                           	7%                            
+	More free time                	16%                           	26%                           	15%                           	36%                           	4%                            
+	Better job                    	15%                           	20%                           	8%                            	53%                           	2%                            
+	More money                    	19%                           	22%                           	10%                           	43%                           	3%                            
+	Better romance                	32%                           	14%                           	8%                            	41%                           	3%                            
+	Nothing                       	22%                           	19%                           	13%                           	38%                           	6%                            
+
+
+	ARE YOU MALE OR FEMALE?
+	-----------------------
+	                              	male                          	female                        
+	Better health                 	59%                           	40%                           
+	More free time                	74%                           	25%                           
+	Better job                    	64%                           	35%                           
+	More money                    	62%                           	37%                           
+	Better romance                	65%                           	34%                           
+	Nothing                       	64%                           	35%                           
+
+
+	WHERE DO YOU LIVE? (CITY AND STATE/COUNTRY)
+	-------------------------------------------
+	                              	Calgary Alberta Canada        	New.Delhi  India              	London                        	Chennai  India                	??? ??? ????                  	Chicago Illinois United States	Philadelphia Pennsylvania United States	Chicago  United.States        	Ann Arbor                     	Kochi  India                  	Atlanta                       	Tampa                         	London Greater London United Kingdom	?????  ????                   	??? ??? ??                    	Alexandria                    	Los.Angeles  United.States    	Manchester                    	New York New York United States	Manila                        	Sydney New South Wales Australia	Austin  United.States         	Bangalore Karnataka India     	Singapore                     	New Delhi Delhi India         	Kuala Lumpur                  	Berlin                        	San Antonio Texas United States	Dubai Dubai United Arab Emirates	Los Angeles                   	Thiruvananthapuram  India     	Bangalore                     	India  India                  	New.York  United.States       	Toronto Ontario Canada        	Seattle Washington United States	Bangalore  India              	???                           	Madison                       	Louisville  United.States     	Knoxville Tennessee United States	Madrid                        	Boston                        	Boston Massachusetts United States	Amsterdam Noord-Holland Nederland	??? ???? ????                 	Mexico City                   	Valdagno Veneto Italy         	Richmond  United.States       	Cork Cork Ireland             	Melbourne Victoria Australia  	Portland  United.States       	Indianapolis                  	Seattle  United.States        	Auckland Auckland New Zealand 	Chicago                       	Akron                         	Hong Kong                     	Tokyo                         	Suomi                         	Detroit                       	Philadelphia                  	Orlando Florida United States 	Palakkad  India               	Coimbatore  India             	Austin                        	Ballincollig Cork Ireland     	New York United States        	Houston Texas United States   	Austin Texas United States    	Mumbai Maharashtra India      	Atlanta Georgia United States 	New York                      	Birmingham                    	Cleveland                     	Hyderabad  India              	Salt Lake City Utah United States	Abilene                       	Athens                        	Hopkinton Massachusetts United States	Bangkok  Thailand             	Colorado Springs Colorado United States	Los Angeles California United States	Thrissur  India               	Albuquerque New Mexico United States	(null) (null) (null)          	Kuala Lumpur Federal Territory of Kuala Lumpur Malaysia	Madurai  India                	Jacksonville                  	??                            	Atlanta  United.States        	Jakarta                       	San Francisco California United States	Melbourne                     	Portland                      	Baltimore                     	Las Vegas Nevada United States	Egypt                         	Lahore Punjab Pakistan        	Columbus Ohio United States   
+	Better health                 	0%                            	0%                            	2%                            	4%                            	2%                            	0%                            	0%                            	0%                            	0%                            	2%                            	0%                            	0%                            	0%                            	3%                            	4%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	2%                            	2%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	2%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	1%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            
+	More free time                	1%                            	0%                            	0%                            	0%                            	2%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	4%                            	2%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	2%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	3%                            	0%                            	0%                            	0%                            	3%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	1%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	1%                            	1%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	3%                            	0%                            	2%                            	1%                            	0%                            	1%                            	0%                            	3%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            
+	Better job                    	0%                            	3%                            	2%                            	0%                            	1%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	4%                            	2%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	2%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	2%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	2%                            	0%                            	0%                            	0%                            	0%                            	1%                            	2%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	2%                            	1%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            
+	More money                    	0%                            	0%                            	0%                            	3%                            	1%                            	1%                            	1%                            	0%                            	0%                            	1%                            	0%                            	7%                            	3%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	2%                            	0%                            	0%                            	0%                            	1%                            	3%                            	0%                            	1%                            	3%                            	0%                            	2%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	2%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            
+	Better romance                	0%                            	0%                            	0%                            	0%                            	3%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	5%                            	2%                            	2%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	3%                            	0%                            	0%                            	1%                            	1%                            	0%                            	1%                            	3%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	3%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	2%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            
+	Nothing                       	1%                            	1%                            	0%                            	0%                            	1%                            	2%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	2%                            	1%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	1%                            	2%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	3%                            	1%                            	0%                            	0%                            	1%                            	1%                            	0%                            	0%                            	0%                            	2%                            	0%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	1%                            	0%                            	2%                            	0%                            	0%                            	0%                            	2%                            	1%                            	1%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	0%                            	0%                            	0%                            	0%                            	0%                            	0%                            	1%                            	1%                            	1%                            	0%                            	0%                            	0%                            	0%                            
+
+
+PERSONAL ATTITUDES
+==================
+
+	DO YOU THINK LOVE IS NECESSARY FOR MARRIAGE?
+	--------------------------------------------
+	                              	is                            	is not                        
+	Better health                 	86%                           	13%                           
+	More free time                	87%                           	12%                           
+	Better job                    	86%                           	13%                           
+	More money                    	86%                           	13%                           
+	Better romance                	87%                           	12%                           
+	Nothing                       	85%                           	14%                           
+
+
+	I THINK SUCCESSFUL PEOPLE MORE/LESS HONEST THAN THE AVERAGE PERSON
+	------------------------------------------------------------------
+	                              	Less                          	Somewhat more                 	Somewhat less                 	Much more                     	Neither                       	More                          	Much less                     
+	Better health                 	22%                           	0%                            	0%                            	11%                           	36%                           	13%                           	15%                           
+	More free time                	23%                           	0%                            	0%                            	8%                            	36%                           	12%                           	18%                           
+	Better job                    	23%                           	0%                            	0%                            	10%                           	35%                           	11%                           	18%                           
+	More money                    	25%                           	0%                            	0%                            	8%                            	34%                           	12%                           	18%                           
+	Better romance                	28%                           	0%                            	0%                            	8%                            	32%                           	13%                           	16%                           
+	Nothing                       	17%                           	0%                            	0%                            	14%                           	42%                           	13%                           	11%                           
+
+
+	DO YOU KICK YOUR PET OUT OF THE ROOM BEFORE HAVING SEX?
+	-------------------------------------------------------
+	                              	Yes                           	No                            
+	Better health                 	55%                           	44%                           
+	More free time                	59%                           	40%                           
+	Better job                    	55%                           	44%                           
+	More money                    	56%                           	43%                           
+	Better romance                	64%                           	35%                           
+	Nothing                       	52%                           	47%                           
+
+
+	RANK HOW TRUSTWORTHY YOU THINK PEOPLE ARE
+	-----------------------------------------
+	                              	Somewhat untrustworthy        	Somewhat trustworthy          	Neither                       	Very untrustworthy            	Very trustworthy              
+	Better health                 	27%                           	33%                           	24%                           	8%                            	5%                            
+	More free time                	21%                           	40%                           	24%                           	5%                            	7%                            
+	Better job                    	31%                           	31%                           	23%                           	7%                            	6%                            
+	More money                    	30%                           	29%                           	24%                           	10%                           	5%                            
+	Better romance                	28%                           	30%                           	25%                           	8%                            	6%                            
+	Nothing                       	19%                           	40%                           	22%                           	7%                            	9%                            
+
+
+	IN GENERAL, DO YOU FEEL LIFE HAS BEEN FAIR TO YOU?
+	--------------------------------------------------
+	                              	Do                            	Do not                        
+	Better health                 	68%                           	31%                           
+	More free time                	82%                           	17%                           
+	Better job                    	68%                           	31%                           
+	More money                    	63%                           	36%                           
+	Better romance                	65%                           	34%                           
+	Nothing                       	85%                           	14%                           
+
+
+	HOW OPTIMISTIC OR PESSIMISTIC ARE YOU?
+	--------------------------------------
+	                              	Very optimistic               	Somewhat optimistic           	Optimistic                    	Neither                       	Very pessimistic              	Somewhat pessimistic          
+	Better health                 	13%                           	27%                           	0%                            	28%                           	8%                            	22%                           
+	More free time                	12%                           	29%                           	0%                            	21%                           	9%                            	26%                           
+	Better job                    	13%                           	27%                           	0%                            	29%                           	6%                            	22%                           
+	More money                    	13%                           	28%                           	0%                            	27%                           	7%                            	22%                           
+	Better romance                	13%                           	26%                           	0%                            	26%                           	9%                            	24%                           
+	Nothing                       	21%                           	25%                           	0%                            	26%                           	9%                            	16%                           
+
+
+	I WOULD OR WOULD NOT SAY THAT ONE OF THE MAIN GOALS IN MY LIFE HAS BEEN TO MAKE MY PARENTS PROUD
+	------------------------------------------------------------------------------------------------
+	                              	would not                     	would                         
+	Better health                 	30%                           	69%                           
+	More free time                	38%                           	61%                           
+	Better job                    	29%                           	70%                           
+	More money                    	34%                           	65%                           
+	Better romance                	33%                           	66%                           
+	Nothing                       	35%                           	64%                           
+
+
+	SELECT WHERE YOU FEEL SAFEST
+	----------------------------
+	                              	Home                          	School                        	Work                          	Place of worship              	I don't feel safe             
+	Better health                 	78%                           	3%                            	4%                            	7%                            	6%                            
+	More free time                	84%                           	2%                            	4%                            	4%                            	3%                            
+	Better job                    	80%                           	2%                            	4%                            	6%                            	5%                            
+	More money                    	83%                           	1%                            	3%                            	4%                            	6%                            
+	Better romance                	79%                           	4%                            	5%                            	5%                            	6%                            
+	Nothing                       	78%                           	2%                            	3%                            	8%                            	6%                            
+
+
+	IF YOU SPEND THE DAY BEING LAZY, DO YOU FEEL GOOD OR BAD?
+	---------------------------------------------------------
+	                              	bad                           	good                          
+	Better health                 	57%                           	42%                           
+	More free time                	49%                           	50%                           
+	Better job                    	57%                           	42%                           
+	More money                    	51%                           	48%                           
+	Better romance                	53%                           	46%                           
+	Nothing                       	55%                           	44%                           
+
+
+	HOW MUCH DO YOU THINK ABOUT YOUR WEIGHT?
+	----------------------------------------
+	                              	Never                         	Constantly                    	At times                      	Sometimes                     
+	Better health                 	7%                            	33%                           	28%                           	31%                           
+	More free time                	10%                           	34%                           	18%                           	36%                           
+	Better job                    	10%                           	32%                           	25%                           	31%                           
+	More money                    	10%                           	31%                           	29%                           	29%                           
+	Better romance                	12%                           	30%                           	25%                           	32%                           
+	Nothing                       	14%                           	31%                           	19%                           	33%                           
+
+
+	IF THERE WERE A PILL THAT ELIMINATED THE NEED FOR SLEEP, I WOULD/WOULD NOT NOT TAKE IT
+	--------------------------------------------------------------------------------------
+	                              	Would not                     	Would                         
+	Better health                 	62%                           	37%                           
+	More free time                	53%                           	46%                           
+	Better job                    	58%                           	41%                           
+	More money                    	55%                           	44%                           
+	Better romance                	57%                           	42%                           
+	Nothing                       	67%                           	32%                           
+
+
+	IF THERE WERE A FIRE AT MY HOME, I WOULD TAKE THE FOLLOWING ITEM FIRST
+	----------------------------------------------------------------------
+	                              	Jewelry                       	Money                         	Gun                           	Other                         	Photo albums                  	Electronics                   
+	Better health                 	4%                            	16%                           	2%                            	29%                           	28%                           	17%                           
+	More free time                	3%                            	11%                           	2%                            	25%                           	29%                           	26%                           
+	Better job                    	4%                            	17%                           	2%                            	30%                           	25%                           	20%                           
+	More money                    	3%                            	19%                           	2%                            	27%                           	25%                           	20%                           
+	Better romance                	3%                            	16%                           	3%                            	26%                           	24%                           	25%                           
+	Nothing                       	3%                            	9%                            	3%                            	35%                           	28%                           	19%                           
+
+
+	WHO WOULD YOU VOTE FOR PRESIDENT OF THE US?
+	-------------------------------------------
+	                              	Mitt Romney                   	Barack Obama                  
+	Better health                 	23%                           	76%                           
+	More free time                	21%                           	78%                           
+	Better job                    	22%                           	77%                           
+	More money                    	23%                           	76%                           
+	Better romance                	21%                           	78%                           
+	Nothing                       	28%                           	71%                           
+
+
+	I THINK THE FOLLOWING IS MOST IMPORTANT FOR GOOD HEALTH (CHOOSE ONE)
+	--------------------------------------------------------------------
+	                              	Environment                   	Religion                      	Genes                         	Exercise                      	Proper diet                   
+	Better health                 	14%                           	4%                            	11%                           	30%                           	39%                           
+	More free time                	14%                           	3%                            	10%                           	34%                           	37%                           
+	Better job                    	15%                           	4%                            	9%                            	34%                           	36%                           
+	More money                    	13%                           	2%                            	12%                           	33%                           	37%                           
+	Better romance                	16%                           	4%                            	11%                           	34%                           	32%                           
+	Nothing                       	14%                           	6%                            	10%                           	30%                           	36%                           
+
+
+HOPES DREAMS AND THE FUTURE
+===========================
+
+	PICK WHAT YOU MOSTLY DREAM ABOUT
+	--------------------------------
+	                              	Being unprepared              	Naked in public               	Flying                        	Other                         	Falling                       	Being chased                  
+	Better health                 	15%                           	3%                            	6%                            	54%                           	7%                            	11%                           
+	More free time                	16%                           	2%                            	7%                            	56%                           	7%                            	10%                           
+	Better job                    	14%                           	2%                            	6%                            	56%                           	8%                            	11%                           
+	More money                    	14%                           	2%                            	5%                            	57%                           	8%                            	11%                           
+	Better romance                	14%                           	3%                            	5%                            	56%                           	8%                            	11%                           
+	Nothing                       	12%                           	2%                            	6%                            	63%                           	6%                            	8%                            
+
+
+	THE FOLLOWING WOULD MAKE MY LIFE BETTER (CHOOSE ONE)
+	----------------------------------------------------
+	                              	Better health                 	More free time                	Better job                    	More money                    	Better romance                	Nothing                       
+	Better health                 	100%                          	0%                            	0%                            	0%                            	0%                            	0%                            
+	More free time                	0%                            	100%                          	0%                            	0%                            	0%                            	0%                            
+	Better job                    	0%                            	0%                            	100%                          	0%                            	0%                            	0%                            
+	More money                    	0%                            	0%                            	0%                            	100%                          	0%                            	0%                            
+	Better romance                	0%                            	0%                            	0%                            	0%                            	100%                          	0%                            
+	Nothing                       	0%                            	0%                            	0%                            	0%                            	0%                            	100%                          
+
+
+	HAVE YOU EXPERIENCED LOVE AT FIRST SIGHT
+	----------------------------------------
+	                              	have not                      	have                          
+	Better health                 	43%                           	56%                           
+	More free time                	45%                           	54%                           
+	Better job                    	43%                           	56%                           
+	More money                    	42%                           	57%                           
+	Better romance                	43%                           	56%                           
+	Nothing                       	47%                           	52%                           
+
+
+	PICK HOW OFTEN YOU HAVE LUCID DREAMS
+	------------------------------------
+	                              	Seldom                        	Never                         	Often                         
+	Better health                 	46%                           	14%                           	39%                           
+	More free time                	51%                           	16%                           	31%                           
+	Better job                    	46%                           	15%                           	37%                           
+	More money                    	46%                           	15%                           	38%                           
+	Better romance                	46%                           	16%                           	37%                           
+	Nothing                       	47%                           	18%                           	34%                           
+
+
+	PICK HOW OFTEN YOUR REMEMBER YOUR DREAMS DURING THE DAY
+	-------------------------------------------------------
+	                              	Seldom                        	Never                         	Often                         
+	Better health                 	51%                           	9%                            	39%                           
+	More free time                	58%                           	9%                            	31%                           
+	Better job                    	53%                           	10%                           	36%                           
+	More money                    	52%                           	8%                            	38%                           
+	Better romance                	52%                           	9%                            	37%                           
+	Nothing                       	50%                           	12%                           	37%                           
+
+
+	WHICH CLOSES FITS WHAT YOU THINK WILL HAPPEN WHEN YOU DIE?
+	----------------------------------------------------------
+	                              	Nothing. Game over.           	I will be reincarnated        	I will go to heaven or hell   	My spirit will return home    
+	Better health                 	28%                           	13%                           	39%                           	18%                           
+	More free time                	30%                           	13%                           	41%                           	15%                           
+	Better job                    	30%                           	14%                           	39%                           	16%                           
+	More money                    	32%                           	14%                           	37%                           	15%                           
+	Better romance                	34%                           	14%                           	35%                           	15%                           
+	Nothing                       	30%                           	10%                           	41%                           	16%                           
+
+
+FAMILY AND RELATIONSHIPS
+========================
+
+	I MARRIED AT X YEARS OLD
+	------------------------
+	                              	I'm not married               	21 - 30                       	Under 20                      	41 - 50                       	Over 50                       	31 - 40                       
+	Better health                 	40%                           	38%                           	11%                           	1%                            	0%                            	7%                            
+	More free time                	37%                           	43%                           	6%                            	1%                            	0%                            	11%                           
+	Better job                    	49%                           	33%                           	9%                            	0%                            	0%                            	6%                            
+	More money                    	47%                           	33%                           	10%                           	0%                            	0%                            	7%                            
+	Better romance                	57%                           	24%                           	11%                           	0%                            	1%                            	4%                            
+	Nothing                       	42%                           	39%                           	10%                           	0%                            	0%                            	6%                            
+
+
+	IF I COULD ENHANCE MY UNBORN CHILD'S DNA IN ONLY ONE WAY, I WOULD IMPROVE THEIR: (CHOOSE ONE)
+	---------------------------------------------------------------------------------------------
+	                              	Nothing                       	Intelligence                  	Appearance                    	Lifespan                      	Immunity                      
+	Better health                 	21%                           	39%                           	6%                            	6%                            	25%                           
+	More free time                	25%                           	40%                           	4%                            	7%                            	22%                           
+	Better job                    	24%                           	45%                           	5%                            	6%                            	17%                           
+	More money                    	22%                           	44%                           	8%                            	6%                            	17%                           
+	Better romance                	22%                           	39%                           	12%                           	6%                            	18%                           
+	Nothing                       	42%                           	30%                           	4%                            	5%                            	17%                           
+
+
+	DO YOU THINK IT IS ACCEPTABLE FOR A MARRIED PERSON TO HAVE AN AFFAIR?
+	---------------------------------------------------------------------
+	                              	is                            	is not                        
+	Better health                 	17%                           	82%                           
+	More free time                	17%                           	82%                           
+	Better job                    	15%                           	84%                           
+	More money                    	14%                           	85%                           
+	Better romance                	17%                           	82%                           
+	Nothing                       	15%                           	84%                           
+
+
+	WHO ARE YOU MORE SIMILAR TO?
+	----------------------------
+	                              	Dad                           	Neither                       	Both about equally            	Mom                           
+	Better health                 	28%                           	12%                           	31%                           	27%                           
+	More free time                	32%                           	12%                           	30%                           	24%                           
+	Better job                    	28%                           	14%                           	28%                           	28%                           
+	More money                    	28%                           	15%                           	27%                           	28%                           
+	Better romance                	29%                           	14%                           	29%                           	26%                           
+	Nothing                       	26%                           	14%                           	32%                           	25%                           
+
+
+	IF I COULD CHANGE ONE THING ABOUT MY PARTNER, IT WOULD BE THE FOLLOWING (PICK ONE)
+	----------------------------------------------------------------------------------
+	                              	Intelligence                  	Sexual ability                	Looks                         	Nothing                       	All of the above              	Personality                   
+	Better health                 	8%                            	10%                           	5%                            	53%                           	7%                            	14%                           
+	More free time                	6%                            	12%                           	6%                            	57%                           	5%                            	11%                           
+	Better job                    	7%                            	11%                           	6%                            	51%                           	7%                            	14%                           
+	More money                    	6%                            	12%                           	8%                            	49%                           	9%                            	13%                           
+	Better romance                	7%                            	13%                           	7%                            	46%                           	10%                           	14%                           
+	Nothing                       	5%                            	7%                            	4%                            	71%                           	3%                            	8%                            
+
+
+	WOULD YOU MARRY SOMEONE WITH WHOM YOU COULD NEVER HAVE CHILDREN?
+	----------------------------------------------------------------
+	                              	would not                     	would                         
+	Better health                 	33%                           	66%                           
+	More free time                	31%                           	68%                           
+	Better job                    	33%                           	66%                           
+	More money                    	31%                           	68%                           
+	Better romance                	34%                           	65%                           
+	Nothing                       	33%                           	66%                           
+
+
+	HOW STRICT OR LENIENT WERE YOUR PARENTS WHEN YOU WERE GROWING UP?
+	-----------------------------------------------------------------
+	                              	Very strict                   	Very lenient                  	Strict                        	Somewhat lenient              	Somewhat strict               	Neither                       
+	Better health                 	12%                           	4%                            	0%                            	16%                           	34%                           	32%                           
+	More free time                	10%                           	3%                            	0%                            	19%                           	39%                           	27%                           
+	Better job                    	12%                           	4%                            	0%                            	17%                           	34%                           	31%                           
+	More money                    	12%                           	4%                            	0%                            	17%                           	35%                           	29%                           
+	Better romance                	9%                            	4%                            	0%                            	19%                           	34%                           	30%                           
+	Nothing                       	11%                           	4%                            	0%                            	14%                           	34%                           	34%                           
+
+
+	MY CURRENT RELATIONSHIP STATUS:
+	-------------------------------
+	                              	Widowed                       	Single                        	Married                       	Cohabitating                  	Divorced                      
+	Better health                 	1%                            	39%                           	36%                           	19%                           	3%                            
+	More free time                	0%                            	31%                           	42%                           	22%                           	2%                            
+	Better job                    	0%                            	41%                           	27%                           	26%                           	3%                            
+	More money                    	0%                            	38%                           	31%                           	25%                           	4%                            
+	Better romance                	0%                            	69%                           	15%                           	9%                            	4%                            
+	Nothing                       	1%                            	39%                           	37%                           	18%                           	2%                            
+
+
+	WHERE ARE YOU IN THE BIRTH ORDER OF YOUR SIBLINGS
+	-------------------------------------------------
+	                              	Youngest                      	Middle                        	Oldest                        	I don't have any siblings     
+	Better health                 	32%                           	23%                           	33%                           	9%                            
+	More free time                	30%                           	20%                           	39%                           	9%                            
+	Better job                    	30%                           	23%                           	36%                           	9%                            
+	More money                    	31%                           	22%                           	36%                           	9%                            
+	Better romance                	32%                           	20%                           	36%                           	10%                           
+	Nothing                       	29%                           	21%                           	36%                           	11%                           
+
+
+MY LIFESTYLE
+============
+
+	DO YOU NAP REGULARLY?
+	---------------------
+	                              	Do                            	Do not                        
+	Better health                 	39%                           	60%                           
+	More free time                	28%                           	71%                           
+	Better job                    	35%                           	64%                           
+	More money                    	34%                           	65%                           
+	Better romance                	35%                           	64%                           
+	Nothing                       	34%                           	65%                           
+
+
+	SELECT WHERE YOU USUALLY GET YOUR INFORMATION ABOUT THE WORLD FROM
+	------------------------------------------------------------------
+	                              	SmartPhone                    	Tablet                        	TV                            	Other people                  	Computer                      	Print media                   
+	Better health                 	25%                           	4%                            	15%                           	5%                            	44%                           	4%                            
+	More free time                	28%                           	7%                            	8%                            	4%                            	47%                           	3%                            
+	Better job                    	27%                           	3%                            	14%                           	4%                            	45%                           	3%                            
+	More money                    	29%                           	3%                            	15%                           	4%                            	44%                           	2%                            
+	Better romance                	30%                           	4%                            	12%                           	6%                            	43%                           	2%                            
+	Nothing                       	24%                           	5%                            	11%                           	7%                            	44%                           	6%                            
+
+
+	TIME SPENT ALONE EACH DAY
+	-------------------------
+	                              	0 hours                       	Up to 6 hours                 	Up to 3 hours                 	Up to 18 hours                	Up to 12 hours                	Over 18 hours                 
+	Better health                 	9%                            	27%                           	25%                           	6%                            	25%                           	5%                            
+	More free time                	10%                           	25%                           	38%                           	4%                            	18%                           	3%                            
+	Better job                    	9%                            	30%                           	23%                           	5%                            	25%                           	5%                            
+	More money                    	11%                           	27%                           	25%                           	5%                            	24%                           	5%                            
+	Better romance                	10%                           	26%                           	18%                           	8%                            	28%                           	7%                            
+	Nothing                       	11%                           	29%                           	29%                           	3%                            	20%                           	5%                            
+
+
+	DID YOU GROW UP WITH A PET?
+	---------------------------
+	                              	did                           	did not                       
+	Better health                 	66%                           	33%                           
+	More free time                	71%                           	28%                           
+	Better job                    	68%                           	31%                           
+	More money                    	72%                           	27%                           
+	Better romance                	69%                           	30%                           
+	Nothing                       	68%                           	31%                           
+
+
+	DO YOU KNOW THE NAMES OF YOUR CLOSEST NEIGHBORS?
+	------------------------------------------------
+	                              	Do                            	Do not                        
+	Better health                 	61%                           	38%                           
+	More free time                	59%                           	40%                           
+	Better job                    	56%                           	43%                           
+	More money                    	54%                           	45%                           
+	Better romance                	54%                           	45%                           
+	Nothing                       	65%                           	34%                           
+
+
+	NUMBER OF GENERATIONS LIVING IN YOUR HOUSEHOLD
+	----------------------------------------------
+	                              	1                             	0                             	3                             	2                             	4 or more                     
+	Better health                 	29%                           	9%                            	13%                           	37%                           	10%                           
+	More free time                	34%                           	7%                            	7%                            	43%                           	6%                            
+	Better job                    	29%                           	9%                            	12%                           	37%                           	10%                           
+	More money                    	30%                           	9%                            	10%                           	39%                           	9%                            
+	Better romance                	29%                           	11%                           	9%                            	37%                           	11%                           
+	Nothing                       	31%                           	10%                           	9%                            	38%                           	9%                            
+
+
+	I USUALLY WAKE UP IN THE FOLLOWING WAY:
+	---------------------------------------
+	                              	Pet                           	Alarm clock                   	Rooster                       	Child/Children                	Family member                 	Naturally                     
+	Better health                 	2%                            	48%                           	1%                            	5%                            	10%                           	31%                           
+	More free time                	1%                            	65%                           	0%                            	5%                            	9%                            	17%                           
+	Better job                    	2%                            	51%                           	1%                            	6%                            	8%                            	30%                           
+	More money                    	2%                            	53%                           	0%                            	6%                            	9%                            	28%                           
+	Better romance                	1%                            	58%                           	0%                            	3%                            	11%                           	23%                           
+	Nothing                       	2%                            	47%                           	0%                            	5%                            	10%                           	33%                           
+
+
+	HOW SAFE OR SCARY IS YOUR NEIGHBORHOOD?
+	---------------------------------------
+	                              	Scary                         	Somewhat safe                 	Safe                          	Neither                       	Somewhat scary                	Very safe                     	Very scary                    
+	Better health                 	0%                            	27%                           	0%                            	21%                           	13%                           	33%                           	3%                            
+	More free time                	0%                            	27%                           	0%                            	15%                           	10%                           	42%                           	4%                            
+	Better job                    	0%                            	27%                           	0%                            	21%                           	15%                           	31%                           	3%                            
+	More money                    	0%                            	26%                           	0%                            	20%                           	15%                           	34%                           	3%                            
+	Better romance                	0%                            	28%                           	0%                            	19%                           	11%                           	36%                           	3%                            
+	Nothing                       	0%                            	21%                           	0%                            	17%                           	12%                           	43%                           	4%                            
+
+
+	HAVE YOU SLEPT-WALKED BEFORE?
+	-----------------------------
+	                              	Have not                      	Have                          
+	Better health                 	74%                           	25%                           
+	More free time                	73%                           	26%                           
+	Better job                    	74%                           	25%                           
+	More money                    	73%                           	26%                           
+	Better romance                	72%                           	27%                           
+	Nothing                       	73%                           	26%                           
+
+
+	WHAT DO YOU DO TO HELP COPE WITH STRESS MOST?
+	---------------------------------------------
+	                              	Work                          	Alcohol/Drugs                 	Prayer                        	Family/Friends                	Music/Art                     	Exercise                      
+	Better health                 	6%                            	9%                            	11%                           	27%                           	28%                           	16%                           
+	More free time                	4%                            	9%                            	5%                            	29%                           	24%                           	26%                           
+	Better job                    	6%                            	14%                           	8%                            	27%                           	27%                           	15%                           
+	More money                    	5%                            	18%                           	6%                            	28%                           	25%                           	16%                           
+	Better romance                	4%                            	12%                           	6%                            	29%                           	29%                           	17%                           
+	Nothing                       	6%                            	8%                            	15%                           	27%                           	23%                           	18%                           
+
+
+	MY PET THINKS OF ME AS ITS _______________ (CHOOSE ONE)
+	-------------------------------------------------------
+	                              	Can-opener                    	Mom or Dad                    	Playmate                      	Peer                          	I don't have a pet            	Owner                         
+	Better health                 	5%                            	20%                           	15%                           	7%                            	37%                           	13%                           
+	More free time                	7%                            	15%                           	15%                           	6%                            	40%                           	14%                           
+	Better job                    	5%                            	18%                           	16%                           	5%                            	38%                           	15%                           
+	More money                    	5%                            	20%                           	15%                           	5%                            	36%                           	16%                           
+	Better romance                	5%                            	18%                           	16%                           	7%                            	39%                           	12%                           
+	Nothing                       	4%                            	16%                           	15%                           	6%                            	41%                           	16%                           
+
+
+	NUMBER OF LANGUAGES SPOKEN
+	--------------------------
+	                              	Only 1                        	4 or more                     	2 - 3                         
+	Better health                 	48%                           	11%                           	40%                           
+	More free time                	48%                           	8%                            	42%                           
+	Better job                    	51%                           	8%                            	39%                           
+	More money                    	56%                           	8%                            	34%                           
+	Better romance                	44%                           	11%                           	43%                           
+	Nothing                       	45%                           	11%                           	43%                           
+
+
+	HOURS SLEEP EACH NIGHT
+	----------------------
+	                              	More than 8 hours             	4 - 6 hours                   	Less than 4 hours             	6 - 8 hours                   
+	Better health                 	15%                           	31%                           	3%                            	49%                           
+	More free time                	9%                            	33%                           	1%                            	55%                           
+	Better job                    	14%                           	33%                           	3%                            	48%                           
+	More money                    	14%                           	33%                           	2%                            	48%                           
+	Better romance                	16%                           	30%                           	2%                            	50%                           
+	Nothing                       	13%                           	28%                           	2%                            	55%                           
+
+
