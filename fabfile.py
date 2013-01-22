@@ -5,8 +5,8 @@ packages = {
     'apt-get':[ 'python-dev' ],
     'pip':[ 'django==1.4.1', 'South', 'solrpy', 'pytz', 'raven==1.4.6', 'PIL' ] }
 
-def prod():
-    env.hosts = ['root@hfobd.web.01']
+def demo():
+    env.hosts = ['root@surv.demo.metalayer.com']
 
 def deploy(install_packages=False):
     if install_packages:
@@ -15,8 +15,11 @@ def deploy(install_packages=False):
         for package in packages['pip']:
             run('pip install %s' % package)
 
-    with cd('/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata'):
-        run("git pull")
+    with cd('/usr/local/metaLayer-surv/humanfaceofbigdata'):
+        run("git fetch && git merge origin/surv")
         run("git status")
     with settings(warn_only=True):
         run("service apache2 restart")
+def git():
+    local('git add --all && git commit')
+    local('git push origin surv')
