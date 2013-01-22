@@ -75,7 +75,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/home/matt/code/metaLayer/humanfaceofbigdata/hfobd/static',
-    '/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/hfobd/static',
+    '/usr/local/metaLayer-surv/humanfaceofbigdata/hfobd/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -117,7 +117,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     '/home/matt/code/metaLayer/humanfaceofbigdata/hfobd/static/html',
-    '/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/hfobd/static/html',
+    '/usr/local/metaLayer-surv/humanfaceofbigdata/hfobd/static/html',
 )
 
 INSTALLED_APPS = (
@@ -184,7 +184,7 @@ LOGGING = {
         },
     }
 
-SENTRY_DSN = 'http://6cd19fe54e974d8c812768607612c1a0:6e6569fb84f94b41ab37e1a18e56c600@108.166.111.61:9000/4'
+SENTRY_DSN = 'http://0e6c84397ff14aa2992c80c21da753c6:dc79dd13ecd44bafb45571ce207d657e@108.166.111.61:9000/6'
 
 #SOLR = Solr('http://hfobd.metalayer.com:8983/solr/core1')
 SOLR = Solr('http://hfobd.metalayer.com:8983/solr/core0')
@@ -192,15 +192,5 @@ SOLR = Solr('http://hfobd.metalayer.com:8983/solr/core0')
 LOGIN_REQUIRED = True
 
 import socket
-if socket.gethostname() in ['hfobd.web.01']:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-            'NAME': 'hfobd',                      # Or path to database file if using sqlite3.
-            'USER': 'root',                      # Not used with sqlite3.
-            'PASSWORD': 'penguin',                  # Not used with sqlite3.
-            'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-            'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-        }
-    }
-    MEDIA_ROOT = '/usr/local/metaLayer-humanfaceofbigdata/humanfaceofbigdata/hfobd/static/media/'
+if socket.gethostname() in ['surv.demo.01']:
+    MEDIA_ROOT = '/usr/local/metaLayer-surv/humanfaceofbigdata/hfobd/static/media/'
