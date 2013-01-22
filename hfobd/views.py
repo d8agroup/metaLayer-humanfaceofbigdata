@@ -32,26 +32,26 @@ def landing_page(request):
                 return redirect('/')
     return render_to_response('landing.html', template_data, context_instance=RequestContext(request))
 
-@login_required('/login')
+@login_required(login_url='/login')
 def user_logout(request):
     logout(request)
     return redirect(home)
 
-@login_required('/login')
+@login_required(login_url='/login')
 def home(request):
     template_data = {
         'questions':FacetMapping.objects.filter(display_as_question=True),
     }
     return render_to_response('home.html', template_data, context_instance=RequestContext(request))
 
-@login_required('/login')
+@login_required(login_url='/login')
 def design1(request):
     template_data = {
         'questions':FacetMapping.objects.filter(display_as_question=True),
     }
     return render_to_response('design1.html', template_data, context_instance=RequestContext(request))
 
-@login_required('/login')
+@login_required(login_url='/login')
 def design2(request):
     questions = [q for q in FacetMapping.objects.filter(display_as_question=True)]
 #    questions.insert(0, {
@@ -62,17 +62,17 @@ def design2(request):
     template_data = { 'questions': questions, }
     return render_to_response('create.html', template_data, context_instance=RequestContext(request))
 
-@login_required('/login')
+@login_required(login_url='/login')
 def nonhfobd(request):
     questions = [q for q in FacetMapping.objects.filter(display_as_question=True)]
     template_data = { 'questions': questions, }
     return render_to_response('nonhfobd_create.html', template_data, context_instance=RequestContext(request))
 
-@login_required('/login')
+@login_required(login_url='/login')
 def splash(request):
     return render_to_response('splash.html', context_instance=RequestContext(request))
 
-@login_required('/login')
+@login_required(login_url='/login')
 @csrf_exempt
 def get_graph_data3(request):
     def stringify_label(label):
@@ -151,7 +151,7 @@ def get_graph_data3(request):
 #            return_data['graph_data'][x]['color'] = colors[x]
     return JSONResponse(return_data)
 
-@login_required('/login')
+@login_required(login_url='/login')
 @csrf_exempt
 def add_a_filter(request):
     facet_mappings = FacetMapping.objects.filter(display_as_question=True)
@@ -174,11 +174,11 @@ def add_a_filter(request):
     }
     return render_to_response('filter.html', template_data)
 
-@login_required('/login')
+@login_required(login_url='/login')
 def chart_area(request):
     return render_to_response('chart_area.html')
 
-@login_required('/login')
+@login_required(login_url='/login')
 def gallery(request, image_id=None):
     template_data = {
         'gallery_images':SavedInsight.Gallery()
@@ -193,7 +193,7 @@ def gallery(request, image_id=None):
             return render_to_response('gallery_images.html', {'gallery_images':SavedInsight.Gallery()})
     return render_to_response('gallery.html', template_data, context_instance=RequestContext(request))
 
-@login_required('/login')
+@login_required(login_url='/login')
 def save_and_share(request):
     def write_image(image_data, file_name):
         import re
@@ -354,7 +354,7 @@ def save_and_share(request):
     SavedInsight.Create(guid, final_image_config['title'], final_image_config['author'], request.POST['data'])
     return redirect('/gallery/'+ guid)
 
-@login_required('/login')
+@login_required(login_url='/login')
 def download(request, image_id):
     saved_insight = SavedInsight.objects.get(image_id=image_id)
     image = Image.open(settings.MEDIA_ROOT + image_id + '.png')
@@ -364,7 +364,7 @@ def download(request, image_id):
     image.save(response, 'png')
     return response
 
-@login_required('/login')
+@login_required(login_url='/login')
 def email(request, image_id, email_address):
     if not email_re.match(email_address):
         return HttpResponse()
@@ -421,7 +421,7 @@ def data_push(request):
         f.display_as_question = False
         f.save()
 
-@login_required('/login')
+@login_required(login_url='/login')
 def globe(request, facet_name=None):
     if facet_name:
 	now = time.time()
