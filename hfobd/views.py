@@ -29,36 +29,36 @@ def landing_page(request):
                 template_data['errors'].append('Sorry, that username and password wont work')
             if not template_data['errors']:
                 login(request, user)
-                return redirect('/')
+                return redirect('/choose_data')
     return render_to_response('landing.html', template_data, context_instance=RequestContext(request))
 
 @login_required(login_url='/login')
 def user_logout(request):
     logout(request)
-    return redirect(home)
+    return redirect(landing_page)
+
 
 @login_required(login_url='/login')
-def home(request):
-    template_data = {
-        'questions':FacetMapping.objects.filter(display_as_question=True),
-    }
-    return render_to_response('home.html', template_data, context_instance=RequestContext(request))
+def choose_data(request):
+    return render_to_response('choosedata.html', {}, context_instance=RequestContext(request))
+
+#@login_required(login_url='/login')
+#def home(request):
+#    template_data = {
+#        'questions':FacetMapping.objects.filter(display_as_question=True),
+#    }
+#    return render_to_response('home.html', template_data, context_instance=RequestContext(request))
+
+#@login_required(login_url='/login')
+#def design1(request):
+#    template_data = {
+#        'questions':FacetMapping.objects.filter(display_as_question=True),
+#    }
+#    return render_to_response('design1.html', template_data, context_instance=RequestContext(request))
 
 @login_required(login_url='/login')
-def design1(request):
-    template_data = {
-        'questions':FacetMapping.objects.filter(display_as_question=True),
-    }
-    return render_to_response('design1.html', template_data, context_instance=RequestContext(request))
-
-@login_required(login_url='/login')
-def design2(request):
+def design2(request, data_key):
     questions = [q for q in FacetMapping.objects.filter(display_as_question=True)]
-#    questions.insert(0, {
-#        'display_name':'Mission Control Country',
-#        'facet_name':'country_s',
-#        'display_as_question':True
-#    })
     template_data = { 'questions': questions, }
     return render_to_response('create.html', template_data, context_instance=RequestContext(request))
 

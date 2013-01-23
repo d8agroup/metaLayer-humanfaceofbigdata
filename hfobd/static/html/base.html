@@ -94,19 +94,27 @@
         <div id="header">
             <div id="header_inner">
                 <div class="clearfix fill_width">
-                    <div id="header_right"></div>
-                    <div id="header_left"></div>
-                    <div id="header_center">
-                        {% block page_navigation %}
-                            <div id="navigation_container">
-                                <ul id="navigation">
-                                    <li class="first"><a href="/">create</a></li>
-                                    <li><a href="/gallery">explore</a></li>
+{#                    <div id="header_right"></div>#}
+{#                    <div id="header_left"></div>#}
+{#                    <div id="header_center">#}
+{#                        {% block page_navigation %}#}
+{#                            <div id="navigation_container">#}
+{#                                <ul id="navigation">#}
+{#                                    <li class="first"><a href="/">create</a></li>#}
+{#                                    <li><a href="/gallery">explore</a></li>#}
     {#                                <li><a href="/globe">globe</a></li>#}
-                                </ul>
-                            </div>
-                        {% endblock %}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        {% endblock %}#}
+{#                    </div>#}
+                    {% if user.is_authenticated %}
+                    <div id="navigation">
+                        <ul>
+                            <li><a href="/choose_data">home</a></li>
+                            <li><a href="/logout">logout</a></li>
+                        </ul>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
