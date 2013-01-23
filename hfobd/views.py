@@ -16,7 +16,7 @@ from django.conf import settings
 from PIL import Image
 
 def landing_page(request):
-    template_data = { 'errors':[] }
+    template_data = { 'errors':[], 'context':'Globe' if request.META.get('HTTP_HOST', '').startswith('globe') else 'Surv' }
     if request.method == 'POST' and request.POST.get('login'):
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -57,7 +57,9 @@ def choose_data(request):
 #    return render_to_response('design1.html', template_data, context_instance=RequestContext(request))
 
 @login_required(login_url='/login')
-def design2(request, data_key):
+def design2(request, data_key=None):
+    if request.META.get('HTTP_HOST', '').startswith('globe'):
+        return redirect(globe)
     questions = [q for q in FacetMapping.objects.filter(display_as_question=True)]
     template_data = { 'questions': questions, }
     return render_to_response('create.html', template_data, context_instance=RequestContext(request))

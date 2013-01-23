@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 
-{% block page_title %}MetaLayer - Surv{% endblock %}
-
 {% block page_navigation %}{% endblock %}
 
 {% block page %}
@@ -10,7 +8,7 @@
         <div id="login_section">
             <div class="clearfix fill_width">
                 <div id="login">
-                    <p class="info">MetaLayer Surv - Login</p>
+                    <p class="info">MetaLayer {{ context }} - Login</p>
                     <form class="ui-form" method="POST">
                         {% csrf_token %}
                         {% if errors %}
