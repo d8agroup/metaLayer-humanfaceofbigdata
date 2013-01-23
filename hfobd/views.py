@@ -40,7 +40,10 @@ def user_logout(request):
 
 @login_required(login_url='/login')
 def choose_data(request):
-    return render_to_response('choosedata.html', {}, context_instance=RequestContext(request))
+    return render_to_response(
+        'choosedata.html',
+        {'context':'Globe' if request.META.get('HTTP_HOST', '').startswith('globe') else 'Surv'},
+        context_instance=RequestContext(request))
 
 #@login_required(login_url='/login')
 #def home(request):
